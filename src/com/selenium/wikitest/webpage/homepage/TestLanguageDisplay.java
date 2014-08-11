@@ -23,15 +23,6 @@ public class TestLanguageDisplay {
 	}
 	
 	@Test
-	public void testSearchList() {
-		String[] mylist = homePage.stringList();
-		for (String s : mylist) {
-			System.out.println(s);
-		}
-		System.out.println("The number of items in the list is: " + mylist.length);
-	}
-	
-	@Test
 	public void testSpanish() {
 		// Verify Spanish is displayed
 		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.Spanish));

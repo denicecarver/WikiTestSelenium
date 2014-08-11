@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.AfterClass;
 import org.openqa.selenium.firefox.FirefoxDriver;
+
 import com.thoughtworks.selenium.SeleneseTestBase;
 
 public class TestSearchFromHomePage {
@@ -24,6 +25,18 @@ public class TestSearchFromHomePage {
 		
 		// Assert expected == actual
 		SeleneseTestBase.assertEquals(seleniumExpected, seleniumActual);		
+	}
+	
+	@Test
+	public void testSearchList() {
+		String[] mylist = homePage.stringList();
+		for (String s : mylist) {
+			System.out.println(s);
+			String actual = homePage.searchFor(s);
+			homePage.openHomePage();
+			SeleneseTestBase.assertEquals(s, actual);
+		}
+		System.out.println("The number of items in the list is: " + mylist.length);
 	}
 	
 	@Test
