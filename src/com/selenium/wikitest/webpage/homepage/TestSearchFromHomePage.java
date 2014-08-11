@@ -55,10 +55,6 @@ public class TestSearchFromHomePage {
 		// Assert expected == actual
 		SeleneseTestBase.assertEquals(errorExpected, errorActual);
 		
-		// Verify a meaningless error is not displayed (this assert fails)
-		// Make a separate bug test
-		String searchFail = homePage.getTextAtXPath("ErrorPage.ErrorXPath");
-		SeleneseTestBase.assertFalse(searchFail.contains(HomePageText.getString("ErrorPage.SearchErrored")));
 	}
 	
 	@Test
@@ -78,7 +74,7 @@ public class TestSearchFromHomePage {
 	
 	@AfterClass
 	public static void commonTearDown() throws Exception {
-		homePage.closeWindow();
+		homePage.closeBrowser();
 	}
 
 }

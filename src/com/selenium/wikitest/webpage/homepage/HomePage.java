@@ -2,6 +2,7 @@ package com.selenium.wikitest.webpage.homepage;
 
 import com.selenium.wikitest.webpage.WebPage;
 import com.selenium.wikitest.shared.CommonMethods;
+import com.selenium.wikitest.shared.CommonPagesText;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -47,7 +48,7 @@ public class HomePage extends WebPage{
 	}
 	
 	public void openPage() {
-		super.openPage(HomePageText.getString("HomePage.WikiURL"));
+		super.openPage(CommonPagesText.getString("AnyPage.WikiHomeURL"));
 	}
 	
 	public String searchFor(String searchString) {

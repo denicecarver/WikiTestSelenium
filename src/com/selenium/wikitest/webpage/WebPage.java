@@ -1,10 +1,12 @@
 package com.selenium.wikitest.webpage;
 
-import org.openqa.selenium.By;
+//import com.selenium.wikitest.shared.*;
+//import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import com.selenium.wikitest.shared.CommonMethods;
-import com.selenium.wikitest.webpage.homepage.HomePageText;
+//import com.selenium.wikitest.shared.CommonMethods;
+import com.selenium.wikitest.shared.CommonPagesText;
+//import com.selenium.wikitest.webpage.homepage.HomePageText;
 
 public class WebPage {
 	protected WebDriver webDriver;
@@ -20,8 +22,12 @@ public class WebPage {
 			System.out.println(e.toString());
 		}
 	}
+	
+	public void openHomePage() {
+		openPage(CommonPagesText.getString("AnyPage.WikiHomeURL"));
+	}
 
-	public void closeWindow() {
+	public void closeBrowser() {
 		webDriver.quit();
 	}
 

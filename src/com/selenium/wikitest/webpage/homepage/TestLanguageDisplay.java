@@ -85,9 +85,10 @@ public class TestLanguageDisplay {
 		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.Portuguese));
 	}
 
+	//sc
 	@AfterClass
 	public static void testTeardown() {
-		homePage.closeWindow();
+		homePage.closeBrowser();
 	}
 	
 }

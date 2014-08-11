@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import org.openqa.selenium.*;
 
-import com.selenium.wikitest.webpage.homepage.*;
+//import com.selenium.wikitest.webpage.homepage.*;
 
 public class CommonMethods {
 	
