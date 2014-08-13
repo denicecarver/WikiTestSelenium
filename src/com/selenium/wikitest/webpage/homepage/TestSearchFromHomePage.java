@@ -1,7 +1,9 @@
 package com.selenium.wikitest.webpage.homepage;
 
+import org.junit.BeforeClass;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.After;
 import org.junit.AfterClass;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -9,14 +11,21 @@ import com.thoughtworks.selenium.SeleneseTestBase;
 
 public class TestSearchFromHomePage {
 	private static HomePage homePage = new HomePage(new FirefoxDriver());
-	
+
+	@BeforeClass
+	public void setupClass() {
+		System.out.println("Class Setup");
+	}
 	@Before
 	public void setupTest() {
+		System.out.println("Test Setup");
 		homePage.openPage();
 	}
 	
 	@Test
 	public void testSuccessfulSearch() throws Exception {
+		System.out.println("TestSearchFromHomePage.testSuccessfulSearch");
+		
 		// Get text to search
 		String seleniumExpected = HomePageText.getString("SeleniumPage.SeleniumTitle");
 
@@ -29,6 +38,8 @@ public class TestSearchFromHomePage {
 	
 	@Test
 	public void testSearchList() {
+		System.out.println("TestSearchFromHomePage.testSearchList()");
+		
 		String[] mylist = homePage.stringList();
 		for (String s : mylist) {
 			System.out.println(s);
@@ -41,6 +52,8 @@ public class TestSearchFromHomePage {
 	
 	@Test
 	public void testEmptySearch() throws Exception {
+		System.out.println("TestSearchFromHomePage.testEmptySearch()");
+		
 		// Set expected outcome
 		String errorExpected = HomePageText.getString("ErrorPage.EmptyStringSearchTitle");
 		
@@ -56,6 +69,8 @@ public class TestSearchFromHomePage {
 	
 	@Test
 	public void testFailSearch() throws Exception {
+		System.out.println("TestSearchFromHomePage.testFailSearch()");
+
 		// Set expected outcome
 		String errorExpected = HomePageText.getString("ErrorPage.NotFoundTitle");
 
@@ -72,6 +87,8 @@ public class TestSearchFromHomePage {
 	
 	@Test
 	public void testSearchStringTooLong() throws Exception {
+		System.out.println("TestSearchFromHomePage.testSearchStringTooLong()");
+
 		// Set expected outcome
 		String errorExpected = HomePageText.getString("ErrorPage.TooLongStringError");
 
@@ -85,8 +102,15 @@ public class TestSearchFromHomePage {
 		SeleneseTestBase.assertEquals(errorExpected, errorActual);
 	}
 	
+	@After
+	public static void testTearDown() throws Exception {
+		System.out.println("Test TearDown");
+	}
+	
 	@AfterClass
 	public static void commonTearDown() throws Exception {
+		System.out.println("Class TearDown");
+
 		homePage.closeBrowser();
 	}
 
