@@ -21,8 +21,6 @@ public class SearchError {
 	
 	@Test
 	public void testFailSearch() throws Exception {
-		// Set expected outcome
-		//String errorExpected = HomePageText.getString("ErrorPage.NotFoundTitle");
 
 		// Set search text
 		String searchText = HomePageText.getString("HomePage.OpenBraceSearch");
@@ -31,7 +29,6 @@ public class SearchError {
 		homePage.searchFor(searchText);
 		
 		// Verify a meaningless error is not displayed (this assert fails)
-		// Make a separate bug test
 		String searchFail = homePage.getTextAtXPath("ErrorPage.ErrorXPath");
 		SeleneseTestBase.assertFalse(searchFail.contains(HomePageText.getString("ErrorPage.SearchErrored")));
 	}
