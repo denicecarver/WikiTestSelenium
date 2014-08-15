@@ -5,15 +5,17 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import com.selenium.wikitest.shared.CommonMethods;
 import com.thoughtworks.selenium.SeleneseTestBase;
 
 public class TestSearchFromHomePage {
 	private static HomePage homePage = new HomePage(new FirefoxDriver());
 
 	@BeforeClass
-	public void setupClass() {
+	public static void setupClass() {
 		System.out.println("Class Setup");
 	}
 	@Before
@@ -21,6 +23,14 @@ public class TestSearchFromHomePage {
 		System.out.println("Test Setup");
 		homePage.openPage();
 	}
+	
+	// @Test test redirected search using:
+	//     "African American (U.S. Census)"
+	//     "Angiosperms"
+	//     "Soccer"
+	//     "Football (Soccer)"
+	//     "First World War"
+	//     "Hispanic (U.S. Census)"
 	
 	@Test
 	public void testSuccessfulSearch() throws Exception {
@@ -103,7 +113,7 @@ public class TestSearchFromHomePage {
 	}
 	
 	@After
-	public static void testTearDown() throws Exception {
+	public void testTearDown() throws Exception {
 		System.out.println("Test TearDown");
 	}
 	

@@ -4,6 +4,9 @@ package com.selenium.wikitest.webpage;
 //import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+
+
+import com.selenium.wikitest.shared.CommonMethods;
 //import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.shared.CommonPagesText;
 //import com.selenium.wikitest.webpage.homepage.HomePageText;
@@ -13,6 +16,10 @@ public class WebPage {
 	
 	public WebPage(WebDriver driver) {
 		webDriver = driver;
+	}
+	
+	public WebDriver getDriver() {
+		return webDriver;
 	}
 	
 	public void openPage(String url) {
@@ -25,6 +32,10 @@ public class WebPage {
 	
 	public void openHomePage() {
 		openPage(CommonPagesText.getString("AnyPage.WikiHomeURL"));
+	}
+	
+	public String searchFor(String searchString) {
+		return CommonMethods.searchFor(webDriver, searchString);
 	}
 
 	public void closeBrowser() {

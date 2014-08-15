@@ -33,17 +33,6 @@ public class CommonMethods {
         throw new NoSuchElementException("Looking for element by: " + by.toString());
     }
 	
-	public static String searchFor(WebDriver driver, By elementHandle, String searchString) {
-
-		// Enter expected text in search text box
-		waitForElement(driver, By.id(CommonPagesText.getString("AnyPage.SearchID"))).sendKeys(searchString);
-		
-		// search is dependent on starting page
-		waitForElement(driver, elementHandle).click();
-
-		return waitForElement(driver, By.id(CommonPagesText.getString("AnyPage.TitleID"))).getText();
-	}
-	
 	public static String[] getDataFromCSV() {
 		
 		BufferedReader br = null;
@@ -75,10 +64,20 @@ public class CommonMethods {
 		return search.toArray(new String[search.size()]);
 		
 	}
-
 	
-	public String searchFor(WebDriver driver, String searchString) {
-		return searchFor(driver, By.id(CommonPagesText.getString("AnyPage.StartSearchID")), searchString);
+	public static String searchFor(WebDriver driver, By elementHandle, String searchString) {
+
+		// Enter expected text in search text box
+		waitForElement(driver, By.id(CommonPagesText.getString("AnyPage.SearchID"))).sendKeys(searchString);
+		
+		// search is dependent on starting page
+		waitForElement(driver, elementHandle).click();
+
+		return waitForElement(driver, By.id(CommonPagesText.getString("AnyPage.TitleID"))).getText();
+	}
+	
+	public static String searchFor(WebDriver driver, String searchString) {
+		return searchFor(driver, By.name(CommonPagesText.getString("AnyPage.GoSearchName")), searchString);
 	}
 
 }

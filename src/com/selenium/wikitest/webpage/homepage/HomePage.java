@@ -51,10 +51,6 @@ public class HomePage extends WebPage{
 		super.openPage(CommonPagesText.getString("AnyPage.WikiHomeURL"));
 	}
 	
-	public String searchFor(String searchString) {
-		return CommonMethods.searchFor(webDriver, By.xpath(HomePageText.getString("HomePage.StartSearchXPath")), searchString);
-	}
-	
 	public String[] stringList() {
 		return CommonMethods.getDataFromCSV();
 	}
