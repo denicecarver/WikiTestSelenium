@@ -1,26 +1,17 @@
 package com.selenium.wikitest.webpage.homepage;
 
-import org.junit.BeforeClass;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.After;
 import org.junit.AfterClass;
-import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import com.selenium.wikitest.shared.CommonMethods;
 import com.thoughtworks.selenium.SeleneseTestBase;
 
 public class TestSearchFromHomePage {
 	private static HomePage homePage = new HomePage(new FirefoxDriver());
 
-	@BeforeClass
-	public static void setupClass() {
-		System.out.println("Class Setup");
-	}
 	@Before
 	public void setupTest() {
-		System.out.println("Test Setup");
 		homePage.openPage();
 	}
 	
@@ -31,45 +22,57 @@ public class TestSearchFromHomePage {
 	//     "Football (Soccer)"
 	//     "First World War"
 	//     "Hispanic (U.S. Census)"
+	//     "Latino (U.S. Census)"
+	//     "Native American (U.S. Census)"
+	//     "Pacific Islander (U.S. Census)"
+	//     "White (U.S. Census)"
+	//     "Poverty line"
+	//     "Roman Catholic Church"
+	//     "Second World War"
+	//     "Singing"
 	
 	@Test
 	public void testSuccessfulSearch() throws Exception {
-		System.out.println("TestSearchFromHomePage.testSuccessfulSearch");
-		
+
 		// Get text to search
 		String seleniumExpected = HomePageText.getString("SeleniumPage.SeleniumTitle");
 
 		// Run search from home page and get result
 		String seleniumActual = homePage.searchFor(seleniumExpected);
 		
-		// Assert expected == actual
+		// Assert expected matches actual
 		SeleneseTestBase.assertEquals(seleniumExpected, seleniumActual);		
 	}
 	
+	// Data-driven test
 	@Test
 	public void testSearchList() {
-		System.out.println("TestSearchFromHomePage.testSearchList()");
 		
 		String[] mylist = homePage.stringList();
+		int count = 0;
 		for (String s : mylist) {
-			System.out.println(s);
-			String actual = homePage.searchFor(s);
+
+			// Assert expected search result s, from list, matches actual result
+			SeleneseTestBase.assertEquals(s, homePage.searchFor(s));
+			
+			// increment counter
+			count++;
+			
+			// Return to home page for next test
 			homePage.openHomePage();
-			SeleneseTestBase.assertEquals(s, actual);
 		}
-		System.out.println("The number of items in the list is: " + mylist.length);
+		
+		System.out.println("Number of data-driven tests:  " + count);
+
 	}
 	
 	@Test
 	public void testEmptySearch() throws Exception {
-		System.out.println("TestSearchFromHomePage.testEmptySearch()");
-		
+
 		// Set expected outcome
 		String errorExpected = HomePageText.getString("ErrorPage.EmptyStringSearchTitle");
 		
 		// Run search and get result.
-		// Note: homePage.searchFor has a unique ID for the
-		// go button and must be called for searches from homePage
 		String errorActual = homePage.searchFor(HomePageText.getString("HomePage.EmptyString"));
 
 		// Assert expected == actual
@@ -79,48 +82,34 @@ public class TestSearchFromHomePage {
 	
 	@Test
 	public void testFailSearch() throws Exception {
-		System.out.println("TestSearchFromHomePage.testFailSearch()");
 
 		// Set expected outcome
 		String errorExpected = HomePageText.getString("ErrorPage.NotFoundTitle");
 
-		// Set search text
-		String searchText = HomePageText.getString("HomePage.OpenBraceSearch");
-		
 		// Run search and get result
-		String errorActual = homePage.searchFor(searchText);
+		String errorActual = homePage.searchFor(HomePageText.getString("HomePage.OpenBraceSearch"));
 		
-		// Assert expected == actual
+		// Assert expected matches actual
 		SeleneseTestBase.assertEquals(errorExpected, errorActual);
 		
 	}
 	
 	@Test
 	public void testSearchStringTooLong() throws Exception {
-		System.out.println("TestSearchFromHomePage.testSearchStringTooLong()");
 
 		// Set expected outcome
 		String errorExpected = HomePageText.getString("ErrorPage.TooLongStringError");
 
-		// Set search text
-		String searchText = HomePageText.getString("ErrorPage.SearchTooLongString");
-
 		// Run search and get result
-		String errorActual = homePage.searchFor(searchText);
+		String errorActual = homePage.searchFor(HomePageText.getString("ErrorPage.SearchTooLongString"));
 		
 		// Assert expected == actual (this assert fails)
 		SeleneseTestBase.assertEquals(errorExpected, errorActual);
-	}
-	
-	@After
-	public void testTearDown() throws Exception {
-		System.out.println("Test TearDown");
+
 	}
 	
 	@AfterClass
 	public static void commonTearDown() throws Exception {
-		System.out.println("Class TearDown");
-
 		homePage.closeBrowser();
 	}
 
