@@ -16,7 +16,7 @@ public class CommonMethods {
     {
 		int tenthSecond;
 		int sleepTime = 100;
-        for (tenthSecond = 1; tenthSecond <= 50/*200*/; tenthSecond++) {
+        for (tenthSecond = 1; tenthSecond <= 10/*200*/; tenthSecond++) {
         	try {
         		return driver.findElement(by);
         	} catch (NoSuchElementException e) {
