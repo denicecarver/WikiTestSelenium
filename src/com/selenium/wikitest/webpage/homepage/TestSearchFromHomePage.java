@@ -18,6 +18,7 @@ public class TestSearchFromHomePage {
 	// @Test test redirected search using:
 	//     "African American (U.S. Census)"
 	//     "Angiosperms"
+	//     "Countries of the world"
 	//     "Soccer"
 	//     "Football (Soccer)"
 	//     "First World War"
@@ -29,7 +30,10 @@ public class TestSearchFromHomePage {
 	//     "Poverty line"
 	//     "Roman Catholic Church"
 	//     "Second World War"
-	//     "Singing"
+	//     "Sings"
+	//     "Vocals"
+	//     "Singer"
+	//     "Zones of Nepal"
 	
 	@Test
 	public void testSuccessfulSearch() throws Exception {
