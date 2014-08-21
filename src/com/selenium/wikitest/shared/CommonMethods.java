@@ -6,9 +6,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.openqa.selenium.*;
-
-//import com.selenium.wikitest.webpage.homepage.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class CommonMethods {
 	
@@ -20,7 +21,7 @@ public class CommonMethods {
         	try {
         		return driver.findElement(by);
         	} catch (NoSuchElementException e) {
-        		// swallow
+        		// swallow - expect to not find within wait period
         		System.out.println("Tenth seconds waited:  " + tenthSecond);
         	}
         	try {
@@ -33,7 +34,7 @@ public class CommonMethods {
         throw new NoSuchElementException("Looking for element by: " + by.toString());
     }
 	
-	public static String[] getDataFromCSV() {
+	public static String[] getDataFromCSV(String propertyFilename) {
 		
 		BufferedReader br = null;
 		String line = "";
@@ -41,7 +42,7 @@ public class CommonMethods {
 		ArrayList<String> search = new ArrayList<String>(100);
 		 
 		try {
-			br = new BufferedReader(new FileReader(CommonPagesText.getString("AnyPage.CSVFilename")));
+			br = new BufferedReader(new FileReader(CommonPagesText.getString(propertyFilename)));
 			
 			while ((line = br.readLine()) != null) {
 				search.add(line.split(cvsSplitBy)[0]);
@@ -68,16 +69,29 @@ public class CommonMethods {
 	public static String searchFor(WebDriver driver, By elementHandle, String searchString) {
 
 		// Enter expected text in search text box
-		waitForElement(driver, By.id(CommonPagesText.getString("AnyPage.SearchID"))).sendKeys(searchString);
+		waitForElement(driver,
+				By.id(CommonPagesText.getString("AnyPage.SearchID"))).sendKeys(searchString);
 		
 		// search is dependent on starting page
 		waitForElement(driver, elementHandle).click();
 
-		return waitForElement(driver, By.id(CommonPagesText.getString("AnyPage.TitleID"))).getText();
+		return getPageTitle(driver);
 	}
 	
 	public static String searchFor(WebDriver driver, String searchString) {
-		return searchFor(driver, By.name(CommonPagesText.getString("AnyPage.GoSearchName")), searchString);
+		return searchFor(driver,
+				By.name(CommonPagesText.getString("AnyPage.GoSearchName")),
+				searchString);
+	}
+	
+	public String searchForRedirect(WebDriver driver, String redirectString) {
+		
+		driver.findElement(By.linkText(redirectString)).click();
+		return CommonMethods.getPageTitle(driver);
+	}
+	
+	public static String getPageTitle(WebDriver driver) {
+		return waitForElement(driver, By.id(CommonPagesText.getString("AnyPage.TitleID"))).getText();
 	}
 
 }

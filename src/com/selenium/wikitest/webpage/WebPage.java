@@ -1,15 +1,10 @@
 package com.selenium.wikitest.webpage;
 
-//import com.selenium.wikitest.shared.*;
-//import org.openqa.selenium.By;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-
-
 import com.selenium.wikitest.shared.CommonMethods;
-//import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.shared.CommonPagesText;
-//import com.selenium.wikitest.webpage.homepage.HomePageText;
 
 public class WebPage {
 	protected WebDriver webDriver;
@@ -36,6 +31,12 @@ public class WebPage {
 	
 	public String searchFor(String searchString) {
 		return CommonMethods.searchFor(webDriver, searchString);
+	}
+	
+	public String searchForRedirect(String redirectString) {
+		
+		webDriver.findElement(By.linkText(redirectString)).click();
+		return CommonMethods.getPageTitle(webDriver);
 	}
 
 	public void closeBrowser() {

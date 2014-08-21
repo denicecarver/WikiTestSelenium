@@ -30,8 +30,8 @@ public class HomePage extends WebPage{
 		super.openPage(CommonPagesText.getString("AnyPage.WikiHomeURL"));
 	}
 	
-	public String[] stringList() {
-		return CommonMethods.getDataFromCSV();
+	public String[] searchStringList(String propertyFilename) {
+		return CommonMethods.getDataFromCSV(propertyFilename);
 	}
 	
 	private String getExpectedLanguage(String expectedLanguage) {

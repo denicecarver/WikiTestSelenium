@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.AfterClass;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import com.selenium.wikitest.shared.CommonPagesText;
 
 import com.thoughtworks.selenium.SeleneseTestBase;
 
@@ -14,26 +15,6 @@ public class TestSearchFromHomePage {
 	public void setupTest() {
 		homePage.openPage();
 	}
-	
-	// @Test test redirected search using:
-	//     "African American (U.S. Census)"
-	//     "Angiosperms"
-	//     "Countries of the world"
-	//     "Soccer"
-	//     "Football (Soccer)"
-	//     "First World War"
-	//     "Hispanic (U.S. Census)"
-	//     "Latino (U.S. Census)"
-	//     "Native American (U.S. Census)"
-	//     "Pacific Islander (U.S. Census)"
-	//     "White (U.S. Census)"
-	//     "Poverty line"
-	//     "Roman Catholic Church"
-	//     "Second World War"
-	//     "Sings"
-	//     "Vocals"
-	//     "Singer"
-	//     "Zones of Nepal"
 	
 	@Test
 	public void testSuccessfulSearch() throws Exception {
@@ -48,11 +29,53 @@ public class TestSearchFromHomePage {
 		SeleneseTestBase.assertEquals(seleniumExpected, seleniumActual);		
 	}
 	
+	@Test
+	public void testSearchRedirect() {
+
+		// Get redirect text
+		String expectedRedirectText = CommonPagesText.getString("AnyPage.RedirectText");
+		
+		// Go to redirected page
+		homePage.searchFor(expectedRedirectText);
+		
+		// Get text from non-redirected page
+		String actualRedirectText = homePage.searchForRedirect(expectedRedirectText);
+
+		// Assert expected matches actual
+		SeleneseTestBase.assertEquals(expectedRedirectText, actualRedirectText);		
+
+	}
+	
+	// Data-driven test
+	@Test
+	public void testSearchRedirectList() {
+		
+		String[] mylist = homePage.searchStringList("AnyPage.CSVRedirectSearchFilename");
+		int count = 0;
+		for (String s : mylist) {
+			
+			// Go to redirected page
+			homePage.searchFor(s);
+
+			// Assert expected search result s, from list, matches actual result
+			SeleneseTestBase.assertEquals(s, homePage.searchForRedirect(s));
+			
+			// increment counter
+			count++;
+			
+			// Return to home page for next test
+			homePage.openHomePage();
+		}
+		
+		System.out.println("Number of search redirect data-driven tests:  " + count);
+
+	}
+	
 	// Data-driven test
 	@Test
 	public void testSearchList() {
 		
-		String[] mylist = homePage.stringList();
+		String[] mylist = homePage.searchStringList("AnyPage.CSVSearchFilename");
 		int count = 0;
 		for (String s : mylist) {
 
@@ -66,7 +89,7 @@ public class TestSearchFromHomePage {
 			homePage.openHomePage();
 		}
 		
-		System.out.println("Number of data-driven tests:  " + count);
+		System.out.println("Number of search data-driven tests:  " + count);
 
 	}
 	
