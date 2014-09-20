@@ -47,9 +47,7 @@ public class HomePage extends WebPage{
 	}
 	
 	public boolean isLanguageFound(Language val) {
-				
 		return getDisplayedLanguage("HomePage.LanguageXPath" + val.toString()).contains(getExpectedLanguage("HomePage.Language" + val.toString() + "Text"));
-		
 	}
 	
 }
