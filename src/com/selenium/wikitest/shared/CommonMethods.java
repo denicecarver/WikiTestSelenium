@@ -93,5 +93,23 @@ public class CommonMethods {
 	public static String getPageTitle(WebDriver driver) {
 		return waitForElement(driver, By.id(CommonPagesText.getString("AnyPage.TitleID"))).getText();
 	}
+	
+	public static String getProjectTitle(WebDriver driver) {
+		return waitForElement(driver, By.id(CommonPagesText.getString("AnyProject.TitleID"))).getText();
+	}
+	
+	public static String getHomeTitle(WebDriver driver) {
+		return waitForElement(driver, By.className(CommonPagesText.getString("Home.TitleName"))).getText();
+	}
+	
+	public static String clickProjectLink(WebDriver driver, String linkName) {
+		driver.findElement(By.linkText(linkName)).click();
+		return CommonMethods.getProjectTitle(driver);
+	}
+	
+	public static String clickHomeLink(WebDriver driver, String linkName) {
+		driver.findElement(By.linkText(linkName)).click();
+		return CommonMethods.getHomeTitle(driver);
+	}
 
 }

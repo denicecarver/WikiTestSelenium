@@ -50,4 +50,17 @@ public class HomePage extends WebPage{
 		return getDisplayedLanguage("HomePage.LanguageXPath" + val.toString()).contains(getExpectedLanguage("HomePage.Language" + val.toString() + "Text"));
 	}
 	
+	public String goToProjectLink(String keyName) {
+		return CommonMethods.clickProjectLink(webDriver, HomePageText.getString(keyName));
+	}
+	
+	public boolean isProjectFound(String projectKey) {
+		String project = goToProjectLink(projectKey);
+		return false;
+	}
+	
+	public String goToHomeLink() {
+		return CommonMethods.clickHomeLink(webDriver, HomePageText.getString("HomePage.WikiTitle"));
+	}
+	
 }
