@@ -19,13 +19,11 @@ public class TestOtherProjectLinks {
 	
 	@Test
 	public void testWiktionaryLink() {
-		SeleneseTestBase.assertTrue(homePage.goToProjectLink("HomePage.WiktionaryProject").contains(HomePageText.getString("HomePage.WiktionaryProject")));
+		String actualResult = homePage.goToProjectLink("HomePage.WiktionaryProject");
+		String expectedResult = (HomePageText.getString("HomePage.WiktionaryProject")).toLowerCase();
+		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
 	}
 	
-	// Fails because each project is different
-	// so I can't make a standard test that
-	// works for every project.  Need a new
-	// approach.
 	@Test
 	public void testWikidataLink() {
 		String actualResult = homePage.goToProjectLink("HomePage.WikidataProject");
@@ -33,7 +31,14 @@ public class TestOtherProjectLinks {
 		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
 	}
 	
-	@After
+	@Test
+	public void testWikivoyageLink() {
+		String actualResult = homePage.goToProjectLink("HomePage.WikivoyageProject");
+		String expectedResult = (HomePageText.getString("HomePage.WikivoyageProject")).toLowerCase();
+		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
+	}
+	
+	//@After
 	public void returnToWikipedia() {
 		homePage.goToHomeLink();
 	}

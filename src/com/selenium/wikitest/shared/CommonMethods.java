@@ -95,7 +95,8 @@ public class CommonMethods {
 	}
 	
 	public static String getProjectTitle(WebDriver driver) {
-		return waitForElement(driver, By.id(CommonPagesText.getString("AnyProject.TitleID"))).getText();
+		//return waitForElement(driver, By.id(CommonPagesText.getString("AnyProject.TitleID"))).getText();
+		return driver.getCurrentUrl();
 	}
 	
 	public static String getHomeTitle(WebDriver driver) {
