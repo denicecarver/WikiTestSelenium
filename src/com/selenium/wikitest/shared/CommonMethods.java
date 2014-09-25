@@ -17,7 +17,7 @@ public class CommonMethods {
     {
 		int tenthSecond;
 		int sleepTime = 100;
-        for (tenthSecond = 1; tenthSecond <= 100/*200*/; tenthSecond++) {
+        for (tenthSecond = 1; tenthSecond <= 20/*200*/; tenthSecond++) {
         	try {
         		return driver.findElement(by);
         	} catch (NoSuchElementException e) {
@@ -75,7 +75,7 @@ public class CommonMethods {
 		// search is dependent on starting page
 		waitForElement(driver, elementHandle).click();
 
-		return getPageTitle(driver);
+		return driver.getTitle();
 	}
 	
 	public static String searchFor(WebDriver driver, String searchString) {
@@ -87,30 +87,12 @@ public class CommonMethods {
 	public String searchForRedirect(WebDriver driver, String redirectString) {
 		
 		driver.findElement(By.linkText(redirectString)).click();
-		return CommonMethods.getPageTitle(driver);
+		return driver.getTitle();
 	}
-	
-	public static String getPageTitle(WebDriver driver) {
-		return waitForElement(driver, By.id(CommonPagesText.getString("AnyPage.TitleID"))).getText();
-	}
-	
-	public static String getProjectTitle(WebDriver driver) {
-		//return waitForElement(driver, By.id(CommonPagesText.getString("AnyProject.TitleID"))).getText();
-		return driver.getCurrentUrl();
-	}
-	
-	public static String getHomeTitle(WebDriver driver) {
-		return waitForElement(driver, By.className(CommonPagesText.getString("Home.TitleName"))).getText();
-	}
-	
+
 	public static String clickProjectLink(WebDriver driver, String linkName) {
-		driver.findElement(By.linkText(linkName)).click();
-		return CommonMethods.getProjectTitle(driver);
-	}
-	
-	public static String clickHomeLink(WebDriver driver, String linkName) {
-		driver.findElement(By.linkText(linkName)).click();
-		return CommonMethods.getHomeTitle(driver);
+		(driver.findElement(By.partialLinkText(linkName))).click();
+		return driver.getTitle();
 	}
 
 }

@@ -22,8 +22,11 @@ public class HomePage extends WebPage{
 		Portuguese
 	}
 	
+	WebDriver wDriver;
+	
 	public HomePage(WebDriver driver) {
 		super(driver);
+		wDriver = driver;
 	}
 	
 	public void openPage() {
@@ -54,8 +57,13 @@ public class HomePage extends WebPage{
 		return CommonMethods.clickProjectLink(webDriver, HomePageText.getString(keyName));
 	}
 	
-	public String goToHomeLink() {
-		return CommonMethods.clickHomeLink(webDriver, HomePageText.getString("HomePage.WikiTitle"));
+	public String goToHomePage() {
+		wDriver.get(CommonPagesText.getString("AnyPage.WikiHomeURL"));
+		return wDriver.getTitle();
+	}
+	
+	public boolean isHomePage() {
+		return wDriver.getTitle().contains("WikiHome");
 	}
 	
 }
