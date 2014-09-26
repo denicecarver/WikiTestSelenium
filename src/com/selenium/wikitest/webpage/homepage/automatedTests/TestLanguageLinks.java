@@ -1,5 +1,7 @@
-package com.selenium.wikitest.webpage.homepage;
+package com.selenium.wikitest.webpage.homepage.automatedTests;
 
+import com.selenium.wikitest.webpage.homepage.HomePage;
+import com.selenium.wikitest.webpage.homepage.HomePageText;
 import com.thoughtworks.selenium.SeleneseTestBase;
 
 import org.junit.BeforeClass;

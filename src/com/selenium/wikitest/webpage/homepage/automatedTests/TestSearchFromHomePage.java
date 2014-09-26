@@ -1,11 +1,13 @@
-package com.selenium.wikitest.webpage.homepage;
+package com.selenium.wikitest.webpage.homepage.automatedTests;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.AfterClass;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import com.selenium.wikitest.shared.CommonPagesText;
 
+import com.selenium.wikitest.shared.CommonPagesText;
+import com.selenium.wikitest.webpage.homepage.HomePage;
+import com.selenium.wikitest.webpage.homepage.HomePageText;
 import com.thoughtworks.selenium.SeleneseTestBase;
 
 public class TestSearchFromHomePage {
