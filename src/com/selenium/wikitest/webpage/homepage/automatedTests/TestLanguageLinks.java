@@ -53,15 +53,42 @@ public class TestLanguageLinks {
 		String expectedResult = HomePageText.getString("HomePage.ItalianWiki");
 		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
 	}
-	/*
+	
 	@Test
 	public void testJapaneseLink() {
-		String temp = homePage.goToProjectLink("HomePage.LanguageJapaneseText");
-		String actualResult = homePage.getTextAtXPath("HomePage.InJapanese");
+		String actualResult = homePage.getJapanesePageTitle();
 		String expectedResult = HomePageText.getString("HomePage.JapaneseWiki");
 		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
 	}
-	*/
+	
+	@Test
+	public void testChineseLink() {
+		String actualResult = homePage.goToProjectLink("HomePage.LanguageChineseText");
+		String expectedResult = HomePageText.getString("HomePage.ChineseWiki");
+		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
+	}
+	
+	@Test
+	public void testRussianLink() {
+		String actualResult = homePage.goToProjectLink("HomePage.LanguageRussianText");
+		String expectedResult = HomePageText.getString("HomePage.RussianWiki");
+		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
+	}
+	
+	@Test
+	public void testPortugueseLink() {
+		String actualResult = homePage.goToProjectLink("HomePage.LanguagePortugueseText");
+		String expectedResult = HomePageText.getString("HomePage.PortugueseWiki");
+		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
+	}
+	
+	@Test
+	public void testSpanishLink() {
+		String actualResult = homePage.goToProjectLink("HomePage.LanguageSpanishText");
+		String expectedResult = HomePageText.getString("HomePage.SpanishWiki");
+		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
+	}
+
 	@After
 	public void returnToWikipedia() {
 		homePage.goToHomePage();

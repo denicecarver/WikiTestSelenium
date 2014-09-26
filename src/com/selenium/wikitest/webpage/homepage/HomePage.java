@@ -6,6 +6,7 @@ import com.selenium.wikitest.shared.CommonPagesText;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class HomePage extends WebPage{
 	
@@ -61,6 +62,11 @@ public class HomePage extends WebPage{
 	
 	public boolean isHomePage() {
 		return webDriver.getTitle().contains("WikiHome");
+	}
+	
+	public String getJapanesePageTitle() {
+		WebElement we = CommonMethods.waitForElement(webDriver, By.linkText(HomePageText.getString("HomePage.LanguageJapaneseText")));
+		return we.getText();
 	}
 	
 }
