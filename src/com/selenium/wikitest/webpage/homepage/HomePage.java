@@ -32,7 +32,7 @@ public class HomePage extends WebPage{
 	}
 	
 	public String[] searchStringList(String propertyFilename) {
-		return CommonMethods.getDataFromCSV(propertyFilename);
+		return CommonMethods.getSearchDataFromCSV(propertyFilename);
 	}
 	
 	private String getExpectedLanguage(String expectedLanguage) {

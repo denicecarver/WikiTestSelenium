@@ -34,7 +34,7 @@ public class CommonMethods {
         throw new NoSuchElementException("Looking for element by: " + by.toString());
     }
 	
-	public static String[] getDataFromCSV(String propertyFilename) {
+	public static String[] getSearchDataFromCSV(String propertyFilename) {
 		
 		BufferedReader br = null;
 		String line = "";
@@ -63,6 +63,40 @@ public class CommonMethods {
 		}
 		
 		return search.toArray(new String[search.size()]);
+		
+	}
+	
+	public static String[] getLanguageDataFromCSV(String propertyFilename) {
+		
+		BufferedReader br = null;
+		String line = "";
+		String cvsSplitBy = ",";
+		ArrayList<String> languageInEnglish = new ArrayList<String>(100);
+		ArrayList<String> languageInNative = new ArrayList<String>(100);
+		 
+		try {
+			br = new BufferedReader(new FileReader(CommonPagesText.getString(propertyFilename)));
+			
+			while ((line = br.readLine()) != null) {
+				languageInEnglish.add(line.split(cvsSplitBy)[0]);
+				languageInNative.add(line.split(cvsSplitBy)[1]);
+			}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return languageInNative.toArray(new String[languageInNative.size()]);
 		
 	}
 	
