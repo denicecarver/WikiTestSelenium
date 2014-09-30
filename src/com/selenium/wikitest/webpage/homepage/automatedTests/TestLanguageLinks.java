@@ -88,6 +88,36 @@ public class TestLanguageLinks {
 		String expectedResult = HomePageText.getString("HomePage.SpanishWiki");
 		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
 	}
+	
+	// Data-driven test
+	@Test
+	public void testLanguageLinkList() {
+		// Retrieve the link names
+		// Retrieve the page titles
+		// Loop through the links
+		// Go to link
+		// Compare actual home page with expected home page
+		// Return to home page
+
+		String[] linkList = homePage.searchStringList("HomePage.CSVLanguageLink");
+		String[] expectedList = homePage.searchStringList("HomePage.CSVLanguageTitleStrings");
+		int count = 0;
+		for (String s : linkList) {
+
+			String actualResult = homePage.goToListLink(s);
+			String expectedResult = expectedList[count];
+			SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
+			// Assert expected search result s, from list, matches actual result
+			//SeleneseTestBase.assertTrue(homePage.searchFor(s).contains(s));
+			
+			// increment counter
+			count++;
+			
+			// Return to home page for next test
+			homePage.openHomePage();
+		}
+		System.out.println(count + " Tests Completed");
+	}
 
 	@After
 	public void returnToWikipedia() {

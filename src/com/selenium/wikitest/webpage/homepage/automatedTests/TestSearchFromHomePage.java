@@ -52,7 +52,7 @@ public class TestSearchFromHomePage {
 	@Test
 	public void testSearchRedirectList() {
 		
-		String[] mylist = homePage.searchStringList("HomePage.CSVRedirectSearchFilename");
+		String[] mylist = homePage.searchStringList("HomePage.RedirectSearchFilename");
 		int count = 0;
 		for (String s : mylist) {
 			
@@ -77,7 +77,7 @@ public class TestSearchFromHomePage {
 	@Test
 	public void testSearchList() {
 		
-		String[] mylist = homePage.searchStringList("HomePage.CSVSearchFilename");
+		String[] mylist = homePage.searchStringList("HomePage.SearchFilename");
 		int count = 0;
 		for (String s : mylist) {
 
@@ -95,26 +95,6 @@ public class TestSearchFromHomePage {
 
 	}
 	
-	/*
-	@Test
-	public void testLanguageLinkList() {
-		String[] mylist = homePage.searchStringList("HomePage.CSVSearchFilename");
-		//int count = 0;
-		for (String s : mylist) {
-
-			// Assert expected search result s, from list, matches actual result
-			SeleneseTestBase.assertTrue(homePage.searchFor(s).contains(s));
-			
-			// increment counter
-			count++;
-			
-			// Return to home page for next test
-			homePage.openHomePage();
-		}
-		
-	}
-	*/
-	
 	@Test
 	public void testEmptySearch() throws Exception {
 
@@ -127,7 +107,6 @@ public class TestSearchFromHomePage {
 		// Assert expected == actual
 		SeleneseTestBase.assertTrue(errorActual.contains(errorExpected));
 	}
-
 	
 	@Test
 	public void testFailSearch() throws Exception {

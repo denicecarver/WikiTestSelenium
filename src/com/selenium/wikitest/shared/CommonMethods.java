@@ -34,7 +34,7 @@ public class CommonMethods {
         throw new NoSuchElementException("Looking for element by: " + by.toString());
     }
 	
-	public static String[] getSearchDataFromCSV(String propertyFilename) {
+	public static String[] getSearchDataFromCSV(String filename) {
 		
 		BufferedReader br = null;
 		String line = "";
@@ -42,7 +42,7 @@ public class CommonMethods {
 		ArrayList<String> search = new ArrayList<String>(100);
 		 
 		try {
-			br = new BufferedReader(new FileReader(CommonPagesText.getString(propertyFilename)));
+			br = new BufferedReader(new FileReader(filename));
 			
 			while ((line = br.readLine()) != null) {
 				search.add(line.split(cvsSplitBy)[0]);
