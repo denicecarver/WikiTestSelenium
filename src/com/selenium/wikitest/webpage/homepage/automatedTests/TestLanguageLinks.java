@@ -92,23 +92,14 @@ public class TestLanguageLinks {
 	// Data-driven test
 	@Test
 	public void testLanguageLinkList() {
-		// Retrieve the link names
-		// Retrieve the page titles
-		// Loop through the links
-		// Go to link
-		// Compare actual home page with expected home page
-		// Return to home page
 
-		String[] linkList = homePage.searchStringList("HomePage.CSVLanguageLink");
-		String[] expectedList = homePage.searchStringList("HomePage.CSVLanguageTitleStrings");
+		String[] xPathList = homePage.searchStringList("HomePage.CSVLanguageLink");
 		int count = 0;
-		for (String s : linkList) {
+		for (String s : xPathList) {
 
-			String actualResult = homePage.goToListLink(s);
-			String expectedResult = expectedList[count];
+			String actualResult = homePage.goToListLink(homePage.getTextAtXPath(s));
+			String expectedResult = HomePageText.getString("HomePage.Link" + count);
 			SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
-			// Assert expected search result s, from list, matches actual result
-			//SeleneseTestBase.assertTrue(homePage.searchFor(s).contains(s));
 			
 			// increment counter
 			count++;

@@ -44,7 +44,7 @@ public class HomePage extends WebPage{
 	}
 	
 	public String getTextAtXPath(String xpathToElement) {
-		return CommonMethods.waitForElement(webDriver, By.xpath(HomePageText.getString(xpathToElement))).getText();
+		return CommonMethods.waitForElement(webDriver, By.xpath(xpathToElement)).getText();
 	}
 	
 	public boolean isLanguageFound(Language val) {
