@@ -8,6 +8,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Ignore;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class TestLanguageLinks {
@@ -95,7 +96,16 @@ public class TestLanguageLinks {
 
 		String[] xPathList = homePage.searchStringList("HomePage.CSVLanguageLink");
 		int count = 0;
+		
+		// Walk through the list of XPaths to the links
 		for (String s : xPathList) {
+
+			/* Temp code for breakpoint at variable value
+			if (count >= 125) {
+				System.out.println("Testing link at: " + s);
+			}
+			// End temp code
+			*/
 
 			String actualResult = homePage.goToListLink(homePage.getTextAtXPath(s));
 			String expectedResult = HomePageText.getString("HomePage.Link" + count);
@@ -109,6 +119,33 @@ public class TestLanguageLinks {
 		}
 		System.out.println(count + " Tests Completed");
 	}
+	
+	/*
+	@Test
+	public void testExcelLanguageLinkList()  throws BiffException, IOException {       
+	    Sheet s;
+	    WebDriver driver = new FirefoxDriver();
+	    FileInputStream fi = new FileInputStream("E:\\myExcelWorkBook.xls");
+	    Workbook W = Workbook.getWorkbook(fi);
+
+	    s = W.getSheet(0);
+
+	    for(int row = 0;row <= s.getRows();row++)
+	    {
+	        String Username = s.getCell(0,row).getContents();
+	        System.out.println("Username" +Username);
+	        driver.get("AppURL");
+	        driver.findElement(By.id("txtUserName")).sendKeys(Username);
+
+	        String password= s.getCell(1, row).getContents();
+	        System.out.println("Password "+password);
+
+	        driver.findElement(By.id("txtPassword")).sendKeys(password);
+
+	        driver.findElement(By.id("btnLogin")).click();
+	    }
+	}
+	*/
 
 	@After
 	public void returnToWikipedia() {
