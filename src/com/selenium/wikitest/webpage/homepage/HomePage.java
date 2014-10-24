@@ -1,5 +1,11 @@
 package com.selenium.wikitest.webpage.homepage;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
 import com.selenium.wikitest.webpage.WebPage;
 import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.shared.CommonPagesText;
@@ -22,9 +28,44 @@ public class HomePage extends WebPage{
 		Polish,
 		Portuguese
 	}
-	
+
 	public HomePage(WebDriver driver) {
 		super(driver);
+	}
+	
+	public ArrayList<LanguageLink> getLinkTestDataFromCSV(String filename) {
+		
+		BufferedReader br = null;
+		String line = "";
+		String cvsSplitBy = ",";
+		ArrayList<LanguageLink> languageLinks = new ArrayList<LanguageLink>(100);
+		 
+		try {
+			br = new BufferedReader(new FileReader(filename));
+			
+			while ((line = br.readLine()) != null) {
+				String[] strings;
+				strings = line.split(cvsSplitBy);
+				LanguageLink linkData = new LanguageLink(strings);
+				languageLinks.add(linkData);
+			}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return languageLinks;
+		
 	}
 	
 	public void openPage() {
@@ -71,6 +112,11 @@ public class HomePage extends WebPage{
 	public String getJapanesePageTitle() {
 		WebElement we = CommonMethods.waitForElement(webDriver, By.linkText(HomePageText.getString("HomePage.LanguageJapaneseText")));
 		return we.getText();
+	}
+	
+	public void addCSVRecordsToDB(String CSVFilename) {
+		ArrayList<LanguageLink> xPathList = getLinkTestDataFromCSV(CSVFilename);
+		SQLiteJDBCHomePage.insertLanguageLinks(xPathList);
 	}
 	
 }
