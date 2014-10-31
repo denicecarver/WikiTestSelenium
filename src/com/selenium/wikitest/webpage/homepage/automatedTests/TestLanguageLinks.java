@@ -12,7 +12,10 @@ import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+import junit.framework.TestSuite;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -25,6 +28,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class TestLanguageLinks {
 
 	private static HomePage homePage = new HomePage(new FirefoxDriver());
+	private static TestSuite suite = new TestSuite();
 	
 	@BeforeClass
 	public static void testSetup() {
@@ -102,10 +106,32 @@ public class TestLanguageLinks {
 	}
 	
 	// This is a maintenance method and should be moved to a shared method
-	@Test
+	@Ignore @Test
 	public void buildLinkDatabase() {
 		String CSVFilename = HomePageText.getString("HomePage.CSVLanguageLinkData");
 		homePage.addCSVRecordsToDB(CSVFilename);
+	}
+	
+	@Ignore @Test
+	public void temp() {
+		String test = "Trying This.";
+		test = SQLiteJDBCHomePage.convertStringToUnicode(test);
+		test = SQLiteJDBCHomePage.convertUnicodeEncodedToString(test);
+		System.out.println(test);
+	}
+	
+	@Test
+	public void setTitleForLink() {
+		ArrayList<LanguageLink> records = new ArrayList<>(200);
+		for (int i = 1; i<=127; i++) {
+			String link = HomePageText.getString("HomePage.XPathAddlLink" + i);
+			String title = homePage.goToListLinkByXPath(link);
+			LanguageLink record =  new LanguageLink(link, title);
+			records.add(record);
+			homePage.goToHomePage();
+		}
+
+		SQLiteJDBCHomePage.updateLanguageLinkTitles(records);
 	}
 	
 // Data-driven test using HomePage.db, LanguageLinks table
@@ -119,19 +145,18 @@ public class TestLanguageLinks {
 		// Test record: Click link and verify title
 	@Ignore @Test
 	public void testLanguageLinkList() throws SQLException, Exception {
+		
+		ArrayList<LanguageLink> linksList = SQLiteJDBCHomePage.queryLanguageLinks();
 
-//		ArrayList<LanguageLink> xPathList = homePage.getLinkTestDataFromCSV(dataFile);
-//		int count = 0;
-//		
-//		// Walk through the list of XPaths to the links
-//		//List<String> DataList = new ArrayList<String>();
-//		Iterator<LanguageLink> DataListIterator = xPathList.iterator();
-//		while (DataListIterator.hasNext()) {
-//			LanguageLink curr = DataListIterator.next();
-//			SQLiteJDBCHomePage.insertLanguageLink(curr.getLinkXPath(), curr.getExpectedResultTitle());
-////			System.out.println(curr.getLinkXPath() + ", " + curr.getExpectedResultTitle());
-//		}
-//		System.out.println("Data stored in table.");
+		Iterator<LanguageLink> DataListIterator = linksList.iterator();
+		while (DataListIterator.hasNext()) {
+			LanguageLink curr = DataListIterator.next();
+			
+//			String expectedResult = curr.getExpectedResultTitle();
+			String actualResult = new String(homePage.goToListLink(homePage.getTextAtXPath(curr.getLinkXPath())));
+//			SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
+		}
+		System.out.println("All tests complete");
 
 //		Temp code for breakpoint at variable value
 //		if (count >= 7) {
@@ -164,16 +189,6 @@ public class TestLanguageLinks {
 	homePage.openHomePage();
 	//System.out.println(count + " Tests Completed");
 }
-	
-	
-	@Ignore @Test
-	public void showUni() throws UnsupportedEncodingException {
-		String first = new String("bel");
-		String second = new String("\u0412");
-		String uText = new String(first.concat(second));  
-        String text = new String(uText.getBytes(),"UTF-8");  
-        System.out.println(text);
-	}
 
 	@After
 	public void returnToWikipedia() {
@@ -182,6 +197,7 @@ public class TestLanguageLinks {
 
 	@AfterClass
 	public static void commonTearDown() throws Exception {
+		System.out.println(suite.countTestCases());
 		homePage.closeBrowser();
 	}
 

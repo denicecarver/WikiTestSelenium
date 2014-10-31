@@ -100,6 +100,10 @@ public class HomePage extends WebPage{
 		return CommonMethods.clickProjectLink(webDriver, linkName);
 	}
 	
+	public String goToListLinkByXPath(String xPath) {
+		return CommonMethods.clickProjectLinkByXPath(webDriver, xPath);
+	}
+	
 	public String goToHomePage() {
 		webDriver.get(CommonPagesText.getString("AnyPage.WikiHomeURL"));
 		return webDriver.getTitle();
