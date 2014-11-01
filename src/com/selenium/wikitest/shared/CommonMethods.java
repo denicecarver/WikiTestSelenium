@@ -4,12 +4,21 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
+import javax.xml.bind.DatatypeConverter;
+
+import org.junit.Ignore;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import com.selenium.wikitest.webpage.homepage.HomePageText;
+import com.selenium.wikitest.webpage.homepage.LanguageLink;
+import com.selenium.wikitest.webpage.homepage.SQLiteHomePage;
 
 public class CommonMethods {
 	
@@ -140,5 +149,43 @@ public class CommonMethods {
 		String title = driver.getTitle();
 		return title;
 	}
+
+  public static String convertUnicodeEncodedToString(String encoded) {
+  	String[] arr = encoded.split("u");
+  	String text = "";
+  	String bareVal = null;
+  	for(int i = 1; i < arr.length; i++){
+  		if (arr[i].contains("\\")) {
+  			bareVal = arr[i].replace("\\", "");
+  		}
+  	    int intVal = Integer.parseInt(bareVal, 16);
+  	    text += (char)intVal;
+  	}
+  	return text;
+  }
+  
+  public static String convertStringToUnicode(String toConvert) {
+	  String hexOut = new String();
+	  try {
+		  byte[] utf8Bytes = toConvert.getBytes("UTF8");
+		  String hex = DatatypeConverter.printHexBinary(utf8Bytes);
+		  System.out.println(hex);
+		  for (int i = 0; i < hex.length(); i = i + 2) {
+			  hexOut = hexOut + "\\u00" + hex.substring(i, i + 2);
+		  }
+		  System.out.println(hexOut);
+	  } 
+	  catch (UnsupportedEncodingException e) {
+		  e.printStackTrace();
+	  }
+	  return hexOut;
+  }
+
+//  // This is a maintenance method and should be moved to a shared method
+//	public void buildLinkDatabase() {
+//		String CSVFilename = HomePageText.getString("HomePage.CSVLanguageLinkData");
+//		homePage.addCSVRecordsToDB(CSVFilename);
+//	}
+	
 
 }

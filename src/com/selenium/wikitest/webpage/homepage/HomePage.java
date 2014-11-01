@@ -120,7 +120,32 @@ public class HomePage extends WebPage{
 	
 	public void addCSVRecordsToDB(String CSVFilename) {
 		ArrayList<LanguageLink> xPathList = getLinkTestDataFromCSV(CSVFilename);
-		SQLiteJDBCHomePage.insertLanguageLinks(xPathList);
+		SQLiteHomePage.insertLanguageLinks(xPathList);
 	}
 	
+	
+//	public void updateTitleForLinkInDB() {
+//		ArrayList<LanguageLink> records = new ArrayList<>(200);
+//		for (int i = 1; i<=127; i++) {
+//			String link = HomePageText.getString("HomePage.XPathAddlLink" + i);
+//			String title = goToListLinkByXPath(link);
+//			LanguageLink record =  new LanguageLink(link, title);
+//			records.add(record);
+//			goToHomePage();
+//		}
+//	}
+
+	public void buildLanguageLinkDB() {
+		ArrayList<LanguageLink> records = new ArrayList<>(200);
+		for (int i = 1; i<=127; i++) {
+			String link = HomePageText.getString("HomePage.XPathAddlLink" + i);
+			String title = goToListLinkByXPath(link);
+			LanguageLink record =  new LanguageLink(link, title);
+			records.add(record);
+			goToHomePage();
+		}
+
+		SQLiteHomePage.insertLanguageLinks(records);
+	}
+
 }
