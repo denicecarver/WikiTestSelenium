@@ -5,6 +5,7 @@ import com.selenium.wikitest.webpage.homepage.HomePage.Language;
 import com.thoughtworks.selenium.SeleneseTestBase;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.AfterClass;
 import org.openqa.selenium.firefox.FirefoxDriver;

@@ -35,6 +35,7 @@ public class WebPage {
 	
 	public String searchForRedirect(String redirectString) {
 		
+		searchFor(redirectString);
 		webDriver.findElement(By.linkText(redirectString)).click();
 		return webDriver.getTitle();
 	}

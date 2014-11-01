@@ -33,41 +33,6 @@ public class HomePage extends WebPage{
 		super(driver);
 	}
 	
-	public ArrayList<LanguageLink> getLinkTestDataFromCSV(String filename) {
-		
-		BufferedReader br = null;
-		String line = "";
-		String cvsSplitBy = ",";
-		ArrayList<LanguageLink> languageLinks = new ArrayList<LanguageLink>(100);
-		 
-		try {
-			br = new BufferedReader(new FileReader(filename));
-			
-			while ((line = br.readLine()) != null) {
-				String[] strings;
-				strings = line.split(cvsSplitBy);
-				LanguageLink linkData = new LanguageLink(strings);
-				languageLinks.add(linkData);
-			}
-			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			if (br != null) {
-				try {
-					br.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		
-		return languageLinks;
-		
-	}
-	
 	public void openPage() {
 		super.openPage(CommonPagesText.getString("AnyPage.WikiHomeURL"));
 	}
@@ -89,7 +54,7 @@ public class HomePage extends WebPage{
 	}
 	
 	public boolean isLanguageFound(Language val) {
-		return getDisplayedLanguage("HomePage.LanguageXPath" + val.toString()).contains(getExpectedLanguage("HomePage.Language" + val.toString() + "Text"));
+		return getDisplayedLanguage(HomePageText.getString("HomePage.LanguageXPath" + val.toString())).contains(getExpectedLanguage("HomePage.Language" + val.toString() + "Text"));
 	}
 	
 	public String goToProjectLink(String keyName) {
@@ -118,23 +83,6 @@ public class HomePage extends WebPage{
 		return we.getText();
 	}
 	
-	public void addCSVRecordsToDB(String CSVFilename) {
-		ArrayList<LanguageLink> xPathList = getLinkTestDataFromCSV(CSVFilename);
-		SQLiteHomePage.insertLanguageLinks(xPathList);
-	}
-	
-	
-//	public void updateTitleForLinkInDB() {
-//		ArrayList<LanguageLink> records = new ArrayList<>(200);
-//		for (int i = 1; i<=127; i++) {
-//			String link = HomePageText.getString("HomePage.XPathAddlLink" + i);
-//			String title = goToListLinkByXPath(link);
-//			LanguageLink record =  new LanguageLink(link, title);
-//			records.add(record);
-//			goToHomePage();
-//		}
-//	}
-
 	public void buildLanguageLinkDB() {
 		ArrayList<LanguageLink> records = new ArrayList<>(300);
 		for (int i = 1; i<=266; i++) {

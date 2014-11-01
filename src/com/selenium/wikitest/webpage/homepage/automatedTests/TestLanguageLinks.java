@@ -106,7 +106,7 @@ public class TestLanguageLinks {
 		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
 	}
 	
-	// Data driven test using SQLite
+	// Data-driven test using SQLite
 	@Test
 	public void verifyLinksFromData() {
 		ArrayList<LanguageLink> records = SQLiteHomePage.queryLanguageLinks();

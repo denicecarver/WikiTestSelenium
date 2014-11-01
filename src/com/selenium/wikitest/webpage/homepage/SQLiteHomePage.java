@@ -2,11 +2,8 @@ package com.selenium.wikitest.webpage.homepage;
 
 import com.selenium.wikitest.shared.SQLiteJDBC;
 
-import java.sql.DriverManager;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 public final class SQLiteHomePage extends SQLiteJDBC {
@@ -14,7 +11,7 @@ public final class SQLiteHomePage extends SQLiteJDBC {
 	private static final String homeConnection ="HomePage.ConnectionDetails"; 
 	
 	public static ArrayList<LanguageLink> queryLanguageLinks() {
-		ArrayList<LanguageLink> records = new ArrayList<>(200);
+		ArrayList<LanguageLink> records = new ArrayList<>(300);
 
 		loadConnection(HomePageText.getString(homeConnection));
 
@@ -27,6 +24,30 @@ public final class SQLiteHomePage extends SQLiteJDBC {
 
 				System.out.println( "XPath = " + xpath );
 				System.out.println( "Page Title = " + title );
+			}
+			rs.close();
+		} catch ( Exception e ) {
+			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+			System.exit(0);
+		}
+
+    	closeDBResources();
+
+		return records;
+	}    
+	
+	public static ArrayList<String> queryOneColumnStringData(String table, String columnName) {
+		ArrayList<String> records = new ArrayList<>(200);
+
+		loadConnection(HomePageText.getString(homeConnection));
+
+		try {
+			ResultSet rs = statement.executeQuery( "SELECT * FROM " + table + ";" );
+			while ( rs.next() ) {
+				String  search = rs.getString(columnName);
+				records.add(search);
+
+				System.out.println( columnName + " = " + search );
 			}
 			rs.close();
 		} catch ( Exception e ) {

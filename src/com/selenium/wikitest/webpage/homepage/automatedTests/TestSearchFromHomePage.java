@@ -1,14 +1,19 @@
 package com.selenium.wikitest.webpage.homepage.automatedTests;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.AfterClass;
+
 import org.openqa.selenium.firefox.FirefoxDriver;
+import com.thoughtworks.selenium.SeleneseTestBase;
 
 import com.selenium.wikitest.shared.CommonPagesText;
 import com.selenium.wikitest.webpage.homepage.HomePage;
 import com.selenium.wikitest.webpage.homepage.HomePageText;
-import com.thoughtworks.selenium.SeleneseTestBase;
+import com.selenium.wikitest.webpage.homepage.SQLiteHomePage;
 
 public class TestSearchFromHomePage {
 	private static HomePage homePage = new HomePage(new FirefoxDriver());
@@ -48,19 +53,16 @@ public class TestSearchFromHomePage {
 
 	}
 	
-	// Data-driven test
+	// Data-driven test using SQLite data
 	@Test
-	public void testSearchRedirectList() {
-		
-		String[] mylist = homePage.searchStringList("HomePage.RedirectSearchFilename");
-		int count = 0;
-		for (String s : mylist) {
-			
-			// Go to redirected page
-			homePage.searchFor(s);
+	public void testSearchData() {
 
-			// Assert expected search result s, from list, matches actual result
-			SeleneseTestBase.assertTrue(homePage.searchForRedirect(s).contains(s));
+		int count = 0;
+		ArrayList<String> records = SQLiteHomePage.queryOneColumn("SearchStrings", "SearchItem");
+		for (String record : records) {
+
+			// Assert expected search result record, from list, matches actual result
+			SeleneseTestBase.assertTrue(homePage.searchFor(record).contains(record));
 			
 			// increment counter
 			count++;
@@ -69,20 +71,20 @@ public class TestSearchFromHomePage {
 			homePage.openHomePage();
 		}
 		
-		System.out.println("Number of search redirect data-driven tests:  " + count);
+		System.out.println("Number of search, data-driven tests:  " + count);
 
 	}
 	
-	// Data-driven test
+	// Data-driven test using SQLite data
 	@Test
-	public void testSearchList() {
-		
-		String[] mylist = homePage.searchStringList("HomePage.SearchFilename");
-		int count = 0;
-		for (String s : mylist) {
+	public void testSearchRedirectData() {
 
-			// Assert expected search result s, from list, matches actual result
-			SeleneseTestBase.assertTrue(homePage.searchFor(s).contains(s));
+		int count = 0;
+		ArrayList<String> records = SQLiteHomePage.queryOneColumn("RedirectStrings", "RedirectItem");
+		for (String record : records) {
+
+			// Assert expected search result record, from list, matches actual result
+			SeleneseTestBase.assertTrue(homePage.searchForRedirect(record).contains(record));
 			
 			// increment counter
 			count++;
@@ -91,7 +93,7 @@ public class TestSearchFromHomePage {
 			homePage.openHomePage();
 		}
 		
-		System.out.println("Number of search data-driven tests:  " + count);
+		System.out.println("Number of redirected-search, data-driven tests:  " + count);
 
 	}
 	
