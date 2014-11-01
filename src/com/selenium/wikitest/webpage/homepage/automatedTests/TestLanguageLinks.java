@@ -119,11 +119,11 @@ public class TestLanguageLinks {
 		}
 	}
 	
-/*	@Test
-	public void buildLanguageLinksDatabase() {
-		homePage.buildLanguageLinkDB();
-	}
-*/
+//	@Ignore @Test
+//	public void buildLanguageLinksDatabase() {
+//		homePage.buildLanguageLinkDB();
+//	}
+
 	@After
 	public void returnToWikipedia() {
 		homePage.goToHomePage();

@@ -136,8 +136,8 @@ public class HomePage extends WebPage{
 //	}
 
 	public void buildLanguageLinkDB() {
-		ArrayList<LanguageLink> records = new ArrayList<>(200);
-		for (int i = 1; i<=127; i++) {
+		ArrayList<LanguageLink> records = new ArrayList<>(300);
+		for (int i = 1; i<=266; i++) {
 			String link = HomePageText.getString("HomePage.XPathAddlLink" + i);
 			String title = goToListLinkByXPath(link);
 			LanguageLink record =  new LanguageLink(link, title);
