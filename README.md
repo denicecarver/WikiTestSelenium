@@ -18,8 +18,24 @@ Next steps:
 		a. Building tables
 		b. Rebuilding tables
 		c. Restoring existing tables
+	5. Cross-browser testing
+		a. Firefox
+		b. Chrome
+		c. Internet Explorer
+		d. Safari
+	6. Explore options for mobile testing
 
-Required JUnit Functionality
+Required JUnit Functionality:
 	1. Running desired tests - one, selected, all
 	2. Reporting/Recording test results
 	3. Automated kick-off for continuous build cycles
+	
+Framework expectations:
+	1. Includes:
+		a. function libraries
+		b. test data sources
+		c. object details and various reusable modules
+	2. Low maintenance - changes to test scripts do not require driver Script and startup script changes
+	3. Reporting mechanism
+	4. Execution mechanism
+	5. Browser selection
