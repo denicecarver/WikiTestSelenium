@@ -87,6 +87,29 @@ public final class SQLiteHomePage extends SQLiteJDBC {
     				link + "', '" + title + "');";
     		statement.executeUpdate(sql);
     }
+    
+    public static void insertIntoTable(String tableName, String columnName, ArrayList<String> value) {
+    	loadConnection(HomePageText.getString(homeConnection));
+
+    	for (String record : value) {
+    		insertRecord(tableName, columnName, record);
+    	}
+
+    	closeDBResources();
+    }
+    
+    private static void insertRecord(String tableName, String columnName, String value) {
+		String sql = "INSERT INTO " + tableName +
+				" (" + columnName +
+				") VALUES ('" + value + "');";
+		try {
+			statement.executeUpdate(sql);
+		} catch (SQLException e) {
+			System.out.println("Table: " + tableName);
+			System.out.println("Record: " + value);
+			e.printStackTrace();
+		}
+    }
 
     public static void updateLanguageLinkTitles(ArrayList<LanguageLink> links) {
     			loadConnection(HomePageText.getString(homeConnection));

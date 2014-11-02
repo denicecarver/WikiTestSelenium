@@ -119,7 +119,14 @@ public class TestLanguageLinks {
 		}
 	}
 	
-//	public void buildLanguageLinksDatabase() {
+//	Run this script before building table.
+//	CREATE TABLE LanguageLinks(
+//			LinkID INTEGER PRIMARY KEY,
+//			Link TEXT,
+//			Title TEXT);
+//	TODO Move this method to a Utilities class
+//	@Ignore @Test
+//	public void insertIntoLanguageLinksTable() {
 //		homePage.buildLanguageLinkDB();
 //	}
 

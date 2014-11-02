@@ -6,10 +6,9 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.AfterClass;
-
 import org.openqa.selenium.firefox.FirefoxDriver;
-import com.thoughtworks.selenium.SeleneseTestBase;
 
+import com.thoughtworks.selenium.SeleneseTestBase;
 import com.selenium.wikitest.shared.CommonPagesText;
 import com.selenium.wikitest.webpage.homepage.HomePage;
 import com.selenium.wikitest.webpage.homepage.HomePageText;
@@ -139,6 +138,24 @@ public class TestSearchFromHomePage {
 		SeleneseTestBase.assertTrue(errorActual.contains(errorExpected));
 
 	}
+	
+//	Run these scripts before building table.
+//	CREATE TABLE SearchStrings(
+//	SearchID INTEGER PRIMARY KEY,
+//	SearchItem TEXT);
+//	CREATE TABLE RedirectStrings(
+//	RedirectID INTEGER PRIMARY KEY,
+//	RedirectItem TEXT);
+//	TODO Move this method to a Utilities class
+//	@Ignore @Test
+//	public void buildSearchTables() {
+//		homePage.buildSearchTable(HomePageText.getString("SearchStrings.TableName"),
+//				HomePageText.getString("SearchStrings.Column1"),
+//				Integer.parseInt(HomePageText.getString("SearchStrings.Count")));
+//		homePage.buildSearchTable(HomePageText.getString("RedirectStrings.TableName"),
+//				HomePageText.getString("RedirectStrings.Column1"),
+//				Integer.parseInt(HomePageText.getString("RedirectStrings.Count")));
+//	}
 	
 	@AfterClass
 	public static void commonTearDown() throws Exception {
