@@ -58,7 +58,8 @@ public class TestSearchFromHomePage {
 	public void testSearchData() {
 
 		int count = 0;
-		ArrayList<String> records = SQLiteHomePage.queryOneColumn("SearchStrings", "SearchItem");
+		ArrayList<String> records = SQLiteHomePage.queryOneColumn(HomePageText.getString("SearchStrings.TableName"),
+				HomePageText.getString("SearchStrings.Column1"));
 		for (String record : records) {
 
 			// Assert expected search result record, from list, matches actual result
@@ -80,7 +81,8 @@ public class TestSearchFromHomePage {
 	public void testSearchRedirectData() {
 
 		int count = 0;
-		ArrayList<String> records = SQLiteHomePage.queryOneColumn("RedirectStrings", "RedirectItem");
+		ArrayList<String> records = SQLiteHomePage.queryOneColumn(HomePageText.getString("RedirectStrings.TableName"),
+				HomePageText.getString("RedirectStrings.Column1"));
 		for (String record : records) {
 
 			// Assert expected search result record, from list, matches actual result

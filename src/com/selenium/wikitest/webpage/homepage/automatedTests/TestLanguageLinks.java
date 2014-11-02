@@ -111,15 +111,14 @@ public class TestLanguageLinks {
 	public void verifyLinksFromData() {
 		ArrayList<LanguageLink> records = SQLiteHomePage.queryLanguageLinks();
 		for (LanguageLink record : records) {
-			String expectedResult = record.getExpectedResultTitle();
-			String xPath = record.getLinkXPath();
+			String expectedResult = record.getTitle();
+			String xPath = record.getXPath();
 			String actualResult = homePage.goToListLinkByXPath(xPath);
 			SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
 			homePage.goToHomePage();
 		}
 	}
 	
-//	@Ignore @Test
 //	public void buildLanguageLinksDatabase() {
 //		homePage.buildLanguageLinkDB();
 //	}

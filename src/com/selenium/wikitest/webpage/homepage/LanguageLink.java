@@ -21,11 +21,11 @@ public class LanguageLink {
 		System.out.println(expectedResultTitle);
 	}
 	
-	public String getLinkXPath() {
+	public String getXPath() {
 		return linkXPath;
 	}
 	
-	public String getExpectedResultTitle() {
+	public String getTitle() {
 		return expectedResultTitle;
 	}
 	

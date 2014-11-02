@@ -18,8 +18,8 @@ public final class SQLiteHomePage extends SQLiteJDBC {
 		try {
 			ResultSet rs = statement.executeQuery( "SELECT * FROM LanguageLinks;" );
 			while ( rs.next() ) {
-				String  xpath = rs.getString("Link");
-				String title = rs.getString("Title");
+				String  xpath = rs.getString(HomePageText.getString("LanguageLinks.Column1"));
+				String title = rs.getString(HomePageText.getString("LanguageLinks.Column2"));
 				records.add(new LanguageLink(xpath, title));
 
 				System.out.println( "XPath = " + xpath );
@@ -36,7 +36,7 @@ public final class SQLiteHomePage extends SQLiteJDBC {
 		return records;
 	}    
 	
-	public static ArrayList<String> queryOneColumnStringData(String table, String columnName) {
+	public static ArrayList<String> queryOneColumn(String table, String columnName) {
 		ArrayList<String> records = new ArrayList<>(200);
 
 		loadConnection(HomePageText.getString(homeConnection));
@@ -66,8 +66,14 @@ public final class SQLiteHomePage extends SQLiteJDBC {
 
     	for (LanguageLink record : linkData) {
     		try {
-				insertLanguageLink(record.getLinkXPath(), record.getExpectedResultTitle());
+    			String title = record.getTitle();
+    			if (title.contains("'")) {
+    				title = title.replace("'", "''");
+    			}
+				insertLanguageLink(record.getXPath(), title);
 			} catch (SQLException e) {
+				System.out.println("xPath = " + record.getXPath());
+				System.out.println("title = " + record.getTitle());
 				e.printStackTrace();
 			}
     	}
@@ -77,8 +83,8 @@ public final class SQLiteHomePage extends SQLiteJDBC {
     
     // Insert one link record into home page table
     private static void insertLanguageLink(String link, String title) throws SQLException {
-    		String sql = "INSERT INTO LanguageLinks " +
-    				"VALUES ('" + link + "', '" + title + "');";
+    		String sql = "INSERT INTO LanguageLinks (Link, Title) VALUES ('" +
+    				link + "', '" + title + "');";
     		statement.executeUpdate(sql);
     }
 
@@ -86,7 +92,7 @@ public final class SQLiteHomePage extends SQLiteJDBC {
     			loadConnection(HomePageText.getString(homeConnection));
     	    	for (LanguageLink link : links) {
 					try {
-						updateLanguageLinkTitle(link.getLinkXPath(), link.getExpectedResultTitle());
+						updateLanguageLinkTitle(link.getXPath(), link.getTitle());
 					} catch (SQLException e) {
 						e.printStackTrace();
 					}
