@@ -1,7 +1,6 @@
 package com.selenium.wikitest.webpage.homepage.automatedTests;
 
 import com.selenium.wikitest.webpage.homepage.HomePage;
-import com.selenium.wikitest.webpage.homepage.HomePage.Language;
 import com.thoughtworks.selenium.SeleneseTestBase;
 
 import org.junit.BeforeClass;

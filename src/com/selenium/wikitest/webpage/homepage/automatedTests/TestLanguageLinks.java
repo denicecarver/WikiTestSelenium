@@ -3,10 +3,11 @@ package com.selenium.wikitest.webpage.homepage.automatedTests;
 import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.webpage.homepage.HomePage;
 import com.selenium.wikitest.webpage.homepage.HomePageText;
-import com.thoughtworks.selenium.SeleneseTestBase;
 import com.selenium.wikitest.webpage.homepage.Converter;
 import com.selenium.wikitest.webpage.homepage.LanguageLink;
 import com.selenium.wikitest.webpage.homepage.SQLiteHomePage;
+
+import com.thoughtworks.selenium.SeleneseTestBase;
 
 import java.io.UnsupportedEncodingException;
 import java.sql.Blob;
@@ -104,19 +105,6 @@ public class TestLanguageLinks {
 		String actualResult = homePage.goToProjectLink("HomePage.LanguageSpanishText");
 		String expectedResult = HomePageText.getString("HomePage.SpanishWiki");
 		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
-	}
-	
-	// Data-driven test using SQLite
-	@Test
-	public void verifyLinksFromData() {
-		ArrayList<LanguageLink> records = SQLiteHomePage.queryLanguageLinks();
-		for (LanguageLink record : records) {
-			String expectedResult = record.getTitle();
-			String xPath = record.getXPath();
-			String actualResult = homePage.goToListLinkByXPath(xPath);
-			SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
-			homePage.goToHomePage();
-		}
 	}
 	
 //	Run this script before building table.

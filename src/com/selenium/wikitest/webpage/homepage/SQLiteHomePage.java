@@ -10,44 +10,72 @@ public final class SQLiteHomePage extends SQLiteJDBC {
 	
 	private static final String homeConnection ="HomePage.ConnectionDetails"; 
 	
-	public static ArrayList<LanguageLink> queryLanguageLinks() {
-		ArrayList<LanguageLink> records = new ArrayList<>(300);
-
-		loadConnection(HomePageText.getString(homeConnection));
-
-		try {
-			ResultSet rs = statement.executeQuery( "SELECT * FROM LanguageLinks;" );
-			while ( rs.next() ) {
-				String  xpath = rs.getString(HomePageText.getString("LanguageLinks.Column1"));
-				String title = rs.getString(HomePageText.getString("LanguageLinks.Column2"));
-				records.add(new LanguageLink(xpath, title));
-
-				System.out.println( "XPath = " + xpath );
-				System.out.println( "Page Title = " + title );
-			}
-			rs.close();
-		} catch ( Exception e ) {
-			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-			System.exit(0);
-		}
-
-    	closeDBResources();
-
-		return records;
+//	public static ArrayList<String[]> queryLanguageLinks() {
+//		ArrayList<String[]> records = new ArrayList<>(300);
+//
+//		loadConnection(HomePageText.getString(homeConnection));
+//
+//		try {
+//			ResultSet rs = statement.executeQuery( "SELECT * FROM LanguageLinks;" );
+//			while ( rs.next() ) {
+//				String[] record = new String[2];
+//				record[0] = rs.getString(HomePageText.getString("LanguageLinks.Column1"));
+//				record[1] = rs.getString(HomePageText.getString("LanguageLinks.Column2"));
+//				records.add(record);
+//
+//				System.out.println( "XPath = " + xpath );
+//				System.out.println( "Page Title = " + title );
+//			}
+//			rs.close();
+//		} catch ( Exception e ) {
+//			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+//			System.exit(0);
+//		}
+//
+//    	closeDBResources();
+//
+//		return records;
+//	}    
+	
+	public static ArrayList<String[]> queryData(String table, String column1Name) {
+		return queryData(table, column1Name, column1Name);
 	}    
 	
-	public static ArrayList<String> queryOneColumn(String table, String columnName) {
-		ArrayList<String> records = new ArrayList<>(200);
+//	public static ArrayList<String[]> queryData(String table, String columnName) {
+//		ArrayList<String[]> records = new ArrayList<>(200);
+//
+//		loadConnection(HomePageText.getString(homeConnection));
+//
+//		try {
+//			ResultSet rs = statement.executeQuery( "SELECT * FROM " + table + ";" );
+//			while ( rs.next() ) {
+//				String[] search = new String[1];
+//				search[0] = rs.getString(columnName);
+//				records.add(search);
+//			}
+//			rs.close();
+//		} catch ( Exception e ) {
+//			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+//			System.exit(0);
+//		}
+//
+//    	closeDBResources();
+//
+//		return records;
+//	}    
+	
+	public static ArrayList<String[]> queryData(String table, String column1Name, String column2Name) {
+		ArrayList<String[]> records = new ArrayList<>(200);
 
 		loadConnection(HomePageText.getString(homeConnection));
 
 		try {
 			ResultSet rs = statement.executeQuery( "SELECT * FROM " + table + ";" );
 			while ( rs.next() ) {
-				String  search = rs.getString(columnName);
+				String[] search = new String[2];
+				search[0] = rs.getString(column1Name);
+				search[1] = rs.getString(column2Name);
 				records.add(search);
-
-				System.out.println( columnName + " = " + search );
 			}
 			rs.close();
 		} catch ( Exception e ) {

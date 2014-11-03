@@ -1,7 +1,5 @@
 package com.selenium.wikitest.webpage.homepage.automatedTests;
 
-import java.util.ArrayList;
-
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -12,7 +10,6 @@ import com.thoughtworks.selenium.SeleneseTestBase;
 import com.selenium.wikitest.shared.CommonPagesText;
 import com.selenium.wikitest.webpage.homepage.HomePage;
 import com.selenium.wikitest.webpage.homepage.HomePageText;
-import com.selenium.wikitest.webpage.homepage.SQLiteHomePage;
 
 public class TestSearchFromHomePage {
 	private static HomePage homePage = new HomePage(new FirefoxDriver());
@@ -51,53 +48,7 @@ public class TestSearchFromHomePage {
 		SeleneseTestBase.assertTrue(actualRedirectText.contains(expectedRedirectText));		
 
 	}
-	
-	// Data-driven test using SQLite data
-	@Test
-	public void testSearchData() {
-
-		int count = 0;
-		ArrayList<String> records = SQLiteHomePage.queryOneColumn(HomePageText.getString("SearchStrings.TableName"),
-				HomePageText.getString("SearchStrings.Column1"));
-		for (String record : records) {
-
-			// Assert expected search result record, from list, matches actual result
-			SeleneseTestBase.assertTrue(homePage.searchFor(record).contains(record));
-			
-			// increment counter
-			count++;
-			
-			// Return to home page for next test
-			homePage.openHomePage();
-		}
 		
-		System.out.println("Number of search, data-driven tests:  " + count);
-
-	}
-	
-	// Data-driven test using SQLite data
-	@Test
-	public void testSearchRedirectData() {
-
-		int count = 0;
-		ArrayList<String> records = SQLiteHomePage.queryOneColumn(HomePageText.getString("RedirectStrings.TableName"),
-				HomePageText.getString("RedirectStrings.Column1"));
-		for (String record : records) {
-
-			// Assert expected search result record, from list, matches actual result
-			SeleneseTestBase.assertTrue(homePage.searchForRedirect(record).contains(record));
-			
-			// increment counter
-			count++;
-			
-			// Return to home page for next test
-			homePage.openHomePage();
-		}
-		
-		System.out.println("Number of redirected-search, data-driven tests:  " + count);
-
-	}
-	
 	@Test
 	public void testEmptySearch() throws Exception {
 
