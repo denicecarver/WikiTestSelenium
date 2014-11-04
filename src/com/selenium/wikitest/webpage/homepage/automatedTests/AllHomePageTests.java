@@ -9,6 +9,6 @@ import org.junit.runners.Suite.SuiteClasses;
 		TestDataRedirectFromHomePage.class, TestDataSearchFromHomePage.class,
 		TestLanguageDisplay.class, TestLanguageLinks.class,
 		TestOtherProjectLinks.class, TestSearchFromHomePage.class })
-public class AllTests {
+public class AllHomePageTests {
 
 }

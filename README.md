@@ -12,7 +12,7 @@ Next steps:
 			i. How to manually run automation (a first test run)
 			ii. How to review reports on a test run
 			iii. How to auto-start a test run
-	2. Design a tool for running tests in batchs or individually
+	2. Design a tool for running tests in batches or individually
 	3. Consider a browser-based UI
 	4. Develop a Utility class for maintenance tasks such as:
 		a. Building tables
