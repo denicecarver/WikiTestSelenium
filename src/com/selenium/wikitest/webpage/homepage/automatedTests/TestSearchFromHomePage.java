@@ -1,7 +1,6 @@
 package com.selenium.wikitest.webpage.homepage.automatedTests;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.AfterClass;
 import org.openqa.selenium.firefox.FirefoxDriver;

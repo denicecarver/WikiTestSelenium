@@ -9,16 +9,10 @@ import java.util.ArrayList;
 
 import javax.xml.bind.DatatypeConverter;
 
-import org.junit.Ignore;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-import com.selenium.wikitest.webpage.homepage.HomePageText;
-import com.selenium.wikitest.webpage.homepage.LanguageLink;
-import com.selenium.wikitest.webpage.homepage.SQLiteHomePage;
 
 public class CommonMethods {
 	

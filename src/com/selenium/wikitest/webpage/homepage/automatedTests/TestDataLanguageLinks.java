@@ -7,6 +7,7 @@ import com.thoughtworks.selenium.SeleneseTestBase;
 
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.junit.BeforeClass;
@@ -37,10 +38,16 @@ public class TestDataLanguageLinks {
 	
 	@Parameters
 	public static ArrayList<String[]> getSearchData() {
-		return SQLiteHomePage.queryData(
-				HomePageText.getString("LanguageLinks.TableName"),
-				HomePageText.getString("LanguageLinks.Column1"),
-				HomePageText.getString("LanguageLinks.Column2"));
+		ArrayList<String[]> listStrings = null;
+		try {
+			listStrings = SQLiteHomePage.queryData(
+					HomePageText.getString("LanguageLinks.TableName"),
+					HomePageText.getString("LanguageLinks.Column1"),
+					HomePageText.getString("LanguageLinks.Column2"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listStrings;
 	}
 
 	@Test

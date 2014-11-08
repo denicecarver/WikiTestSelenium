@@ -1,6 +1,11 @@
 package com.selenium.wikitest.webpage.homepage.automatedTests;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import com.selenium.wikitest.webpage.homepage.HomePage;
+import com.selenium.wikitest.webpage.homepage.LanguageLink;
+import com.selenium.wikitest.webpage.homepage.SQLiteHomePage;
 import com.thoughtworks.selenium.SeleneseTestBase;
 
 import org.junit.BeforeClass;
@@ -76,6 +81,35 @@ public class TestLanguageDisplay {
 	public void testPortuguese() {
 		// Verify Portuguese is displayed
 		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.Portuguese));
+	}
+	
+	// For testing LanguageLink table data errors
+	@Ignore @Test
+	public void tempTest() {
+//		ଉଇକିପିଡ଼ିଆ
+//		LanguageLink link = new LanguageLink("/html/body/div[8]/a[69]", "ଉଇକିପିଡ଼ିଆ");
+//		links.add(link);
+//		try {
+//			SQLiteHomePage.updateLanguageLinkTitles(links);
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+		ArrayList<String[]> links = new ArrayList<>(10);
+		try {
+			links = SQLiteHomePage.queryData("LanguageLinks", "Link", "Title");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		int count = 0;
+		for (String[] link: links) {
+			if (count == 195) {
+				System.out.println(link[0] + "' " + link[1]);
+				SeleneseTestBase.assertEquals("ଉଇକିପିଡ଼ିଆ", link[1]);
+			}
+			count++;
+		}
+		String retval = homePage.goToListLinkByXPath("/html/body/div[8]/a[69]");
+		retval = retval + "xxx";
 	}
 
 	//sc

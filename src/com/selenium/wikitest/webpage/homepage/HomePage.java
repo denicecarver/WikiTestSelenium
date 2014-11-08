@@ -1,9 +1,6 @@
 package com.selenium.wikitest.webpage.homepage;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.selenium.wikitest.webpage.WebPage;
@@ -93,7 +90,11 @@ public class HomePage extends WebPage{
 			goToHomePage();
 		}
 
-		SQLiteHomePage.insertLanguageLinks(records);
+		try {
+			SQLiteHomePage.insertLanguageLinks(records);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void buildSearchTable(String tableName, String columnName, int recordCount) {
@@ -103,7 +104,11 @@ public class HomePage extends WebPage{
 			records.add(record);
 		}
 
-		SQLiteHomePage.insertIntoTable(tableName, columnName, records);
+		try {
+			SQLiteHomePage.insertIntoTable(tableName, columnName, records);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

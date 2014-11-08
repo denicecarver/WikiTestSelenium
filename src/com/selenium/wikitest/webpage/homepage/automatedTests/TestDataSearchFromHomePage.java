@@ -35,9 +35,15 @@ public class TestDataSearchFromHomePage {
 	
 	@Parameters
 	public static ArrayList<String[]> getSearchData() {
-		return SQLiteHomePage.queryData(
-				HomePageText.getString("SearchStrings.TableName"),
-				HomePageText.getString("SearchStrings.Column1"));
+		ArrayList<String[]> listStrings = null;
+		try {
+			listStrings = SQLiteHomePage.queryData(
+					HomePageText.getString("SearchStrings.TableName"),
+					HomePageText.getString("SearchStrings.Column1"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listStrings;
 	}
 
 	@Test
