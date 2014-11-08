@@ -133,14 +133,13 @@ public class CommonMethods {
 	}
 
 	public static String clickProjectLinkByXPath(WebDriver driver, String xPath) throws NullPointerException {
-		WebElement el = null;
+		String title = new String();
 		try {
-			el = driver.findElement(By.xpath(xPath));
+			(driver.findElement(By.xpath(xPath))).click();
 		} catch (NoSuchElementException e) {
 			System.out.println(e);
 		}
-		el.click();
-		String title = driver.getTitle();
+		title = driver.getTitle();
 		return title;
 	}
 

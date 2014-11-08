@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.selenium.wikitest.webpage.homepage.HomePage;
-import com.selenium.wikitest.webpage.homepage.LanguageLink;
 import com.selenium.wikitest.webpage.homepage.SQLiteHomePage;
 import com.thoughtworks.selenium.SeleneseTestBase;
 
