@@ -17,18 +17,6 @@ To Install (in order):
 		Eclipse Java 8 Support (for Kepler SR2) JDT, PDE, 1.0.0
 		Java 8 support for Eclipse Kepler SR2
 		
-
-Order of Install:
-
-Eclipse Workspace C:\Users\Don\Documents\SeleniumProjects
-
-Create project and source folders.
-Copy files into folders
-Right-click on project click Properties
-Expand Java Build Path
-Click on Libraries tab
-Add all jars downloaded
-
 Create a java project (File | New | Java Project)
 Add a source directory (File | New | Source Folder)
 Add the following packages (File | New | Package)
@@ -38,7 +26,14 @@ Add the following packages (File | New | Package)
 	com.selenium.wikitest.webpage.homepage
 	com.selenium.wikitest.webpage.homepage.automatedtests
 	com.selenium.wikitest.webpage.homepage.data
-	
+Copy files into the appropriate folders
+Right-click on project click Properties
+Click on Java Build Path
+Click on Libraries tab
+Click on the Add External JARs... button
+Add all jars downloaded above (JUnit, Hamcrest, Selenium, and SQLite)
 Drag and drop .java files into appropriate packages in Eclipse
-	
+
+Expand to show AllHomePageTests.java and double-click to open.
+Run all the tests (Run | Run As | JUnit Test)
 
