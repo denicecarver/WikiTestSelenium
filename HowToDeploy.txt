@@ -1,0 +1,44 @@
+To Install (in order):
+	Firefox 33.0.2
+		Found at https://www.mozilla.org/en-US/firefox/new/
+	Java SE 8u25
+		Found at http://www.oracle.com/technetwork/articles/javase/index-jsp-138363.html
+	JUnit 4.11
+		Found at https://github.com/junit-team/junit/wiki/Download-and-Install
+	Hamcrest 1.3
+		Found at https://code.google.com/p/hamcrest/downloads/list
+	Selenium 2.44.0 (update)
+		Found at http://www.seleniumhq.org/download/
+	SQLite 3.8.7.1
+		Found at https://bitbucket.org/xerial/sqlite-jdbc/downloads
+	Eclipse Version: Kepler Service Release 2, Build id: 20140224-0627
+		Found at https://www.eclipse.org/downloads/
+	Eclipse Add-Ins  In Eclipse menu under: Help | Eclipse Marketplace...
+		Eclipse Java 8 Support (for Kepler SR2) JDT, PDE, 1.0.0
+		Java 8 support for Eclipse Kepler SR2
+		
+
+Order of Install:
+
+Eclipse Workspace C:\Users\Don\Documents\SeleniumProjects
+
+Create project and source folders.
+Copy files into folders
+Right-click on project click Properties
+Expand Java Build Path
+Click on Libraries tab
+Add all jars downloaded
+
+Create a java project (File | New | Java Project)
+Add a source directory (File | New | Source Folder)
+Add the following packages (File | New | Package)
+	com.selenium.wikitest.bugs
+	com.selenium.wikitest.shared
+	com.selenium.wikitest.webpage
+	com.selenium.wikitest.webpage.homepage
+	com.selenium.wikitest.webpage.homepage.automatedtests
+	com.selenium.wikitest.webpage.homepage.data
+	
+Drag and drop .java files into appropriate packages in Eclipse
+	
+
