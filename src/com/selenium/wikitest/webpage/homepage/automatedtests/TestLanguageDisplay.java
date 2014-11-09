@@ -1,4 +1,4 @@
-package com.selenium.wikitest.webpage.homepage.automatedTests;
+package com.selenium.wikitest.webpage.homepage.automatedtests;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

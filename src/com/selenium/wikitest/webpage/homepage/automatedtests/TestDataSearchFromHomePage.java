@@ -1,4 +1,4 @@
-package com.selenium.wikitest.webpage.homepage.automatedTests;
+package com.selenium.wikitest.webpage.homepage.automatedtests;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -17,14 +17,14 @@ import com.thoughtworks.selenium.SeleneseTestBase;
 import java.util.ArrayList;
 
 @RunWith(Parameterized.class)
-public class TestDataRedirectFromHomePage {
+public class TestDataSearchFromHomePage {
 
 	private static HomePage homePage = new HomePage(new FirefoxDriver());
 	
 	private String searchItem;
 	
-	public TestDataRedirectFromHomePage(String searchItem1, String searchItem2) {
-		this.searchItem = searchItem1;
+	public TestDataSearchFromHomePage(String searchItem1, String searchItem2) {
+		searchItem = searchItem1;
 		// searchItem2 is a duplicate of searchItem1
 	}
 	
@@ -38,8 +38,8 @@ public class TestDataRedirectFromHomePage {
 		ArrayList<String[]> listStrings = null;
 		try {
 			listStrings = SQLiteHomePage.queryData(
-					HomePageText.getString("RedirectStrings.TableName"),
-					HomePageText.getString("RedirectStrings.Column1"));
+					HomePageText.getString("SearchStrings.TableName"),
+					HomePageText.getString("SearchStrings.Column1"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -47,10 +47,10 @@ public class TestDataRedirectFromHomePage {
 	}
 
 	@Test
-	public void testRedirectData() {
+	public void testSearchData() {
 
 		// Assert expected search result record, from list, matches actual result
-		SeleneseTestBase.assertTrue(homePage.searchForRedirect(searchItem).contains(searchItem));
+		SeleneseTestBase.assertTrue(homePage.searchFor(searchItem).contains(searchItem));
 
 		// Return to home page for next test
 		homePage.openHomePage();

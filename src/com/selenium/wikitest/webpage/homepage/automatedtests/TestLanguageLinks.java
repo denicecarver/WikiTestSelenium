@@ -1,4 +1,4 @@
-package com.selenium.wikitest.webpage.homepage.automatedTests;
+package com.selenium.wikitest.webpage.homepage.automatedtests;
 
 import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.webpage.homepage.HomePage;

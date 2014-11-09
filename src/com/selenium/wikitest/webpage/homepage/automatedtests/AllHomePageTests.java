@@ -1,4 +1,4 @@
-package com.selenium.wikitest.webpage.homepage.automatedTests;
+package com.selenium.wikitest.webpage.homepage.automatedtests;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
