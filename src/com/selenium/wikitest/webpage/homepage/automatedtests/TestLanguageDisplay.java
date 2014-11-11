@@ -11,11 +11,10 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.AfterClass;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class TestLanguageDisplay {
 
-	private static HomePage homePage = new HomePage(new FirefoxDriver());
+	private static HomePage homePage = new HomePage();
 	
 	@BeforeClass
 	public static void testSetup() {

@@ -12,7 +12,7 @@ import com.thoughtworks.selenium.SeleneseTestBase;
 
 public class SearchError {
 	
-	private static HomePage homePage = new HomePage(new FirefoxDriver());
+	private static HomePage homePage = new HomePage();
 	
 	@Before
 	public void setupTest() {

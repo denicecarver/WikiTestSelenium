@@ -12,7 +12,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class TestOtherProjectLinks {
 
-	private static HomePage homePage = new HomePage(new FirefoxDriver());
+	private static HomePage homePage = new HomePage();
 	
 	@BeforeClass
 	public static void testSetup() {

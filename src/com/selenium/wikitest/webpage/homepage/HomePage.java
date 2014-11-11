@@ -8,7 +8,6 @@ import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.shared.CommonPagesText;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class HomePage extends WebPage{
@@ -24,10 +23,6 @@ public class HomePage extends WebPage{
 		Chinese,
 		Polish,
 		Portuguese
-	}
-
-	public HomePage(WebDriver driver) {
-		super(driver);
 	}
 	
 	public void openPage() {

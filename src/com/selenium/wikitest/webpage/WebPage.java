@@ -2,6 +2,7 @@ package com.selenium.wikitest.webpage;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.shared.CommonPagesText;
@@ -9,8 +10,8 @@ import com.selenium.wikitest.shared.CommonPagesText;
 public class WebPage {
 	protected WebDriver webDriver;
 	
-	public WebPage(WebDriver driver) {
-		webDriver = driver;
+	public WebPage() {
+		webDriver = new FirefoxDriver();
 	}
 	
 	public WebDriver getDriver() {

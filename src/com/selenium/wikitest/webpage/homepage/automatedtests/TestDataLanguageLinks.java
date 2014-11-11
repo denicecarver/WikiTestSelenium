@@ -21,7 +21,7 @@ import org.junit.runners.Parameterized.Parameters;
 @RunWith(Parameterized.class)
 public class TestDataLanguageLinks {
 
-	private static HomePage homePage = new HomePage(new FirefoxDriver());
+	private static HomePage homePage = new HomePage();
 	
 	private String xPath;
 	private String title;

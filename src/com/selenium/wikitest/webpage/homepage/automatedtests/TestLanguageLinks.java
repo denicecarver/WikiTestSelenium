@@ -29,7 +29,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 @SuppressWarnings("unused")
 public class TestLanguageLinks {
 
-	private static HomePage homePage = new HomePage(new FirefoxDriver());
+	private static HomePage homePage = new HomePage();
 	private static TestSuite suite = new TestSuite();
 	
 	@BeforeClass

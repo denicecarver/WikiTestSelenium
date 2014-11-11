@@ -19,7 +19,7 @@ import java.util.ArrayList;
 @RunWith(Parameterized.class)
 public class TestDataSearchFromHomePage {
 
-	private static HomePage homePage = new HomePage(new FirefoxDriver());
+	private static HomePage homePage = new HomePage();
 	
 	private String searchItem;
 	

@@ -26,14 +26,14 @@ Add the following packages (File | New | Package)
 	com.selenium.wikitest.webpage.homepage
 	com.selenium.wikitest.webpage.homepage.automatedtests
 	com.selenium.wikitest.webpage.homepage.data
-Copy files into the appropriate folders
-Right-click on project click Properties
+Right-click on project, select Properties
 Click on Java Build Path
 Click on Libraries tab
 Click on the Add External JARs... button
 Add all jars downloaded above (JUnit, Hamcrest, Selenium, and SQLite)
-Drag and drop .java files into appropriate packages in Eclipse
+Go to http://github.com/doncarver/WikiTestSelenium click the Download ZIP button
+Drag and drop .java files from the zip into the appropriate packages in Eclipse
 
-Expand to show AllHomePageTests.java and double-click to open.
-Run all the tests (Run | Run As | JUnit Test)
+Open the file AllHomePageTests.java from the package com.selenium.wikitest.webpage.homepage.automatedtests
+Run all the tests from the menu (Run | Run As | JUnit Test)
 

@@ -11,7 +11,7 @@ import com.selenium.wikitest.webpage.homepage.HomePage;
 import com.selenium.wikitest.webpage.homepage.HomePageText;
 
 public class TestSearchFromHomePage {
-	private static HomePage homePage = new HomePage(new FirefoxDriver());
+	private static HomePage homePage = new HomePage();
 
 	@Before
 	public void setupTest() {
