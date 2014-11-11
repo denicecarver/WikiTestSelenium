@@ -5,8 +5,6 @@ import com.selenium.wikitest.webpage.homepage.HomePageText;
 import com.selenium.wikitest.webpage.homepage.SQLiteHomePage;
 import com.thoughtworks.selenium.SeleneseTestBase;
 
-import org.openqa.selenium.firefox.FirefoxDriver;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 

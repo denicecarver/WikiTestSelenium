@@ -3,7 +3,6 @@ package com.selenium.wikitest.webpage.homepage.automatedtests;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.AfterClass;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.thoughtworks.selenium.SeleneseTestBase;
 import com.selenium.wikitest.shared.CommonPagesText;

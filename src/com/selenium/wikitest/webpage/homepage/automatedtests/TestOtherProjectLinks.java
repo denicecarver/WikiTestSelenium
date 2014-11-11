@@ -8,7 +8,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.After;
 import org.junit.AfterClass;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class TestOtherProjectLinks {
 

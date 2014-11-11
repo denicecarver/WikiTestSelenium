@@ -24,7 +24,6 @@ import org.junit.Test;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Ignore;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 @SuppressWarnings("unused")
 public class TestLanguageLinks {
