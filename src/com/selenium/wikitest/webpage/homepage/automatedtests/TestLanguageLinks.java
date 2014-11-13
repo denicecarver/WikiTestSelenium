@@ -119,7 +119,7 @@ public class TestLanguageLinks {
 
 	@After
 	public void returnToWikipedia() {
-		homePage.goToHomePage();
+		homePage.openHomePage();
 	}
 
 	@AfterClass

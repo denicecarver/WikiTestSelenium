@@ -1,14 +1,5 @@
 package com.selenium.wikitest.shared;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-
-import javax.xml.bind.DatatypeConverter;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -37,71 +28,6 @@ public class CommonMethods {
         throw new NoSuchElementException("Looking for element by: " + by.toString());
     }
 	
-	public static String[] getSearchDataFromCSV(String filename) {
-		
-		BufferedReader br = null;
-		String line = "";
-		String cvsSplitBy = ",";
-		ArrayList<String> search = new ArrayList<String>(100);
-		 
-		try {
-			br = new BufferedReader(new FileReader(filename));
-			
-			while ((line = br.readLine()) != null) {
-				search.add(line.split(cvsSplitBy)[0]);
-			}
-			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			if (br != null) {
-				try {
-					br.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		
-		return search.toArray(new String[search.size()]);
-		
-	}
-	
-	public static String[] getLanguageDataFromCSV(String propertyFilename) {
-		
-		BufferedReader br = null;
-		String line = "";
-		String cvsSplitBy = ",";
-		ArrayList<String> languageInEnglish = new ArrayList<String>(100);
-		ArrayList<String> languageInNative = new ArrayList<String>(100);
-		 
-		try {
-			br = new BufferedReader(new FileReader(CommonPagesText.getString(propertyFilename)));
-			
-			while ((line = br.readLine()) != null) {
-				languageInEnglish.add(line.split(cvsSplitBy)[0]);
-				languageInNative.add(line.split(cvsSplitBy)[1]);
-			}
-			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			if (br != null) {
-				try {
-					br.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		
-		return languageInNative.toArray(new String[languageInNative.size()]);
-		
-	}
 	
 	public static String searchFor(WebDriver driver, By elementHandle, String searchString) {
 
@@ -120,12 +46,6 @@ public class CommonMethods {
 				By.name(CommonPagesText.getString("AnyPage.GoSearchName")),
 				searchString);
 	}
-	
-	public String searchForRedirect(WebDriver driver, String redirectString) {
-		
-		driver.findElement(By.linkText(redirectString)).click();
-		return driver.getTitle();
-	}
 
 	public static String clickProjectLink(WebDriver driver, String linkName) {
 		(driver.findElement(By.partialLinkText(linkName))).click();
@@ -142,43 +62,6 @@ public class CommonMethods {
 		title = driver.getTitle();
 		return title;
 	}
-
-  public static String convertUnicodeEncodedToString(String encoded) {
-  	String[] arr = encoded.split("u");
-  	String text = "";
-  	String bareVal = null;
-  	for(int i = 1; i < arr.length; i++){
-  		if (arr[i].contains("\\")) {
-  			bareVal = arr[i].replace("\\", "");
-  		}
-  	    int intVal = Integer.parseInt(bareVal, 16);
-  	    text += (char)intVal;
-  	}
-  	return text;
-  }
-  
-  public static String convertStringToUnicode(String toConvert) {
-	  String hexOut = new String();
-	  try {
-		  byte[] utf8Bytes = toConvert.getBytes("UTF8");
-		  String hex = DatatypeConverter.printHexBinary(utf8Bytes);
-		  System.out.println(hex);
-		  for (int i = 0; i < hex.length(); i = i + 2) {
-			  hexOut = hexOut + "\\u00" + hex.substring(i, i + 2);
-		  }
-		  System.out.println(hexOut);
-	  } 
-	  catch (UnsupportedEncodingException e) {
-		  e.printStackTrace();
-	  }
-	  return hexOut;
-  }
-
-//  // This is a maintenance method and should be moved to a shared method
-//	public void buildLinkDatabase() {
-//		String CSVFilename = HomePageText.getString("HomePage.CSVLanguageLinkData");
-//		homePage.addCSVRecordsToDB(CSVFilename);
-//	}
 	
 
 }

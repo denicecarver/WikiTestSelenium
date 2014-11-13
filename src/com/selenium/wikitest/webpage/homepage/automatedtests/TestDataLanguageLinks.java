@@ -51,13 +51,19 @@ public class TestDataLanguageLinks {
 	@Test
 	public void testSearchData() {
 		String actualResult = homePage.goToListLinkByXPath(xPath);
-		SeleneseTestBase.assertTrue(actualResult.contains(title));
-		homePage.goToHomePage();
+		try {
+			SeleneseTestBase.assertTrue(actualResult.contains(title));
+		} catch (Exception e) {
+			System.out.println("xPath = " + xPath);
+			System.out.println("title = " + title);
+			e.printStackTrace();
+		}
+		homePage.openHomePage();
 	}
 
 	@After
 	public void returnToWikipedia() {
-		homePage.goToHomePage();
+		homePage.openHomePage();
 	}
 
 	@AfterClass

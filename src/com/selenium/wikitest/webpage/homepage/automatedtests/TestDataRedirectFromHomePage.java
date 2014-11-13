@@ -48,8 +48,13 @@ public class TestDataRedirectFromHomePage {
 	@Test
 	public void testRedirectData() {
 
-		// Assert expected search result record, from list, matches actual result
-		SeleneseTestBase.assertTrue(homePage.searchForRedirect(searchItem).contains(searchItem));
+		try {
+			// Assert expected search result record, from list, matches actual result
+			SeleneseTestBase.assertTrue(homePage.searchForRedirect(searchItem).contains(searchItem));
+		} catch (Exception e) {
+			System.out.println(searchItem);
+			e.printStackTrace();
+		}
 
 		// Return to home page for next test
 		homePage.openHomePage();
@@ -58,7 +63,7 @@ public class TestDataRedirectFromHomePage {
 
 	@After
 	public void returnToWikipedia() {
-		homePage.goToHomePage();
+		homePage.openHomePage();
 	}
 
 	@AfterClass

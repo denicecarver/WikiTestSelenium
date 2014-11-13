@@ -48,8 +48,13 @@ public class TestDataSearchFromHomePage {
 	@Test
 	public void testSearchData() {
 
-		// Assert expected search result record, from list, matches actual result
-		SeleneseTestBase.assertTrue(homePage.searchFor(searchItem).contains(searchItem));
+		try {
+			// Assert expected search result record, from list, matches actual result
+			SeleneseTestBase.assertTrue(homePage.searchFor(searchItem).contains(searchItem));
+		} catch (Exception e) {
+			System.out.println("searchItem = " + searchItem);
+			e.printStackTrace();
+		}
 
 		// Return to home page for next test
 		homePage.openHomePage();
@@ -58,7 +63,7 @@ public class TestDataSearchFromHomePage {
 
 	@After
 	public void returnToWikipedia() {
-		homePage.goToHomePage();
+		homePage.openHomePage();
 	}
 
 	@AfterClass

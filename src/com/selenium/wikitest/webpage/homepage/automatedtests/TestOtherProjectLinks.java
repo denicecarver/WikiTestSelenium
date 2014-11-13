@@ -104,7 +104,7 @@ public class TestOtherProjectLinks {
 	
 	@After
 	public void returnToWikipedia() {
-		homePage.goToHomePage();
+		homePage.openHomePage();
 	}
 
 	@AfterClass

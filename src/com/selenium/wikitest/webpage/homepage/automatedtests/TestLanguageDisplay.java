@@ -110,7 +110,6 @@ public class TestLanguageDisplay {
 		retval = retval + "xxx";
 	}
 
-	//sc
 	@AfterClass
 	public static void testTeardown() {
 		homePage.closeBrowser();
