@@ -10,7 +10,10 @@ import java.util.ArrayList;
 public final class SQLiteHomePage {
 
 	private static final String homeConnection ="HomePage.ConnectionDetails"; 
-    
+
+	public final static int xPathID = 0;
+	public final static int titleID = 1;
+	
 	public static ArrayList<String[]> queryData(String table, String column1Name) throws Exception {
 		ArrayList<String[]> listStrings = queryData(table, column1Name, column1Name);
 		return listStrings;
@@ -37,17 +40,17 @@ public final class SQLiteHomePage {
 	}    
 
 	// Insert link records into home page table
-    public static void insertLanguageLinks(ArrayList<LanguageLink> linkData) throws SQLException {
+    public static void insertLanguageLinks(ArrayList<String[]> records) throws SQLException {
 		
 		try (Connection connection = DriverManager.getConnection(HomePageText.getString(homeConnection));
 			 Statement statement = connection.createStatement()) {
 
-			for (LanguageLink record : linkData) {
-				String title = record.getTitle();
+			for (String[] record : records) {
+				String title = record[titleID];
 				if (title.contains("'")) {
 					title = title.replace("'", "''");
 				}
-				insertLanguageLink(statement, record.getXPath(), title);
+				insertLanguageLink(statement, record[xPathID], record[titleID]);
 			}
 		}
     }
@@ -76,11 +79,11 @@ public final class SQLiteHomePage {
 			statement.executeUpdate(sql);
     }
 
-    public static void updateLanguageLinkTitles(ArrayList<LanguageLink> links) throws SQLException {
+    public static void updateLanguageLinkTitles(ArrayList<String[]> records) throws SQLException {
 		try (Connection connection = DriverManager.getConnection(HomePageText.getString(homeConnection));
 			 Statement statement = connection.createStatement()) {
-    	    	for (LanguageLink link : links) {
-					updateLanguageLinkTitle(statement, link.getXPath(), link.getTitle());
+    	    	for (String[] record : records) {
+					updateLanguageLinkTitle(statement, record[xPathID], record[titleID]);
 				}
 		}
     }

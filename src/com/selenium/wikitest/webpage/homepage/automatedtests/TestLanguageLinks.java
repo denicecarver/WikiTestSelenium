@@ -3,8 +3,6 @@ package com.selenium.wikitest.webpage.homepage.automatedtests;
 import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.webpage.homepage.HomePage;
 import com.selenium.wikitest.webpage.homepage.HomePageText;
-import com.selenium.wikitest.webpage.homepage.Converter;
-import com.selenium.wikitest.webpage.homepage.LanguageLink;
 import com.selenium.wikitest.webpage.homepage.SQLiteHomePage;
 
 import com.thoughtworks.selenium.SeleneseTestBase;
@@ -105,17 +103,6 @@ public class TestLanguageLinks {
 		String expectedResult = HomePageText.getString("HomePage.SpanishWiki");
 		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
 	}
-	
-//	Run this script before building table.
-//	CREATE TABLE LanguageLinks(
-//			LinkID INTEGER PRIMARY KEY,
-//			Link TEXT,
-//			Title TEXT);
-//	TODO Move this method to a Utilities class
-//	@Ignore @Test
-//	public void insertIntoLanguageLinksTable() {
-//		homePage.buildLanguageLinkDB();
-//	}
 
 	@After
 	public void returnToWikipedia() {

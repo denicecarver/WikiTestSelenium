@@ -55,37 +55,4 @@ public class HomePage extends WebPage{
 		return we.getText();
 	}
 
-//	@TODO move to utilities class
-//	public void insertIntoLanguageLinksTable() {
-//		ArrayList<LanguageLink> records = new ArrayList<>(300);
-//		for (int i = 1; i<=266; i++) {
-//			String link = HomePageText.getString("HomePage.XPathAddlLink" + i);
-//			String title = goToListLinkByXPath(link);
-//			LanguageLink record =  new LanguageLink(link, title);
-//			records.add(record);
-//			openHomePage();
-//		}
-//
-//		try {
-//			SQLiteHomePage.insertLanguageLinks(records);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
-
-//	@TODO move to utilities class
-//	public void buildSearchTable(String tableName, String columnName, int recordCount) {
-//		ArrayList<String> records = new ArrayList<>(100);
-//		for (int i = 1; i <= recordCount; i++) {
-//			String record = HomePageText.getString(tableName + ".Record" + i);
-//			records.add(record);
-//		}
-//
-//		try {
-//			SQLiteHomePage.insertIntoTable(tableName, columnName, records);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
-
 }
