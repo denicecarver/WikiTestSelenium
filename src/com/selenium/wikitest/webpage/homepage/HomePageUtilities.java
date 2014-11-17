@@ -3,9 +3,6 @@ package com.selenium.wikitest.webpage.homepage;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.junit.Ignore;
-import org.junit.Test;
-
 import com.thoughtworks.selenium.SeleneseTestBase;
 
 public class HomePageUtilities {

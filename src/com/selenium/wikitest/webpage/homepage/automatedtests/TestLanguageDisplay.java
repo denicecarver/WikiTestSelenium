@@ -17,61 +17,61 @@ public class TestLanguageDisplay {
 	}
 	
 	@Test
-	public void testEnglish() {
+	public void testEnglishDisplay() {
 		// Verify English is displayed
 		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.English));
 	}
 	
 	@Test
-	public void testSpanish() {
+	public void testSpanishDisplay() {
 		// Verify Spanish is displayed
 		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.Spanish));
 	}
 	
 	@Test
-	public void testJapanese() {
+	public void testJapanesDisplay() {
 		// Verify Japanese is displayed
 		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.Japanese));
 	}
 	
 	@Test
-	public void testRussian() {
+	public void testRussianDisplay() {
 		// Verify Russian is displayed
 		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.Russian));
 	}
 	
 	@Test
-	public void testFrench() {
+	public void testFrenchDisplay() {
 		// Verify French is displayed
 		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.French));
 	}
 	
 	@Test
-	public void testGerman() {
+	public void testGermanDisplay() {
 		// Verify German is displayed
 		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.German));
 	}
 	
 	@Test
-	public void testItalian() {
+	public void testItalianDisplay() {
 		// Verify Italian is displayed
 		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.Italian));
 	}
 	
 	@Test
-	public void testChinese() {
+	public void testChineseDisplay() {
 		// Verify Chinese is displayed
 		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.Chinese));
 	}
 	
 	@Test
-	public void testPolish() {
+	public void testPolishDisplay() {
 		// Verify Polish is displayed
 		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.Polish));
 	}
 	
 	@Test
-	public void testPortuguese() {
+	public void testPortugueseDisplay() {
 		// Verify Portuguese is displayed
 		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.Portuguese));
 	}
