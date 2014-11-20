@@ -8,8 +8,8 @@ public class RunTest {
 	public static void main(String[] args)
 	{
 		java.lang.Class<?>[] tests = {
-				TestLanguageDisplay.class,
-				TestSearchFromHomePage.class
+				IsLanguageDisplayed.class
+//				TestSearchFromHomePage.class
 		};
 		JUnitCore runner = new JUnitCore();
 		runner.addListener(new RunSuiteListener());

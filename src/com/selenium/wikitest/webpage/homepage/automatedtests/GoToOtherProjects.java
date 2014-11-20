@@ -9,7 +9,7 @@ import org.junit.Test;
 import org.junit.After;
 import org.junit.AfterClass;
 
-public class TestOtherProjectLinks {
+public class GoToOtherProjects {
 
 	private static HomePage homePage = new HomePage();
 	

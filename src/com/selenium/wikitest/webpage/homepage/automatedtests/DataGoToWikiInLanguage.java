@@ -1,30 +1,32 @@
 package com.selenium.wikitest.webpage.homepage.automatedtests;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
-
 import com.selenium.wikitest.webpage.homepage.HomePage;
 import com.selenium.wikitest.webpage.homepage.HomePageText;
 import com.selenium.wikitest.webpage.homepage.SQLiteHomePage;
 import com.thoughtworks.selenium.SeleneseTestBase;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
+
 @RunWith(Parameterized.class)
-public class TestDataSearchFromHomePage {
+public class DataGoToWikiInLanguage {
 
 	private static HomePage homePage = new HomePage();
 	
-	private String searchItem;
+	private String xPath;
+	private String title;
 	
-	public TestDataSearchFromHomePage(String searchItem1, String searchItem2) {
-		searchItem = searchItem1;
-		// searchItem2 is a duplicate of searchItem1
+	public DataGoToWikiInLanguage (String xPath, String title) {
+		this.xPath = xPath;
+		this.title = title;
 	}
 	
 	@BeforeClass
@@ -37,9 +39,10 @@ public class TestDataSearchFromHomePage {
 		ArrayList<String[]> listStrings = null;
 		try {
 			listStrings = SQLiteHomePage.queryData(
-					HomePageText.getString("SearchStrings.TableName"),
-					HomePageText.getString("SearchStrings.Column1"));
-		} catch (Exception e) {
+					HomePageText.getString("LanguageLinks.TableName"),
+					HomePageText.getString("LanguageLinks.Column1"),
+					HomePageText.getString("LanguageLinks.Column2"));
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return listStrings;
@@ -47,18 +50,15 @@ public class TestDataSearchFromHomePage {
 
 	@Test
 	public void testSearchData() {
-
+		String actualResult = homePage.goToListLinkByXPath(xPath);
 		try {
-			// Assert expected search result record, from list, matches actual result
-			SeleneseTestBase.assertTrue(homePage.searchFor(searchItem).contains(searchItem));
+			SeleneseTestBase.assertTrue(actualResult.contains(title));
 		} catch (Exception e) {
-			System.out.println("searchItem = " + searchItem);
+			System.out.println("xPath = " + xPath);
+			System.out.println("title = " + title);
 			e.printStackTrace();
 		}
-
-		// Return to home page for next test
 		homePage.openHomePage();
-
 	}
 
 	@After

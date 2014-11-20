@@ -8,7 +8,7 @@ import com.selenium.wikitest.webpage.homepage.HomePage;
 import com.selenium.wikitest.webpage.homepage.HomePageText;
 import com.thoughtworks.selenium.SeleneseTestBase;
 
-public class TestWikiMediaFoundationLinks {
+public class GoToFoundationPages {
 
 	private static HomePage homePage = new HomePage();
 	

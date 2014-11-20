@@ -16,14 +16,14 @@ import com.thoughtworks.selenium.SeleneseTestBase;
 import java.util.ArrayList;
 
 @RunWith(Parameterized.class)
-public class TestDataRedirectFromHomePage {
+public class DataSearchTerms {
 
 	private static HomePage homePage = new HomePage();
 	
 	private String searchItem;
 	
-	public TestDataRedirectFromHomePage(String searchItem1, String searchItem2) {
-		this.searchItem = searchItem1;
+	public DataSearchTerms(String searchItem1, String searchItem2) {
+		searchItem = searchItem1;
 		// searchItem2 is a duplicate of searchItem1
 	}
 	
@@ -33,12 +33,12 @@ public class TestDataRedirectFromHomePage {
 	}
 	
 	@Parameters
-	public static ArrayList<String[]> getSearchData() {
+	public static ArrayList<String[]> getSearchTerms() {
 		ArrayList<String[]> listStrings = null;
 		try {
 			listStrings = SQLiteHomePage.queryData(
-					HomePageText.getString("RedirectStrings.TableName"),
-					HomePageText.getString("RedirectStrings.Column1"));
+					HomePageText.getString("SearchStrings.TableName"),
+					HomePageText.getString("SearchStrings.Column1"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -46,13 +46,13 @@ public class TestDataRedirectFromHomePage {
 	}
 
 	@Test
-	public void testRedirectData() {
+	public void searchTerm() {
 
 		try {
 			// Assert expected search result record, from list, matches actual result
-			SeleneseTestBase.assertTrue(homePage.searchForRedirect(searchItem).contains(searchItem));
+			SeleneseTestBase.assertTrue(homePage.searchFor(searchItem).contains(searchItem));
 		} catch (Exception e) {
-			System.out.println(searchItem);
+			System.out.println("searchItem = " + searchItem);
 			e.printStackTrace();
 		}
 

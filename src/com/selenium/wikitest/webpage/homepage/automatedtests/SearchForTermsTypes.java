@@ -9,7 +9,7 @@ import com.selenium.wikitest.shared.CommonPagesText;
 import com.selenium.wikitest.webpage.homepage.HomePage;
 import com.selenium.wikitest.webpage.homepage.HomePageText;
 
-public class TestSearchFromHomePage {
+public class SearchForTermsTypes {
 	private static HomePage homePage = new HomePage();
 
 	@Before
@@ -18,7 +18,7 @@ public class TestSearchFromHomePage {
 	}
 	
 	@Test
-	public void testSuccessfulSearch() throws Exception {
+	public void searchForExistingTerm() throws Exception {
 
 		// Get text to search
 		String seleniumExpected = HomePageText.getString("SeleniumPage.SeleniumTitle");
@@ -31,7 +31,7 @@ public class TestSearchFromHomePage {
 	}
 	
 	@Test
-	public void testSearchRedirect() {
+	public void searchForRedirectTerm() {
 
 		// Get redirect text
 		String expectedRedirectText = CommonPagesText.getString("AnyPage.RedirectText");
@@ -48,7 +48,7 @@ public class TestSearchFromHomePage {
 	}
 		
 	@Test
-	public void testEmptySearch() throws Exception {
+	public void searchForBlankTerm() throws Exception {
 
 		// Set expected outcome
 		String errorExpected = HomePageText.getString("ErrorPage.EmptyStringSearchTitle");
@@ -61,7 +61,7 @@ public class TestSearchFromHomePage {
 	}
 	
 	@Test
-	public void testFailSearch() throws Exception {
+	public void searchForNonexistentTerm() throws Exception {
 
 		// Set expected outcome
 		String errorExpected = HomePageText.getString("ErrorPage.NotFoundTitle");
@@ -75,10 +75,10 @@ public class TestSearchFromHomePage {
 	}
 	
 	@Test
-	public void testSearchStringTooLong() throws Exception {
+	public void searchForTooLongTerm() throws Exception {
 
 		// Set expected outcome
-		String errorExpected = HomePageText.getString("ErrorPage.TooLongStringError");
+		String errorExpected = HomePageText.getString("ErrorPage.SearchErrored");
 
 		// Run search and get result
 		String errorActual = homePage.searchFor(HomePageText.getString("ErrorPage.SearchTooLongString"));
@@ -87,24 +87,6 @@ public class TestSearchFromHomePage {
 		SeleneseTestBase.assertTrue(errorActual.contains(errorExpected));
 
 	}
-	
-//	Run these scripts before building table.
-//	CREATE TABLE SearchStrings(
-//	SearchID INTEGER PRIMARY KEY,
-//	SearchItem TEXT);
-//	CREATE TABLE RedirectStrings(
-//	RedirectID INTEGER PRIMARY KEY,
-//	RedirectItem TEXT);
-//	TODO Move this method to a Utilities class
-//	@Ignore @Test
-//	public void buildSearchTables() {
-//		homePage.buildSearchTable(HomePageText.getString("SearchStrings.TableName"),
-//				HomePageText.getString("SearchStrings.Column1"),
-//				Integer.parseInt(HomePageText.getString("SearchStrings.Count")));
-//		homePage.buildSearchTable(HomePageText.getString("RedirectStrings.TableName"),
-//				HomePageText.getString("RedirectStrings.Column1"),
-//				Integer.parseInt(HomePageText.getString("RedirectStrings.Count")));
-//	}
 	
 	@AfterClass
 	public static void commonTearDown() throws Exception {

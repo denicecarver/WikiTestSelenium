@@ -10,6 +10,10 @@ import com.selenium.wikitest.shared.CommonPagesText;
 public class WebPage {
 	protected WebDriver webDriver;
 	
+	protected String getDisplayedLanguage(String actualLanguage) {
+		return getTextAtXPath(actualLanguage);
+	}
+	
 	public WebPage() {
 		webDriver = new FirefoxDriver();
 	}
@@ -28,6 +32,10 @@ public class WebPage {
 	
 	public void openHomePage() {
 		openPage(CommonPagesText.getString("AnyPage.WikiHomeURL"));
+	}
+	
+	public String getTextAtXPath(String xpathToElement) {
+		return CommonMethods.waitForElement(webDriver, By.xpath(xpathToElement)).getText();
 	}
 	
 	public String searchFor(String searchString) {

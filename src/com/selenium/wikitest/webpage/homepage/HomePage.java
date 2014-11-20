@@ -30,14 +30,6 @@ public class HomePage extends WebPage{
 		return HomePageText.getString(expectedLanguage);
 	}
 	
-	private String getDisplayedLanguage(String actualLanguage) {
-		return getTextAtXPath(actualLanguage);
-	}
-	
-	public String getTextAtXPath(String xpathToElement) {
-		return CommonMethods.waitForElement(webDriver, By.xpath(xpathToElement)).getText();
-	}
-	
 	public boolean isLanguageFound(Language val) {
 		return getDisplayedLanguage(HomePageText.getString("HomePage.LanguageXPath" + val.toString())).contains(getExpectedLanguage("HomePage.Language" + val.toString() + "Text"));
 	}

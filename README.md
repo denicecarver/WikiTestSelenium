@@ -3,18 +3,21 @@ WikiTestSelenium
 There are currently over 500 tests.
 
 For details on how to setup this project,
-see the HowToDeploy.txt file.
+see the "To Install" section below.
 
 This is a simple set of Selenium tests. Testing a
 small portion of the Wikipedia website.  The tests
-are written in Java and use JUnit for reporting.
-The IDE I used was Eclipse.
+are written in Java and use JUnit for reporting. The
+data-driven tests use SQLite for the data source and
+JUnit 4 functionality for parameterized testing. The
+IDE I used was Eclipse.
 
 Some Useful Features:
 Data-driven tests
-Use of a SQLite database using the try-as-a-resource feature of Java 1.8
+Use of a SQLite database using the try-as-a-resource feature of Java 1.8 to close files.
+The SQLite database is used for data-driven testing using parameterized tests.
 Tests are organized into suites using the JUnit 4.11 suite feature
-Modeling with the Page Object model
+Modeling is based on the Page Object model
 Basic use of OOP concepts with examples of encapsulation, abstraction, inheritance, and polymorphism
 
 To Install

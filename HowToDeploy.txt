@@ -1,5 +1,5 @@
-To Install (in order):
-	Firefox 33.0.2
+Install these products in order, versions will likely be out of date but you should get the latest:
+	Firefox 33.1.1
 		Found at https://www.mozilla.org/en-US/firefox/new/
 	Java SE 8u25
 		Found at http://www.oracle.com/technetwork/articles/javase/index-jsp-138363.html
@@ -34,6 +34,11 @@ Add all jars downloaded above (JUnit, Hamcrest, Selenium, and SQLite)
 Go to http://github.com/doncarver/WikiTestSelenium click the Download ZIP button
 Drag and drop .java files from the zip into the appropriate packages in Eclipse
 
-Open the file AllHomePageTests.java from the package com.selenium.wikitest.webpage.homepage.automatedtests
-Run all the tests from the menu (Run | Run As | JUnit Test)
+Open the file HomePageSuite.java
+	From the package com.selenium.junit.wikitestrun
+Run suites from the menu (Run | Run)
+Or, for a quick run of a single test use TestLanguageDisplay.java
+	From the package:  com.selenium.wikitest.webpage.homepage.automatedtests
+Run individual tests from the menu (Run | Run As | JUnit Test)
+
 

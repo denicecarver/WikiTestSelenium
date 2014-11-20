@@ -31,6 +31,24 @@ public class HomePageUtilities {
 			e.printStackTrace();
 		}
 	}
+	
+//	Run these scripts before building table.
+//	CREATE TABLE SearchStrings(
+//	SearchID INTEGER PRIMARY KEY,
+//	SearchItem TEXT);
+//	CREATE TABLE RedirectStrings(
+//	RedirectID INTEGER PRIMARY KEY,
+//	RedirectItem TEXT);
+//	TODO Move this method to a Utilities class
+//	@Ignore @Test
+//	public void buildSearchTables() {
+//		homePage.buildSearchTable(HomePageText.getString("SearchStrings.TableName"),
+//				HomePageText.getString("SearchStrings.Column1"),
+//				Integer.parseInt(HomePageText.getString("SearchStrings.Count")));
+//		homePage.buildSearchTable(HomePageText.getString("RedirectStrings.TableName"),
+//				HomePageText.getString("RedirectStrings.Column1"),
+//				Integer.parseInt(HomePageText.getString("RedirectStrings.Count")));
+//	}
 
 	public void buildSearchTable(String tableName, String columnName, int recordCount) {
 		ArrayList<String> records = new ArrayList<>(100);

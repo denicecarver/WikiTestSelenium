@@ -10,24 +10,24 @@ import com.selenium.wikitest.bugs.SearchError;
 import com.selenium.wikitest.webpage.homepage.automatedtests.*;
 
 @RunWith(Suite.class)
-@SuiteClasses({ TestDataLanguageLinks.class,
-				TestDataRedirectFromHomePage.class,
-				TestDataSearchFromHomePage.class,
-				TestLanguageDisplay.class,
-				TestLanguageLinks.class,
-				TestOtherProjectLinks.class,
-				TestSearchFromHomePage.class })
+@SuiteClasses({ DataGoToWikiInLanguage.class,
+				DataSearchRedirectedTerms.class,
+				DataSearchTerms.class,
+				IsLanguageDisplayed.class,
+				GoToWikiInLanguage.class,
+				GoToOtherProjects.class,
+				SearchForTermsTypes.class })
 public class HomePageSuite {
 	public static void main(String[] args)
 	{
 		java.lang.Class<?>[] tests = {
-				TestDataLanguageLinks.class,
-				TestDataRedirectFromHomePage.class,
-				TestDataSearchFromHomePage.class,
-				TestLanguageDisplay.class,
-				TestLanguageLinks.class,
-				TestOtherProjectLinks.class,
-				TestSearchFromHomePage.class
+				DataGoToWikiInLanguage.class,
+				DataSearchRedirectedTerms.class,
+				DataSearchTerms.class,
+				IsLanguageDisplayed.class,
+				GoToWikiInLanguage.class,
+				GoToOtherProjects.class,
+				SearchForTermsTypes.class
 		};
 		JUnitCore runner = new JUnitCore();
 		runner.addListener(new RunSuiteListener());

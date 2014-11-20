@@ -1,32 +1,30 @@
 package com.selenium.wikitest.webpage.homepage.automatedtests;
 
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
+
 import com.selenium.wikitest.webpage.homepage.HomePage;
 import com.selenium.wikitest.webpage.homepage.HomePageText;
 import com.selenium.wikitest.webpage.homepage.SQLiteHomePage;
 import com.thoughtworks.selenium.SeleneseTestBase;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
-
 @RunWith(Parameterized.class)
-public class TestDataLanguageLinks {
+public class DataSearchRedirectedTerms {
 
 	private static HomePage homePage = new HomePage();
 	
-	private String xPath;
-	private String title;
+	private String searchItem;
 	
-	public TestDataLanguageLinks (String xPath, String title) {
-		this.xPath = xPath;
-		this.title = title;
+	public DataSearchRedirectedTerms(String searchItem1, String searchItem2) {
+		this.searchItem = searchItem1;
+		// searchItem2 is a duplicate of searchItem1
 	}
 	
 	@BeforeClass
@@ -39,26 +37,28 @@ public class TestDataLanguageLinks {
 		ArrayList<String[]> listStrings = null;
 		try {
 			listStrings = SQLiteHomePage.queryData(
-					HomePageText.getString("LanguageLinks.TableName"),
-					HomePageText.getString("LanguageLinks.Column1"),
-					HomePageText.getString("LanguageLinks.Column2"));
-		} catch (SQLException e) {
+					HomePageText.getString("RedirectStrings.TableName"),
+					HomePageText.getString("RedirectStrings.Column1"));
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return listStrings;
 	}
 
 	@Test
-	public void testSearchData() {
-		String actualResult = homePage.goToListLinkByXPath(xPath);
+	public void testRedirectData() {
+
 		try {
-			SeleneseTestBase.assertTrue(actualResult.contains(title));
+			// Assert expected search result record, from list, matches actual result
+			SeleneseTestBase.assertTrue(homePage.searchForRedirect(searchItem).contains(searchItem));
 		} catch (Exception e) {
-			System.out.println("xPath = " + xPath);
-			System.out.println("title = " + title);
+			System.out.println(searchItem);
 			e.printStackTrace();
 		}
+
+		// Return to home page for next test
 		homePage.openHomePage();
+
 	}
 
 	@After

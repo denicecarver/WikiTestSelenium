@@ -7,77 +7,67 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.AfterClass;
 
-public class TestLanguageDisplay {
+public class IsLanguageDisplayed {
 
 	private static HomePage homePage = new HomePage();
 	
 	@BeforeClass
-	public static void testSetup() {
+	public static void setup() {
 		homePage.openPage();
 	}
 	
 	@Test
-	public void testEnglishDisplay() {
-		// Verify English is displayed
+	public void isEnglishDisplayed() {
 		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.English));
 	}
 	
 	@Test
-	public void testSpanishDisplay() {
-		// Verify Spanish is displayed
+	public void isSpanishDisplayed() {
 		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.Spanish));
 	}
 	
 	@Test
-	public void testJapanesDisplay() {
-		// Verify Japanese is displayed
+	public void isJapanesDisplayed() {
 		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.Japanese));
 	}
 	
 	@Test
-	public void testRussianDisplay() {
-		// Verify Russian is displayed
+	public void isRussianDisplayed() {
 		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.Russian));
 	}
 	
 	@Test
-	public void testFrenchDisplay() {
-		// Verify French is displayed
+	public void isFrenchDisplayed() {
 		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.French));
 	}
 	
 	@Test
-	public void testGermanDisplay() {
-		// Verify German is displayed
+	public void isGermanDisplayed() {
 		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.German));
 	}
 	
 	@Test
-	public void testItalianDisplay() {
-		// Verify Italian is displayed
+	public void isItalianDisplayed() {
 		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.Italian));
 	}
 	
 	@Test
-	public void testChineseDisplay() {
-		// Verify Chinese is displayed
+	public void isChineseDisplayed() {
 		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.Chinese));
 	}
 	
 	@Test
-	public void testPolishDisplay() {
-		// Verify Polish is displayed
+	public void isPolishDisplayed() {
 		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.Polish));
 	}
 	
 	@Test
-	public void testPortugueseDisplay() {
-		// Verify Portuguese is displayed
+	public void isPortugueseDisplayed() {
 		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.Portuguese));
 	}
 
 	@AfterClass
-	public static void testTeardown() {
+	public static void teardown() {
 		homePage.closeBrowser();
 	}
 	
