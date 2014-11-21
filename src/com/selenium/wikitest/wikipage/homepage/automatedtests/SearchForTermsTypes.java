@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.junit.AfterClass;
 
 import com.thoughtworks.selenium.SeleneseTestBase;
-import com.selenium.wikitest.shared.CommonPagesText;
+import com.selenium.wikitest.wikipage.WikiPageText;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
 import com.selenium.wikitest.wikipage.homepage.HomePageText;
 
@@ -34,7 +34,7 @@ public class SearchForTermsTypes {
 	public void searchForRedirectTerm() {
 
 		// Get redirect text
-		String expectedRedirectText = CommonPagesText.getString("AnyPage.RedirectText");
+		String expectedRedirectText = WikiPageText.getString("AnyPage.RedirectText");
 		
 		// Go to redirected page
 		homePage.searchFor(expectedRedirectText);

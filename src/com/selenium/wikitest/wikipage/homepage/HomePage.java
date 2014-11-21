@@ -1,8 +1,8 @@
 package com.selenium.wikitest.wikipage.homepage;
 
+import com.selenium.wikitest.wikipage.WikiPageText;
 import com.selenium.wikitest.wikipage.WikiPage;
 import com.selenium.wikitest.shared.CommonMethods;
-import com.selenium.wikitest.shared.CommonPagesText;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -23,7 +23,7 @@ public class HomePage extends WikiPage{
 	}
 	
 	public void openPage() {
-		super.openPage(CommonPagesText.getString("AnyPage.WikiHomeURL"));
+		super.openPage(WikiPageText.getString("AnyPage.WikiHomeURL"));
 	}
 	
 	private String getExpectedLanguage(String expectedLanguage) {
@@ -35,15 +35,15 @@ public class HomePage extends WikiPage{
 	}
 	
 	public String goToProjectLink(String keyName) {
-		return CommonMethods.clickProjectLink(webDriver, HomePageText.getString(keyName));
+		return clickProjectLink(HomePageText.getString(keyName));
 	}
 	
 	public String goToListLinkByXPath(String xPath) {
-		return CommonMethods.clickProjectLinkByXPath(webDriver, xPath);
+		return clickProjectLinkByXPath(xPath);
 	}
 	
 	public String getJapanesePageTitle() {
-		WebElement we = CommonMethods.waitForElement(webDriver, By.linkText(HomePageText.getString("HomePage.LanguageJapaneseText")));
+		WebElement we = waitForElement(By.linkText(HomePageText.getString("HomePage.LanguageJapaneseText")));
 		return we.getText();
 	}
 
