@@ -1,4 +1,4 @@
-package com.selenium.wikitest.webpage.homepage.automatedtests;
+package com.selenium.wikitest.wikipage.homepage.automatedtests;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -6,8 +6,8 @@ import org.junit.AfterClass;
 
 import com.thoughtworks.selenium.SeleneseTestBase;
 import com.selenium.wikitest.shared.CommonPagesText;
-import com.selenium.wikitest.webpage.homepage.HomePage;
-import com.selenium.wikitest.webpage.homepage.HomePageText;
+import com.selenium.wikitest.wikipage.homepage.HomePage;
+import com.selenium.wikitest.wikipage.homepage.HomePageText;
 
 public class SearchForTermsTypes {
 	private static HomePage homePage = new HomePage();

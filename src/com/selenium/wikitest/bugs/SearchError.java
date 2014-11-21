@@ -1,7 +1,7 @@
 package com.selenium.wikitest.bugs;
 
-import com.selenium.wikitest.webpage.homepage.HomePage;
-import com.selenium.wikitest.webpage.homepage.HomePageText;
+import com.selenium.wikitest.wikipage.homepage.HomePage;
+import com.selenium.wikitest.wikipage.homepage.HomePageText;
 
 import org.junit.Before;
 import org.junit.Test;

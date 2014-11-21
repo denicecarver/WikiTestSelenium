@@ -2,7 +2,7 @@ package com.selenium.junit.wikitestrun;
 
 import org.junit.runner.JUnitCore;
 
-import com.selenium.wikitest.webpage.homepage.automatedtests.*;
+import com.selenium.wikitest.wikipage.homepage.automatedtests.*;
 
 public class RunTest {
 	public static void main(String[] args)

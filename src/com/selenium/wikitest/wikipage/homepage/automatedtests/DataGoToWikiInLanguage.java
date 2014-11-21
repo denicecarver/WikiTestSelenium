@@ -1,8 +1,8 @@
-package com.selenium.wikitest.webpage.homepage.automatedtests;
+package com.selenium.wikitest.wikipage.homepage.automatedtests;
 
-import com.selenium.wikitest.webpage.homepage.HomePage;
-import com.selenium.wikitest.webpage.homepage.HomePageText;
-import com.selenium.wikitest.webpage.homepage.SQLiteHomePage;
+import com.selenium.wikitest.wikipage.homepage.HomePage;
+import com.selenium.wikitest.wikipage.homepage.HomePageText;
+import com.selenium.wikitest.wikipage.homepage.SQLiteHomePage;
 import com.thoughtworks.selenium.SeleneseTestBase;
 
 import java.sql.SQLException;

@@ -1,4 +1,4 @@
-package com.selenium.wikitest.webpage;
+package com.selenium.wikitest.wikipage;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,14 +7,14 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.shared.CommonPagesText;
 
-public class WebPage {
+public class WikiPage {
 	protected WebDriver webDriver;
 	
 	protected String getDisplayedLanguage(String actualLanguage) {
 		return getTextAtXPath(actualLanguage);
 	}
 	
-	public WebPage() {
+	public WikiPage() {
 		webDriver = new FirefoxDriver();
 	}
 	

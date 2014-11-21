@@ -1,4 +1,4 @@
-package com.selenium.wikitest.webpage.homepage;
+package com.selenium.wikitest.wikipage.homepage;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

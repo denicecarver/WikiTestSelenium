@@ -1,10 +1,10 @@
-package com.selenium.wikitest.webpage.homepage;
+package com.selenium.wikitest.wikipage.homepage;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 public class HomePageText {
-	private static final String BUNDLE_NAME = "com.selenium.wikitest.webpage.homepage.homepagetext"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "com.selenium.wikitest.wikipage.homepage.homepagetext"; //$NON-NLS-1$
 
 	private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle
 			.getBundle(BUNDLE_NAME);

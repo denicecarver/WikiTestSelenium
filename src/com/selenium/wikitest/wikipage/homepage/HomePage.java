@@ -1,13 +1,13 @@
-package com.selenium.wikitest.webpage.homepage;
+package com.selenium.wikitest.wikipage.homepage;
 
-import com.selenium.wikitest.webpage.WebPage;
+import com.selenium.wikitest.wikipage.WikiPage;
 import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.shared.CommonPagesText;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class HomePage extends WebPage{
+public class HomePage extends WikiPage{
 	
 	public static enum Language {
 		English,

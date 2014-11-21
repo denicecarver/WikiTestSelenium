@@ -5,9 +5,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
-import com.selenium.wikitest.bugs.PrivacyPolicyError;
-import com.selenium.wikitest.bugs.SearchError;
-import com.selenium.wikitest.webpage.homepage.automatedtests.*;
+import com.selenium.wikitest.wikipage.homepage.automatedtests.*;
 
 @RunWith(Suite.class)
 @SuiteClasses({ DataGoToWikiInLanguage.class,
