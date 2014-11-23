@@ -22,12 +22,12 @@ public class HomePage extends WikiPage{
 		Portuguese
 	}
 	
-	public void openPage() {
-		super.openPage(WikiPageText.getString("AnyPage.WikiHomeURL"));
-	}
-	
 	private String getExpectedLanguage(String expectedLanguage) {
 		return HomePageText.getString(expectedLanguage);
+	}
+	
+	public void openPage() {
+		super.openPage(WikiPageText.getString("AnyPage.WikiHomeURL"));
 	}
 	
 	public boolean isLanguageFound(Language val) {

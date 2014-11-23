@@ -20,85 +20,85 @@ public class GoToOtherProjects {
 	
 	@Test
 	public void testWiktionaryLink() {
-		String actualResult = homePage.goToProjectLink("HomePage.WiktionaryProject");
 		String expectedResult = (HomePageText.getString("HomePage.WiktionaryProject"));
+		String actualResult = homePage.goToProjectLink("HomePage.WiktionaryProject");
 		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
 	}
 	
 	@Test
 	public void testWikidataLink() {
-		String actualResult = homePage.goToProjectLink("HomePage.WikidataProject");
 		String expectedResult = (HomePageText.getString("HomePage.WikidataProject"));
+		String actualResult = homePage.goToProjectLink("HomePage.WikidataProject");
 		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
 	}
 	
 	@Test
 	public void testWikivoyageLink() {
-		String actualResult = homePage.goToProjectLink("HomePage.WikivoyageProject");
 		String expectedResult = (HomePageText.getString("HomePage.WikivoyageProject"));
+		String actualResult = homePage.goToProjectLink("HomePage.WikivoyageProject");
 		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
 	}
 	
 	@Test
 	public void testWikinewsLink() {
-		String actualResult = homePage.goToProjectLink("HomePage.WikinewsProject");
 		String expectedResult = (HomePageText.getString("HomePage.WikinewsProject"));
+		String actualResult = homePage.goToProjectLink("HomePage.WikinewsProject");
 		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
 	}
 	
 	@Test
 	public void testWikispeciesLink() {
-		String actualResult = homePage.goToProjectLink("HomePage.WikispeciesProject");
 		String expectedResult = (HomePageText.getString("HomePage.WikispeciesProject"));
+		String actualResult = homePage.goToProjectLink("HomePage.WikispeciesProject");
 		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
 	}
 	
 	@Test
 	public void testCommonsLink() {
-		String actualResult = homePage.goToProjectLink("HomePage.CommonsProject");
 		String expectedResult = (HomePageText.getString("HomePage.CommonsProject"));
+		String actualResult = homePage.goToProjectLink("HomePage.CommonsProject");
 		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
 	}
 	
 	@Test
 	public void testWikiquoteLink() {
-		String actualResult = homePage.goToProjectLink("HomePage.WikiquoteProject");
 		String expectedResult = (HomePageText.getString("HomePage.WikiquoteProject"));
+		String actualResult = homePage.goToProjectLink("HomePage.WikiquoteProject");
 		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
 	}
 	
 	@Test
 	public void testWikisourceLink() {
-		String actualResult = homePage.goToProjectLink("HomePage.WikisourceProject");
 		String expectedResult = (HomePageText.getString("HomePage.WikisourceProject"));
+		String actualResult = homePage.goToProjectLink("HomePage.WikisourceProject");
 		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
 	}
 	
 	@Test
 	public void mediaWikiLink() {
-		String actualResult = homePage.goToProjectLink("HomePage.MediaWikiProject");
 		String expectedResult = (HomePageText.getString("HomePage.MediaWikiProject"));
+		String actualResult = homePage.goToProjectLink("HomePage.MediaWikiProject");
 		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
 	}
 	
 	@Test
 	public void testWikibooksLink() {
-		String actualResult = homePage.goToProjectLink("HomePage.WikibooksProject");
 		String expectedResult = (HomePageText.getString("HomePage.WikibooksProject"));
+		String actualResult = homePage.goToProjectLink("HomePage.WikibooksProject");
 		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
 	}
 	
 	@Test
 	public void testWikiversityLink() {
-		String actualResult = homePage.goToProjectLink("HomePage.WikiversityProject");
 		String expectedResult = (HomePageText.getString("HomePage.WikiversityProject"));
+		String actualResult = homePage.goToProjectLink("HomePage.WikiversityProject");
 		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
 	}
 	
 	@Test
 	public void testMetaWikiLink() {
-		String actualResult = homePage.goToProjectLink("HomePage.MetaWikiProject");
 		String expectedResult = (HomePageText.getString("HomePage.MetaWikiProject"));
+		String actualResult = homePage.goToProjectLink("HomePage.MetaWikiProject");
 		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
 	}
 	

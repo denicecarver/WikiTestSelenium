@@ -6,8 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import com.selenium.wikitest.shared.CommonMethods;
-
 public class WikiPage {
 	protected WebDriver webDriver;
 	
@@ -55,6 +53,17 @@ public class WikiPage {
 		String title = new String();
 		try {
 			(webDriver.findElement(By.xpath(xPath))).click();
+		} catch (NoSuchElementException e) {
+			System.out.println(e);
+		}
+		title = webDriver.getTitle();
+		return title;
+	}
+
+	public String clickProjectLinkByID(String id) throws NullPointerException {
+		String title = new String();
+		try {
+			(webDriver.findElement(By.id(id))).click();
 		} catch (NoSuchElementException e) {
 			System.out.println(e);
 		}
