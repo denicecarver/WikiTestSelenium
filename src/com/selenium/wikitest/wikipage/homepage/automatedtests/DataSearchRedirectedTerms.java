@@ -8,9 +8,9 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
+import com.selenium.wikitest.data.SQLiteJDBC;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
 import com.selenium.wikitest.wikipage.homepage.HomePageText;
-import com.selenium.wikitest.wikipage.homepage.SQLiteHomePage;
 import com.thoughtworks.selenium.SeleneseTestBase;
 
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ public class DataSearchRedirectedTerms {
 	public static ArrayList<String[]> getSearchData() {
 		ArrayList<String[]> listStrings = null;
 		try {
-			listStrings = SQLiteHomePage.queryData(
+			listStrings = SQLiteJDBC.queryData(
 					HomePageText.getString("RedirectStrings.TableName"),
 					HomePageText.getString("RedirectStrings.Column1"));
 		} catch (Exception e) {

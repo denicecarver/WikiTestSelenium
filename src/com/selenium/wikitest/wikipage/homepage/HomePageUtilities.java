@@ -3,6 +3,7 @@ package com.selenium.wikitest.wikipage.homepage;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.selenium.wikitest.data.SQLiteJDBC;
 import com.thoughtworks.selenium.SeleneseTestBase;
 
 public class HomePageUtilities {
@@ -26,7 +27,7 @@ public class HomePageUtilities {
 		}
 
 		try {
-			SQLiteHomePage.insertLanguageLinks(records);
+			SQLiteJDBC.insertLanguageLinks(records);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -58,7 +59,7 @@ public class HomePageUtilities {
 		}
 
 		try {
-			SQLiteHomePage.insertIntoTable(tableName, columnName, records);
+			SQLiteJDBC.insertIntoTable(tableName, columnName, records);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -78,7 +79,7 @@ public class HomePageUtilities {
 //		}
 		ArrayList<String[]> links = new ArrayList<>(10);
 		try {
-			links = SQLiteHomePage.queryData("LanguageLinks", "Link", "Title");
+			links = SQLiteJDBC.queryData("LanguageLinks", "Link", "Title");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

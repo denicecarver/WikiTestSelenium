@@ -1,4 +1,4 @@
-package com.selenium.wikitest.wikipage.homepage;
+package com.selenium.wikitest.data;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,7 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public final class SQLiteHomePage {
+import com.selenium.wikitest.wikipage.homepage.HomePageText;
+
+public final class SQLiteJDBC {
 
 	private static final String homeConnection ="HomePage.ConnectionDetails"; 
 

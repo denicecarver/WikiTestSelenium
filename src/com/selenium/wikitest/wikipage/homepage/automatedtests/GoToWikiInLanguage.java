@@ -1,9 +1,9 @@
 package com.selenium.wikitest.wikipage.homepage.automatedtests;
 
+import com.selenium.wikitest.data.SQLiteJDBC;
 import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
 import com.selenium.wikitest.wikipage.homepage.HomePageText;
-import com.selenium.wikitest.wikipage.homepage.SQLiteHomePage;
 import com.thoughtworks.selenium.SeleneseTestBase;
 
 import java.io.UnsupportedEncodingException;
