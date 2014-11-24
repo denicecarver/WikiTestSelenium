@@ -9,7 +9,6 @@ public class RunTest {
 	{
 		java.lang.Class<?>[] tests = {
 				IsLanguageDisplayed.class
-//				TestSearchFromHomePage.class
 		};
 		JUnitCore runner = new JUnitCore();
 		runner.addListener(new RunSuiteListener());

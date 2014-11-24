@@ -68,4 +68,44 @@ public class CommonPage extends ResultPage {
 		return getTooltipByLink("Wikimedia Shop");
 	}
 
+	public String goToHelp() {
+		return clickProjectLink("Help");
+	}
+
+	public String goToAboutWikipedia() {
+		return clickProjectLink("About Wikipedia");
+	}
+
+	public String goToCommunityPortal() {
+		return clickProjectLink("Community portal");
+	}
+
+	public String goToRecentChanges() {
+		return clickProjectLink("Recent changes");
+	}
+
+	public String goToContactPage() {
+		return clickProjectLink("Contact page");
+	}
+
+	public String reviewHelpTooltip() {
+		return getTooltipByLink("Help");
+	}
+
+	public String reviewAboutWikipediaTooltip() {
+		return getTooltipByLink("About Wikipedia");
+	}
+
+	public String reviewCommunityPortalTooltip() {
+		return getTooltipByLink("Community portal");
+	}
+
+	public String reviewRecentChangesTooltip() {
+		return getTooltipByLink("Recent changes");
+	}
+
+	public String reviewContactPageTooltip() {
+		return getTooltipByLink("Contact page");
+	}
+
 }
