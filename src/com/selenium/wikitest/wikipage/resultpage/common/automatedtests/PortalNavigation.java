@@ -45,10 +45,28 @@ public class PortalNavigation {
 	}
 	
 	@Test
+	public void reviewMainPageLinkTooltip() {
+
+		String expectedResult = "Visit the main page [Alt+Shift+z]";
+		String actualResult = commonPage.getMainPageLinkTooltip();
+		SeleneseTestBase.assertTrue(actualResult.equals(expectedResult));
+
+	}
+	
+	@Test
 	public void goToContents() {
 
 		String expectedResult = "Portal:Contents - Wikipedia, the free encyclopedia";
 		String actualResult = commonPage.goToContents();
+		SeleneseTestBase.assertTrue(actualResult.equals(expectedResult));
+
+	}
+	
+	@Test
+	public void reviewContentsTooltip() {
+
+		String expectedResult = "Guides to browsing Wikipedia";
+		String actualResult = commonPage.getContentsTooltip();
 		SeleneseTestBase.assertTrue(actualResult.equals(expectedResult));
 
 	}
@@ -63,10 +81,28 @@ public class PortalNavigation {
 	}
 	
 	@Test
+	public void reviewFeaturedContentTooltip() {
+
+		String expectedResult = "Featured content – the best of Wikipedia";
+		String actualResult = commonPage.getFeaturedContentTooltip();
+		SeleneseTestBase.assertTrue(actualResult.equals(expectedResult));
+
+	}
+	
+	@Test
 	public void goToCurrentEvents() {
 
 		String expectedResult = "Portal:Current events - Wikipedia, the free encyclopedia";
 		String actualResult = commonPage.goToCurrentEvents();
+		SeleneseTestBase.assertTrue(actualResult.equals(expectedResult));
+
+	}
+	
+	@Test
+	public void reviewCurrentEventsTooltip() {
+
+		String expectedResult = "Find background information on current events";
+		String actualResult = commonPage.getCurrentEventsTooltip();
 		SeleneseTestBase.assertTrue(actualResult.equals(expectedResult));
 
 	}
@@ -87,6 +123,15 @@ public class PortalNavigation {
 	}
 	
 	@Test
+	public void reviewRandomArticleTooltip() {
+
+		String expectedResult = "Load a random article [Alt+Shift+x]";
+		String actualResult = commonPage.getRandomArticleTooltip();
+		SeleneseTestBase.assertTrue(actualResult.equals(expectedResult));
+
+	}
+	
+	@Test
 	public void goToDonateToWikipedia() {
 
 		String expectedResult = "Make your donation now - Donate";
@@ -96,10 +141,28 @@ public class PortalNavigation {
 	}
 	
 	@Test
+	public void reviewDonateToWikipediaTooltip() {
+
+		String expectedResult = "Support us";
+		String actualResult = commonPage.getDonateToWikipediaTooltip();
+		SeleneseTestBase.assertTrue(actualResult.equals(expectedResult));
+
+	}
+	
+	@Test
 	public void goToWikimediaShop() {
 
 		String expectedResult = "Wikimedia Shop";
 		String actualResult = commonPage.goToWikimediaShop();
+		SeleneseTestBase.assertTrue(actualResult.equals(expectedResult));
+
+	}
+	
+	@Test
+	public void reviewWikimediaShopTooltip() {
+
+		String expectedResult = "Visit the Wikimedia Shop";
+		String actualResult = commonPage.getWikimediaShopTooltip();
 		SeleneseTestBase.assertTrue(actualResult.equals(expectedResult));
 
 	}

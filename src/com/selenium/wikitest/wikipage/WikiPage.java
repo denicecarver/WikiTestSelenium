@@ -74,6 +74,20 @@ public class WikiPage {
 		return title;
 	}
 
+	protected String getTooltipByLink(String link) {
+	
+		String title = new String();
+		try {
+			WebElement element = webDriver.findElement(By.partialLinkText(link));
+			title = element.getAttribute("title");
+		} catch (NoSuchElementException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getStackTrace());
+		}
+		return title;
+
+	}
+
 	protected String getTooltipByID(String id) {
 		String title = new String();
 		try {
