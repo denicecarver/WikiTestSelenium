@@ -8,6 +8,10 @@ public class CommonPage extends ResultPage {
 		return clickProjectLinkByID("p-logo");
 	}
 
+	public String getMainPageIconTooltip() {
+		return getTooltipByCSS("#p-logo > a");
+	}
+
 	public String goToMainPageUsingLink() {
 		return clickProjectLink("Main page");
 	}

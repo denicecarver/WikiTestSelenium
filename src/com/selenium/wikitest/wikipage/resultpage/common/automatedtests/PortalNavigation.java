@@ -2,11 +2,9 @@ package com.selenium.wikitest.wikipage.resultpage.common.automatedtests;
 
 import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.selenium.wikitest.wikipage.resultpage.ResultPage;
 import com.selenium.wikitest.wikipage.resultpage.common.CommonPage;
 import com.thoughtworks.selenium.SeleneseTestBase;
 
@@ -24,6 +22,15 @@ public class PortalNavigation {
 
 		String expectedResult = "Wikipedia, the free encyclopedia";
 		String actualResult = commonPage.goToMainPageUsingIcon();
+		SeleneseTestBase.assertTrue(actualResult.equals(expectedResult));
+
+	}
+	
+	@Test
+	public void reviewMainPageIconTooltip() {
+
+		String expectedResult = "Visit the main page";
+		String actualResult = commonPage.getMainPageIconTooltip();
 		SeleneseTestBase.assertTrue(actualResult.equals(expectedResult));
 
 	}

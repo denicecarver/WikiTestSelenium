@@ -17,15 +17,16 @@ public class WikiPage {
 		webDriver = new FirefoxDriver();
 	}
 	
-	public WebDriver getDriver() {
+	protected WebDriver getDriver() {
 		return webDriver;
 	}
 	
-	public void openPage(String url) {
+	protected void openPage(String url) {
 		try {
 			webDriver.get(url);
 		} catch (Exception e) {
-			System.out.println(e.toString());
+			System.out.println(e.getMessage());
+			System.out.println(e.getStackTrace());
 		}
 	}
 	
@@ -44,30 +45,68 @@ public class WikiPage {
 		return webDriver.getTitle();
 	}
 
-	public String clickProjectLink(String linkName) {
+	protected String clickProjectLink(String linkName) {
 		(webDriver.findElement(By.partialLinkText(linkName))).click();
 		return webDriver.getTitle();
 	}
 
-	public String clickProjectLinkByXPath(String xPath) throws NullPointerException {
+	protected String clickProjectLinkByXPath(String xPath) throws NullPointerException {
 		String title = new String();
 		try {
 			(webDriver.findElement(By.xpath(xPath))).click();
 		} catch (NoSuchElementException e) {
-			System.out.println(e);
+			System.out.println(e.getMessage());
+			System.out.println(e.getStackTrace());
 		}
 		title = webDriver.getTitle();
 		return title;
 	}
 
-	public String clickProjectLinkByID(String id) throws NullPointerException {
+	protected String clickProjectLinkByID(String id) throws NullPointerException {
 		String title = new String();
 		try {
 			(webDriver.findElement(By.id(id))).click();
 		} catch (NoSuchElementException e) {
-			System.out.println(e);
+			System.out.println(e.getMessage());
+			System.out.println(e.getStackTrace());
 		}
 		title = webDriver.getTitle();
+		return title;
+	}
+
+	protected String getTooltipByID(String id) {
+		String title = new String();
+		try {
+			WebElement element = webDriver.findElement(By.id(id));
+			title = element.getAttribute("title");
+		} catch (NoSuchElementException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getStackTrace());
+		}
+		return title;
+	}
+
+	protected String getTooltipByXPath(String xPath) {
+		String title = new String();
+		try {
+			WebElement element = webDriver.findElement(By.id(xPath));
+			title = element.getAttribute("title");
+		} catch (NoSuchElementException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getStackTrace());
+		}
+		return title;
+	}
+
+	protected String getTooltipByCSS(String css) {
+		String title = new String();
+		try {
+			WebElement element = webDriver.findElement(By.cssSelector(css));
+			title = element.getAttribute("title");
+		} catch (NoSuchElementException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getStackTrace());
+		}
 		return title;
 	}
 	
@@ -85,7 +124,8 @@ public class WikiPage {
         	try {
 				Thread.sleep(sleepTime);
 			} catch (InterruptedException ei) {
-				ei.printStackTrace();
+				System.out.println(ei.getMessage());
+				System.out.println(ei.getStackTrace());
 			}
         }
         System.out.println("Failed at Tenth Second: " + tenthSecond);
