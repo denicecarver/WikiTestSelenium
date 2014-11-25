@@ -108,4 +108,68 @@ public class CommonPage extends ResultPage {
 		return getTooltipByLink("Contact page");
 	}
 
+	public String goToWhatLinksHere() {
+		return clickProjectLink("What links here");
+	}
+
+	public String goToRelatedChanges() {
+		return clickProjectLink("Related changes");
+	}
+
+	public String goToUploadFile() {
+		return clickProjectLink("Upload file");
+	}
+
+	public String goToSpecialPages() {
+		return clickProjectLink("Special pages");
+	}
+
+	public String goToPermanentLink() {
+		return clickProjectLink("Permanent link");
+	}
+
+	public String goToPageInformation() {
+		return clickProjectLink("Page information");
+	}
+
+	public String goToWikidataItem() {
+		return clickProjectLink("Wikidata item");
+	}
+
+	public String goToCiteThisPage() {
+		return clickProjectLink("Cite this page");
+	}
+
+	public String reviewWhatLinksHereTooltip() {
+		return getTooltipByLink("What links here");
+	}
+
+	public String reviewRelatedChangesTooltip() {
+		return getTooltipByLink("Related changes");
+	}
+
+	public String reviewUploadFileTooltip() {
+		return getTooltipByLink("Upload file");
+	}
+
+	public String reviewSpecialPagesTooltip() {
+		return getTooltipByLink("Special pages");
+	}
+
+	public String reviewPermanentLinkTooltip() {
+		return getTooltipByLink("Permanent link");
+	}
+
+	public String reviewPageInformationTooltip() {
+		return getTooltipByLink("Page information");
+	}
+
+	public String reviewWikidataItemTooltip() {
+		return getTooltipByLink("Wikidata item");
+	}
+
+	public String reviewCiteThisPageTooltip() {
+		return getTooltipByLink("Cite this page");
+	}
+
 }

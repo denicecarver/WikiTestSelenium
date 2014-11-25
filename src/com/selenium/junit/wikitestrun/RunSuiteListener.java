@@ -1,5 +1,7 @@
 package com.selenium.junit.wikitestrun;
 
+import java.util.ArrayList;
+
 import org.junit.runner.Description;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
@@ -12,6 +14,16 @@ public class RunSuiteListener  extends RunListener {
 	public void testRunStarted(Description description)	throws java.lang.Exception
 	{
 		System.out.println("Number of testcases to execute: " + description.testCount());
+		ArrayList<Description> children = description.getChildren();
+		for (Description child : children) {
+			System.out.println("Test suite:" + child.getClassName());
+			ArrayList<Description> grandchildren = child.getChildren();
+			if (grandchildren != null) {
+				for (Description grandchild : grandchildren) {
+					System.out.println("Test case:" + grandchild.getMethodName());
+				}
+			}
+		}
 	}
 
 	/**
@@ -29,31 +41,33 @@ public class RunSuiteListener  extends RunListener {
 	 * */
 	public void testStarted(Description description) throws java.lang.Exception
 	{
-		System.out.println("Starting execution of test case: "+ description.getMethodName());
 		System.out.println("Test case:  " + description.getMethodName());
 	}
-
-	/**
-	 *  Called when an atomic test has finished, whether the test succeeds or fails.
-	 * */
-	public void testFinished(Description description) throws java.lang.Exception
-	{
-		System.out.println("Finished execution of test case: "+ description.getMethodName());
-	}
+//
+//	/**
+//	 *  Called when an atomic test has finished, whether the test succeeds or fails.
+//	 * */
+//	public void testFinished(Description description) throws java.lang.Exception
+//	{
+//		System.out.println("Finished execution of test case: "+ description.getMethodName());
+//	}
 
 	/**
 	 *  Called when an atomic test fails.
 	 * */
 	public void testFailure(Failure failure) throws java.lang.Exception
 	{
-		System.out.println("Execution of test case failed: "+ failure.toString());
+		System.out.println("Failure Message:  " + failure.getMessage());
+		System.out.println("Failure Description:  " + failure.getDescription());
+		System.out.println("Failure Exception:  " + failure.getException());
 	}
+//
+//	/**
+//	 *  Called when a test will not be run, generally because a test method is annotated with Ignore.
+//	 * */
+//	public void testIgnored(Description description) throws java.lang.Exception
+//	{
+//		System.out.println("Execution of test case ignored: "+ description.getMethodName());
+//	}
 
-	/**
-	 *  Called when a test will not be run, generally because a test method is annotated with Ignore.
-	 * */
-	public void testIgnored(Description description) throws java.lang.Exception
-	{
-		System.out.println("Execution of test case ignored: "+ description.getMethodName());
-	}
 }
