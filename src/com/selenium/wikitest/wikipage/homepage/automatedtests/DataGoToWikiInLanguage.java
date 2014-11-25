@@ -1,6 +1,7 @@
 package com.selenium.wikitest.wikipage.homepage.automatedtests;
 
 import com.selenium.wikitest.data.SQLiteJDBC;
+import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
 import com.selenium.wikitest.wikipage.homepage.HomePageText;
 import com.thoughtworks.selenium.SeleneseTestBase;
@@ -52,7 +53,9 @@ public class DataGoToWikiInLanguage {
 	public void testSearchData() {
 		String actualResult = homePage.goToListLinkByXPath(xPath);
 		try {
-			SeleneseTestBase.assertTrue(actualResult.contains(title));
+			SeleneseTestBase.assertTrue(
+					CommonMethods.formatAssertMessage(title, actualResult),
+					actualResult.contains(title));
 		} catch (Exception e) {
 			System.out.println("xPath = " + xPath);
 			System.out.println("title = " + title);

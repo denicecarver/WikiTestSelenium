@@ -5,6 +5,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.wikipage.resultpage.common.CommonPage;
 import com.thoughtworks.selenium.SeleneseTestBase;
 
@@ -22,7 +23,9 @@ public class PortalNavigation {
 
 		String expectedResult = "Wikipedia, the free encyclopedia";
 		String actualResult = commonPage.goToMainPageUsingIcon();
-		SeleneseTestBase.assertTrue(actualResult.equals(expectedResult));
+		SeleneseTestBase.assertTrue(
+				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+				actualResult.equals(expectedResult));
 
 	}
 	
@@ -31,7 +34,9 @@ public class PortalNavigation {
 
 		String expectedResult = "Visit the main page";
 		String actualResult = commonPage.getMainPageIconTooltip();
-		SeleneseTestBase.assertTrue(actualResult.equals(expectedResult));
+		SeleneseTestBase.assertTrue(
+				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+				actualResult.equals(expectedResult));
 
 	}
 	
@@ -40,7 +45,9 @@ public class PortalNavigation {
 
 		String expectedResult = "Wikipedia, the free encyclopedia";
 		String actualResult = commonPage.goToMainPageUsingLink();
-		SeleneseTestBase.assertTrue(actualResult.equals(expectedResult));
+		SeleneseTestBase.assertTrue(
+				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+				actualResult.equals(expectedResult));
 
 	}
 	
@@ -49,7 +56,9 @@ public class PortalNavigation {
 
 		String expectedResult = "Visit the main page [Alt+Shift+z]";
 		String actualResult = commonPage.getMainPageLinkTooltip();
-		SeleneseTestBase.assertTrue(actualResult.equals(expectedResult));
+		SeleneseTestBase.assertTrue(
+				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+				actualResult.equals(expectedResult));
 
 	}
 	
@@ -58,7 +67,9 @@ public class PortalNavigation {
 
 		String expectedResult = "Portal:Contents - Wikipedia, the free encyclopedia";
 		String actualResult = commonPage.goToContents();
-		SeleneseTestBase.assertTrue(actualResult.equals(expectedResult));
+		SeleneseTestBase.assertTrue(
+				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+				actualResult.equals(expectedResult));
 
 	}
 	
@@ -67,7 +78,9 @@ public class PortalNavigation {
 
 		String expectedResult = "Guides to browsing Wikipedia";
 		String actualResult = commonPage.getContentsTooltip();
-		SeleneseTestBase.assertTrue(actualResult.equals(expectedResult));
+		SeleneseTestBase.assertTrue(
+				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+				actualResult.equals(expectedResult));
 
 	}
 	
@@ -76,7 +89,9 @@ public class PortalNavigation {
 
 		String expectedResult = "Portal:Featured content - Wikipedia, the free encyclopedia";
 		String actualResult = commonPage.goToFeaturedContent();
-		SeleneseTestBase.assertTrue(actualResult.equals(expectedResult));
+		SeleneseTestBase.assertTrue(
+				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+				actualResult.equals(expectedResult));
 
 	}
 	
@@ -85,7 +100,9 @@ public class PortalNavigation {
 
 		String expectedResult = "Featured content – the best of Wikipedia";
 		String actualResult = commonPage.getFeaturedContentTooltip();
-		SeleneseTestBase.assertTrue(actualResult.equals(expectedResult));
+		SeleneseTestBase.assertTrue(
+				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+				actualResult.equals(expectedResult));
 
 	}
 	
@@ -94,7 +111,9 @@ public class PortalNavigation {
 
 		String expectedResult = "Portal:Current events - Wikipedia, the free encyclopedia";
 		String actualResult = commonPage.goToCurrentEvents();
-		SeleneseTestBase.assertTrue(actualResult.equals(expectedResult));
+		SeleneseTestBase.assertTrue(
+				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+				actualResult.equals(expectedResult));
 
 	}
 	
@@ -103,7 +122,9 @@ public class PortalNavigation {
 
 		String expectedResult = "Find background information on current events";
 		String actualResult = commonPage.getCurrentEventsTooltip();
-		SeleneseTestBase.assertTrue(actualResult.equals(expectedResult));
+		SeleneseTestBase.assertTrue(
+				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+				actualResult.equals(expectedResult));
 
 	}
 	
@@ -115,10 +136,14 @@ public class PortalNavigation {
 		String actualResult = commonPage.goToRandomArticle();
 		
 		// Verify the page is not the original page
-		SeleneseTestBase.assertFalse(actualResult.equals(failedResult));
+		SeleneseTestBase.assertFalse(
+				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+				actualResult.equals(failedResult));
 		
 		// Verify the page is a Wiki page
-		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
+		SeleneseTestBase.assertTrue(
+				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+				actualResult.contains(expectedResult));
 
 	}
 	
@@ -127,7 +152,9 @@ public class PortalNavigation {
 
 		String expectedResult = "Load a random article [Alt+Shift+x]";
 		String actualResult = commonPage.getRandomArticleTooltip();
-		SeleneseTestBase.assertTrue(actualResult.equals(expectedResult));
+		SeleneseTestBase.assertTrue(
+				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+				actualResult.equals(expectedResult));
 
 	}
 	
@@ -136,7 +163,9 @@ public class PortalNavigation {
 
 		String expectedResult = "Make your donation now - Donate";
 		String actualResult = commonPage.goToDonateToWikipedia();
-		SeleneseTestBase.assertTrue(actualResult.equals(expectedResult));
+		SeleneseTestBase.assertTrue(
+				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+				actualResult.equals(expectedResult));
 
 	}
 	
@@ -145,7 +174,9 @@ public class PortalNavigation {
 
 		String expectedResult = "Support us";
 		String actualResult = commonPage.getDonateToWikipediaTooltip();
-		SeleneseTestBase.assertTrue(actualResult.equals(expectedResult));
+		SeleneseTestBase.assertTrue(
+				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+				actualResult.equals(expectedResult));
 
 	}
 	
@@ -154,7 +185,9 @@ public class PortalNavigation {
 
 		String expectedResult = "Wikimedia Shop";
 		String actualResult = commonPage.goToWikimediaShop();
-		SeleneseTestBase.assertTrue(actualResult.equals(expectedResult));
+		SeleneseTestBase.assertTrue(
+				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+				actualResult.equals(expectedResult));
 
 	}
 	
@@ -163,7 +196,9 @@ public class PortalNavigation {
 
 		String expectedResult = "Visit the Wikimedia Shop";
 		String actualResult = commonPage.getWikimediaShopTooltip();
-		SeleneseTestBase.assertTrue(actualResult.equals(expectedResult));
+		SeleneseTestBase.assertTrue(
+				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+				actualResult.equals(expectedResult));
 
 	}
 		

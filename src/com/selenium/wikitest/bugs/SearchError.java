@@ -1,5 +1,6 @@
 package com.selenium.wikitest.bugs;
 
+import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
 import com.selenium.wikitest.wikipage.homepage.HomePageText;
 
@@ -29,7 +30,10 @@ public class SearchError {
 		
 		// Verify a meaningless error is not displayed (this assert fails)
 		String searchFail = homePage.getTextAtXPath("ErrorPage.ErrorXPath");
-		SeleneseTestBase.assertFalse(searchFail.contains(HomePageText.getString("ErrorPage.SearchErrored")));
+		String expectedResult = HomePageText.getString("ErrorPage.SearchErrored");
+		SeleneseTestBase.assertFalse(
+				CommonMethods.formatAssertMessage(expectedResult, searchFail),
+				searchFail.contains(expectedResult));
 	}
 	
 	@AfterClass

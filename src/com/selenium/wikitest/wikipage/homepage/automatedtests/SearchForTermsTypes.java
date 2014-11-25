@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.AfterClass;
 
 import com.thoughtworks.selenium.SeleneseTestBase;
+import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.wikipage.WikiPageText;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
 import com.selenium.wikitest.wikipage.homepage.HomePageText;
@@ -21,29 +22,33 @@ public class SearchForTermsTypes {
 	public void searchForExistingTerm() throws Exception {
 
 		// Get text to search
-		String seleniumExpected = HomePageText.getString("SeleniumPage.SeleniumTitle");
+		String expectedResult = HomePageText.getString("SeleniumPage.SeleniumTitle");
 
 		// Run search from home page and get result
-		String seleniumActual = homePage.searchFor(seleniumExpected);
+		String actualResult = homePage.searchFor(expectedResult);
 		
 		// Assert expected matches actual
-		SeleneseTestBase.assertTrue(seleniumActual.contains(seleniumExpected));		
+		SeleneseTestBase.assertTrue(
+				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+				actualResult.contains(expectedResult));		
 	}
 	
 	@Test
 	public void searchForRedirectTerm() {
 
 		// Get redirect text
-		String expectedRedirectText = WikiPageText.getString("AnyPage.RedirectText");
+		String expectedResult = WikiPageText.getString("AnyPage.RedirectText");
 		
 		// Go to redirected page
-		homePage.searchFor(expectedRedirectText);
+		homePage.searchFor(expectedResult);
 		
 		// Get text from non-redirected page
-		String actualRedirectText = homePage.searchForRedirect(expectedRedirectText);
+		String actualResult = homePage.searchForRedirect(expectedResult);
 
 		// Assert expected matches actual
-		SeleneseTestBase.assertTrue(actualRedirectText.contains(expectedRedirectText));		
+		SeleneseTestBase.assertTrue(
+				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+				actualResult.contains(expectedResult));		
 
 	}
 		
@@ -51,26 +56,30 @@ public class SearchForTermsTypes {
 	public void searchForBlankTerm() throws Exception {
 
 		// Set expected outcome
-		String errorExpected = HomePageText.getString("ErrorPage.EmptyStringSearchTitle");
+		String expectedResult = HomePageText.getString("ErrorPage.EmptyStringSearchTitle");
 		
 		// Run search and get result.
-		String errorActual = homePage.searchFor(HomePageText.getString("HomePage.EmptyString"));
+		String actualResult = homePage.searchFor(HomePageText.getString("HomePage.EmptyString"));
 
 		// Assert expected == actual
-		SeleneseTestBase.assertTrue(errorActual.contains(errorExpected));
+		SeleneseTestBase.assertTrue(
+				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+				actualResult.contains(expectedResult));
 	}
 	
 	@Test
 	public void searchForNonexistentTerm() throws Exception {
 
 		// Set expected outcome
-		String errorExpected = HomePageText.getString("ErrorPage.NotFoundTitle");
+		String expectedResult = HomePageText.getString("ErrorPage.NotFoundTitle");
 
 		// Run search and get result
-		String errorActual = homePage.searchFor(HomePageText.getString("HomePage.OpenBraceSearch"));
+		String actualResult = homePage.searchFor(HomePageText.getString("HomePage.OpenBraceSearch"));
 		
 		// Assert expected matches actual
-		SeleneseTestBase.assertTrue(errorActual.contains(errorExpected));
+		SeleneseTestBase.assertTrue(
+				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+				actualResult.contains(expectedResult));
 		
 	}
 	
@@ -78,13 +87,15 @@ public class SearchForTermsTypes {
 	public void searchForTooLongTerm() throws Exception {
 
 		// Set expected outcome
-		String errorExpected = HomePageText.getString("ErrorPage.SearchErrored");
+		String expectedResult = HomePageText.getString("ErrorPage.SearchErrored");
 
 		// Run search and get result
-		String errorActual = homePage.searchFor(HomePageText.getString("ErrorPage.SearchTooLongString"));
+		String actualResult = homePage.searchFor(HomePageText.getString("ErrorPage.SearchTooLongString"));
 		
 		// Assert expected == actual (this assert fails)
-		SeleneseTestBase.assertTrue(errorActual.contains(errorExpected));
+		SeleneseTestBase.assertTrue(
+				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+				actualResult.contains(expectedResult));
 
 	}
 	

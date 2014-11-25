@@ -4,6 +4,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
 import com.selenium.wikitest.wikipage.homepage.HomePageText;
 import com.thoughtworks.selenium.SeleneseTestBase;
@@ -21,14 +22,18 @@ public class GoToFoundationPages {
 	public void testWikiMediaFoundationLink() {
 		String actualResult = homePage.goToListLinkByXPath(HomePageText.getString("HomePage.WikiMediaFoundationXPath"));
 		String expectedResult = HomePageText.getString("HomePage.WikiMediaFoundationTitle");
-		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
+		SeleneseTestBase.assertTrue(
+				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+				actualResult.contains(expectedResult));
 	}
 	
 	@Test
 	public void testTermsOfUseLink() {
 		String actualResult = homePage.goToListLinkByXPath(HomePageText.getString("HomePage.TermsOfUseXPath"));
 		String expectedResult = HomePageText.getString("HomePage.TermsOfUseTitle");
-		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
+		SeleneseTestBase.assertTrue(
+				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+				actualResult.contains(expectedResult));
 	}
 	
 	// This test fails.  Title should be "Privacy Policy" to match link and other titles
@@ -37,7 +42,9 @@ public class GoToFoundationPages {
 	public void testPrivacyPolicyLink() {
 		String actualResult = homePage.goToListLinkByXPath(HomePageText.getString("HomePage.PrivacyPolicyXPath"));
 		String expectedResult = HomePageText.getString("HomePage.PrivacyPolicyTitle");
-		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
+		SeleneseTestBase.assertTrue(
+				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+				actualResult.contains(expectedResult));
 	}
 
 	@AfterClass

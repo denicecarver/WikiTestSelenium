@@ -4,6 +4,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
 import com.selenium.wikitest.wikipage.homepage.HomePageText;
 import com.thoughtworks.selenium.SeleneseTestBase;
@@ -23,7 +24,9 @@ public class PrivacyPolicyError {
 	public void testPrivacyPolicyLink() {
 		String actualResult = homePage.goToListLinkByXPath(HomePageText.getString("HomePage.PrivacyPolicyXPath"));
 		String expectedResult = HomePageText.getString("HomePage.PrivacyPolicyTitle");
-		SeleneseTestBase.assertTrue(actualResult.contains(expectedResult));
+		SeleneseTestBase.assertTrue(
+				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+				actualResult.contains(expectedResult));
 	}
 
 	@AfterClass

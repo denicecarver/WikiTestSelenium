@@ -9,6 +9,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import com.selenium.wikitest.data.SQLiteJDBC;
+import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
 import com.selenium.wikitest.wikipage.homepage.HomePageText;
 import com.thoughtworks.selenium.SeleneseTestBase;
@@ -49,8 +50,11 @@ public class DataSearchRedirectedTerms {
 	public void testRedirectData() {
 
 		try {
+			String actualResult = homePage.searchForRedirect(searchItem);
 			// Assert expected search result record, from list, matches actual result
-			SeleneseTestBase.assertTrue(homePage.searchForRedirect(searchItem).contains(searchItem));
+			SeleneseTestBase.assertTrue(
+					CommonMethods.formatAssertMessage(actualResult, actualResult),
+					actualResult.contains(searchItem));
 		} catch (Exception e) {
 			System.out.println(searchItem);
 			e.printStackTrace();
