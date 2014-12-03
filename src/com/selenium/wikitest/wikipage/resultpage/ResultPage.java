@@ -5,7 +5,8 @@ import com.selenium.wikitest.wikipage.WikiPage;
 public class ResultPage extends WikiPage {
 	
 	public void openPage() {
-		super.openPage("http://en.wikipedia.org/wiki/Selenium");
+		super.openPage("https://www.wikipedia.org/");
+		searchFor("selenium");
 	}
 
 }

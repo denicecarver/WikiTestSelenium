@@ -21,12 +21,12 @@ public class WikiPage {
 		return webDriver;
 	}
 	
-	protected void openPage(String url) {
+	public void openPage(String url) {
 		try {
 			webDriver.get(url);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			System.out.println(e.getStackTrace());
+			e.printStackTrace();
 		}
 	}
 	
@@ -50,25 +50,25 @@ public class WikiPage {
 		return webDriver.getTitle();
 	}
 
-	protected String clickProjectLinkByXPath(String xPath) throws NullPointerException {
+	public String clickProjectLinkByXPath(String xPath) throws NullPointerException {
 		String title = new String();
 		try {
 			(webDriver.findElement(By.xpath(xPath))).click();
 		} catch (NoSuchElementException e) {
 			System.out.println(e.getMessage());
-			System.out.println(e.getStackTrace());
+			e.printStackTrace();
 		}
 		title = webDriver.getTitle();
 		return title;
 	}
 
-	protected String clickProjectLinkByID(String id) throws NullPointerException {
+	public String clickProjectLinkByID(String id) throws NullPointerException {
 		String title = new String();
 		try {
 			(webDriver.findElement(By.id(id))).click();
 		} catch (NoSuchElementException e) {
 			System.out.println(e.getMessage());
-			System.out.println(e.getStackTrace());
+			e.printStackTrace();
 		}
 		title = webDriver.getTitle();
 		return title;
@@ -82,7 +82,7 @@ public class WikiPage {
 			title = element.getAttribute("title");
 		} catch (NoSuchElementException e) {
 			System.out.println(e.getMessage());
-			System.out.println(e.getStackTrace());
+			e.printStackTrace();
 		}
 		return title;
 
@@ -95,7 +95,7 @@ public class WikiPage {
 			title = element.getAttribute("title");
 		} catch (NoSuchElementException e) {
 			System.out.println(e.getMessage());
-			System.out.println(e.getStackTrace());
+			e.printStackTrace();
 		}
 		return title;
 	}
@@ -107,7 +107,7 @@ public class WikiPage {
 			title = element.getAttribute("title");
 		} catch (NoSuchElementException e) {
 			System.out.println(e.getMessage());
-			System.out.println(e.getStackTrace());
+			e.printStackTrace();
 		}
 		return title;
 	}
@@ -119,7 +119,7 @@ public class WikiPage {
 			title = element.getAttribute("title");
 		} catch (NoSuchElementException e) {
 			System.out.println(e.getMessage());
-			System.out.println(e.getStackTrace());
+			e.printStackTrace();
 		}
 		return title;
 	}
@@ -160,6 +160,41 @@ public class WikiPage {
 	public String searchFor(String searchString) {
 		return searchFor(By.name(WikiPageText.getString("AnyPage.GoSearchName")),
 				searchString);
+	}
+	
+	public void closeAnyBeggarOverlay(String resultURL) {
+
+		WebElement el = null;
+		WebElement e2 = null;
+		try {
+			//			el = webDriver.findElement(By.xpath("/html/body/div[1]/div/table/tbody/tr/td[2]/span"));
+			el = webDriver.findElement(By.id("frbanner-close"));
+		} catch (NoSuchElementException ex) {
+		}
+		if (el != null && el.isDisplayed()) {
+			el.click();
+			//		} else if (e2 != null && e2.isDisplayed()) {
+			//			e2.click();
+			//		}
+//			openPage(resultURL);
+		}
+			try {
+//				openPage(resultURL);
+//				try {
+//					Thread.sleep(10000);
+//				} catch (InterruptedException e) {
+//					// TODO Auto-generated catch block
+////					e.printStackTrace();
+//				}
+				e2 = webDriver.findElement(By.id("B14_120217_5C_tp_tn2-close"));
+//				e2 = waitForElement(By.id("B14_120217_5C_tp_tn2-close"));
+			} catch (NoSuchElementException ex1) {
+			}
+			if (e2 != null && e2.isDisplayed()) {
+//				openPage(resultURL);
+//				el.click();
+				e2.click();
+			}
 	}
 
 	public void closeBrowser() {

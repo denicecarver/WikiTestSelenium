@@ -40,12 +40,36 @@ public final class SQLiteJDBC {
 
 		return records;
 	}    
+	
+	public static ArrayList<String[]> queryData(
+			String table,
+			String column1Name,
+			String column2Name,
+			String column3Name) throws SQLException {
+		ArrayList<String[]> records = new ArrayList<>(200);
+		ResultSet rs = null;
+		Connection connection;
+		connection = DriverManager.getConnection(HomePageText.getString(homeConnection));
+		try (Statement statement = connection.createStatement()) {
+			rs = statement.executeQuery( "SELECT * FROM " + table + ";" );
+			while ( rs.next() ) {
+				String[] search = new String[3];
+				search[0] = rs.getString(column1Name);
+				search[1] = rs.getString(column2Name);
+				search[2] = rs.getString(column3Name);
+				records.add(search);
+			}
+			rs.close();
+		}
+
+		return records;
+	}    
 
 	// Insert link records into home page table
     public static void insertLanguageLinks(ArrayList<String[]> records) throws SQLException {
 		
 		try (Connection connection = DriverManager.getConnection(HomePageText.getString(homeConnection));
-			 Statement statement = connection.createStatement()) {
+				 Statement statement = connection.createStatement()) {
 
 			for (String[] record : records) {
 				String title = record[titleID];
@@ -64,6 +88,80 @@ public final class SQLiteJDBC {
     		statement.executeUpdate(sql);
     }
     
+    // Insert one link record into home page table
+    private static void insertSQL(Statement statement, String sql) throws SQLException {
+    		statement.executeUpdate(sql);
+    }
+
+    public static void insertIntoTable(String tableName, String[] columnNames, String[] valueSet) {
+
+        Connection connection = null;
+        Statement statement = null;
+    	try {
+    	Class.forName("org.sqlite.JDBC");  
+    	connection = DriverManager.getConnection(HomePageText.getString(homeConnection));
+    	statement = connection.createStatement();
+    	
+
+    		String columns = columnNames[0];
+    		String values = "'" + valueSet[0] + "'";
+    		for (int i = 1; i < columnNames.length; i++) {
+    			columns = columns + "," + columnNames[i];
+    			values = values + ",'" + valueSet[i] + "'";
+    		}
+    		String sql = "INSERT INTO " + tableName +
+    				" (" + columns + ") VALUES (" + values + ");";
+    		insertSQL(statement, sql);
+    		statement.close();
+    		connection.close();
+        } catch (Exception e) {  
+            e.printStackTrace();  
+        } finally {  
+            try {  
+//                statement.close();  
+                connection.close();  
+            } catch (Exception e) {  
+//                e.printStackTrace();  
+            }
+        }
+    }
+
+    public static void updateRecord(String tableName, String columnName, String value, String whereDelimiter) {
+
+        if (whereDelimiter == null || whereDelimiter.equals("")) {
+        	return;
+        }
+    	Connection connection = null;
+        Statement statement = null;
+    	try {
+    	Class.forName("org.sqlite.JDBC");  
+    	connection = DriverManager.getConnection(HomePageText.getString(homeConnection));
+    	statement = connection.createStatement();
+    	
+
+//    		String columns = columnNames[0];
+//    		String values = "'" + valueSet[0] + "'";
+//    		for (int i = 1; i < columnNames.length; i++) {
+//    			columns = columns + "," + columnNames[i];
+//    			values = values + ",'" + valueSet[i] + "'";
+//    		}
+    		String sql = "UPDATE " + tableName +
+    				" SET " + columnName + " = '" + value + "' WHERE " + whereDelimiter + ";" ;
+    		insertSQL(statement, sql);
+    		statement.close();
+    		connection.close();
+        } catch (Exception e) {  
+            e.printStackTrace();  
+        } finally {  
+            try {  
+//                statement.close();  
+                connection.close();  
+            } catch (Exception e) {  
+//                e.printStackTrace();  
+            }
+        }
+    }
+    
     public static void insertIntoTable(String tableName, String columnName, ArrayList<String> value) throws SQLException {
 
     	try (Connection connection = DriverManager.getConnection(HomePageText.getString(homeConnection));
@@ -76,9 +174,9 @@ public final class SQLiteJDBC {
     }
     
     private static void insertRecord(Statement statement, String tableName, String columnName, String value) throws SQLException {
-		String sql = "INSERT INTO " + tableName +
-					 " (" + columnName + ") VALUES ('" + value + "');";
-			statement.executeUpdate(sql);
+    	String sql = "INSERT INTO " + tableName +
+    			" (" + columnName + ") VALUES ('" + value + "');";
+    	statement.executeUpdate(sql);
     }
 
     public static void updateLanguageLinkTitles(ArrayList<String[]> records) throws SQLException {

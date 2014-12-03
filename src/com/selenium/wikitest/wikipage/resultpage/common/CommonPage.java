@@ -1,6 +1,21 @@
 package com.selenium.wikitest.wikipage.resultpage.common;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
+
 import com.selenium.wikitest.wikipage.resultpage.ResultPage;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.Augmenter;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class CommonPage extends ResultPage {
 
@@ -170,6 +185,22 @@ public class CommonPage extends ResultPage {
 
 	public String reviewCiteThisPageTooltip() {
 		return getTooltipByLink("Cite this page");
+	}
+
+	public void removeSeleniumBeggarPage() {
+		closeAnyBeggarOverlay("http://en.wikipedia.org/wiki/Selenium");
+	}
+
+	public void getScreenshot() {
+		WebDriver augmentedDriver = new Augmenter().augment(webDriver);
+        File screenshot = ((TakesScreenshot)augmentedDriver).
+                            getScreenshotAs(OutputType.FILE);
+        try {
+			FileUtils.copyFile(screenshot, new File("c:\\tmp\\screenshot.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
