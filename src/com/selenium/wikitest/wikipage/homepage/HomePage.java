@@ -2,7 +2,6 @@ package com.selenium.wikitest.wikipage.homepage;
 
 import com.selenium.wikitest.wikipage.WikiPageText;
 import com.selenium.wikitest.wikipage.WikiPage;
-import com.selenium.wikitest.shared.CommonMethods;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;

@@ -1,5 +1,7 @@
 package com.selenium.wikitest.bugs;
 
+import junit.framework.TestCase;
+
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
@@ -7,9 +9,8 @@ import org.junit.Test;
 import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
 import com.selenium.wikitest.wikipage.homepage.HomePageText;
-import com.thoughtworks.selenium.SeleneseTestBase;
 
-public class PrivacyPolicyError {
+public class PrivacyPolicyError extends TestCase {
 
 	private static HomePage homePage = new HomePage();
 
@@ -24,9 +25,14 @@ public class PrivacyPolicyError {
 	public void testPrivacyPolicyLink() {
 		String actualResult = homePage.goToListLinkByXPath(HomePageText.getString("HomePage.PrivacyPolicyXPath"));
 		String expectedResult = HomePageText.getString("HomePage.PrivacyPolicyTitle");
-		SeleneseTestBase.assertTrue(
-				CommonMethods.formatAssertMessage(expectedResult, actualResult),
-				actualResult.contains(expectedResult));
+		try {
+			assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
+					actualResult.contains(expectedResult));
+		} catch (AssertionError ae) {
+			homePage.getScreenshot(this.toString());
+			ae.printStackTrace();
+			throw(ae);
+		}
 	}
 
 	@AfterClass

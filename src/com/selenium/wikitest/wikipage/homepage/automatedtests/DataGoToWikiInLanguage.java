@@ -4,10 +4,11 @@ import com.selenium.wikitest.data.SQLiteJDBC;
 import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
 import com.selenium.wikitest.wikipage.homepage.HomePageText;
-import com.thoughtworks.selenium.SeleneseTestBase;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import junit.framework.TestCase;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -18,7 +19,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(Parameterized.class)
-public class DataGoToWikiInLanguage {
+public class DataGoToWikiInLanguage extends TestCase {
 
 	private static HomePage homePage = new HomePage();
 	
@@ -53,13 +54,14 @@ public class DataGoToWikiInLanguage {
 	public void testSearchData() {
 		String actualResult = homePage.goToListLinkByXPath(xPath);
 		try {
-			SeleneseTestBase.assertTrue(
-					CommonMethods.formatAssertMessage(title, actualResult),
+			assertTrue(CommonMethods.formatAssertMessage(title, actualResult),
 					actualResult.contains(title));
-		} catch (Exception e) {
+		} catch (AssertionError e) {
 			System.out.println("xPath = " + xPath);
 			System.out.println("title = " + title);
 			e.printStackTrace();
+			homePage.getUniqueScreenshot(this.toString());
+			throw(e);
 		}
 		homePage.openHomePage();
 	}

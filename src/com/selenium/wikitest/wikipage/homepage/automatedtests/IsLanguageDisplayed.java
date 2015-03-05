@@ -1,13 +1,12 @@
 package com.selenium.wikitest.wikipage.homepage.automatedtests;
 
+import junit.framework.TestCase;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
-import com.thoughtworks.selenium.SeleneseTestBase;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.AfterClass;
 
-public class IsLanguageDisplayed {
+public class IsLanguageDisplayed extends TestCase {
 
 	private static HomePage homePage = new HomePage();
 	
@@ -18,52 +17,52 @@ public class IsLanguageDisplayed {
 	
 	@Test
 	public void isEnglishDisplayed() {
-		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.English));
+		assertTrue(homePage.isLanguageFound(HomePage.Language.English));
 	}
 	
 	@Test
 	public void isSpanishDisplayed() {
-		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.Spanish));
+		assertTrue(homePage.isLanguageFound(HomePage.Language.Spanish));
 	}
 	
 	@Test
 	public void isJapanesDisplayed() {
-		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.Japanese));
+		assertTrue(homePage.isLanguageFound(HomePage.Language.Japanese));
 	}
 	
 	@Test
 	public void isRussianDisplayed() {
-		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.Russian));
+		assertTrue(homePage.isLanguageFound(HomePage.Language.Russian));
 	}
 	
 	@Test
 	public void isFrenchDisplayed() {
-		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.French));
+		assertTrue(homePage.isLanguageFound(HomePage.Language.French));
 	}
 	
 	@Test
 	public void isGermanDisplayed() {
-		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.German));
+		assertTrue(homePage.isLanguageFound(HomePage.Language.German));
 	}
 	
 	@Test
 	public void isItalianDisplayed() {
-		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.Italian));
+		assertTrue(homePage.isLanguageFound(HomePage.Language.Italian));
 	}
 	
 	@Test
 	public void isChineseDisplayed() {
-		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.Chinese));
+		assertTrue(homePage.isLanguageFound(HomePage.Language.Chinese));
 	}
 	
 	@Test
 	public void isPolishDisplayed() {
-		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.Polish));
+		assertTrue(homePage.isLanguageFound(HomePage.Language.Polish));
 	}
 	
 	@Test
 	public void isPortugueseDisplayed() {
-		SeleneseTestBase.assertTrue(homePage.isLanguageFound(HomePage.Language.Portuguese));
+		assertTrue(homePage.isLanguageFound(HomePage.Language.Portuguese));
 	}
 
 	@AfterClass

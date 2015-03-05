@@ -1,4 +1,6 @@
-package com.selenium.wikitest.bugs;
+package com.selenium.wikitest.regression;
+
+import junit.framework.TestCase;
 
 import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
@@ -8,9 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.AfterClass;
 
-import com.thoughtworks.selenium.SeleneseTestBase;
-
-public class SearchError {
+public class SearchError extends TestCase {
 	
 	private static HomePage homePage = new HomePage();
 	
@@ -23,17 +23,21 @@ public class SearchError {
 	public void testFailSearch() throws Exception {
 
 		// Set search text
-		String searchText = HomePageText.getString("HomePage.OpenBraceSearch");
+		String expectedResult = HomePageText.getString("HomePage.OpenBraceSearch");
 		
 		// Run search and get result
-		homePage.searchFor(searchText);
+		homePage.searchFor(expectedResult);
 		
-		// Verify a meaningless error is not displayed (this assert fails)
-		String searchFail = homePage.getTextAtXPath("ErrorPage.ErrorXPath");
-		String expectedResult = HomePageText.getString("ErrorPage.SearchErrored");
-		SeleneseTestBase.assertFalse(
-				CommonMethods.formatAssertMessage(expectedResult, searchFail),
-				searchFail.contains(expectedResult));
+		// Verify the bracket character is found
+		String actualResult = homePage.getPageTitle();
+		try {
+			assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
+					actualResult.contains(expectedResult));
+		} catch (AssertionError ae) {
+			homePage.getScreenshot(this.toString());
+			ae.printStackTrace();
+			throw(ae);
+		}
 	}
 	
 	@AfterClass

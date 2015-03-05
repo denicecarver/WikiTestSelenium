@@ -1,5 +1,7 @@
 package com.selenium.wikitest.wikipage.resultpage.common.automatedtests;
 
+import junit.framework.TestCase;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -7,9 +9,8 @@ import org.junit.Test;
 
 import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.wikipage.resultpage.common.CommonPage;
-import com.thoughtworks.selenium.SeleneseTestBase;
 
-public class InteractionNavigation {
+public class InteractionNavigation extends TestCase {
 
 	private static CommonPage commonPage = new CommonPage();
 
@@ -23,8 +24,7 @@ public class InteractionNavigation {
 
 		String expectedResult = "Help:Contents - Wikipedia, the free encyclopedia";
 		String actualResult = commonPage.goToHelp();
-		SeleneseTestBase.assertTrue(
-				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+		assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
 				actualResult.equals(expectedResult));
 
 	}
@@ -34,8 +34,7 @@ public class InteractionNavigation {
 
 		String expectedResult = "Wikipedia:About - Wikipedia, the free encyclopedia";
 		String actualResult = commonPage.goToAboutWikipedia();
-		SeleneseTestBase.assertTrue(
-				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+		assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
 				actualResult.equals(expectedResult));
 
 	}
@@ -45,8 +44,7 @@ public class InteractionNavigation {
 
 		String expectedResult = "Wikipedia:Community portal - Wikipedia, the free encyclopedia";
 		String actualResult = commonPage.goToCommunityPortal();
-		SeleneseTestBase.assertTrue(
-				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+		assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
 				actualResult.equals(expectedResult));
 
 	}
@@ -56,8 +54,7 @@ public class InteractionNavigation {
 
 		String expectedResult = "Recent changes - Wikipedia, the free encyclopedia";
 		String actualResult = commonPage.goToRecentChanges();
-		SeleneseTestBase.assertTrue(
-				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+		assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
 				actualResult.equals(expectedResult));
 
 	}
@@ -67,8 +64,7 @@ public class InteractionNavigation {
 
 		String expectedResult = "Wikipedia:Contact us - Wikipedia, the free encyclopedia";
 		String actualResult = commonPage.goToContactPage();
-		SeleneseTestBase.assertTrue(
-				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+		assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
 				actualResult.equals(expectedResult));
 
 	}
@@ -78,8 +74,7 @@ public class InteractionNavigation {
 
 		String expectedResult = "Guidance on how to use and edit Wikipedia";
 		String actualResult = commonPage.reviewHelpTooltip();
-		SeleneseTestBase.assertTrue(
-				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+		assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
 				actualResult.equals(expectedResult));
 
 	}
@@ -89,8 +84,7 @@ public class InteractionNavigation {
 
 		String expectedResult = "Find out about Wikipedia";
 		String actualResult = commonPage.reviewAboutWikipediaTooltip();
-		SeleneseTestBase.assertTrue(
-				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+		assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
 				actualResult.equals(expectedResult));
 
 	}
@@ -100,8 +94,7 @@ public class InteractionNavigation {
 
 		String expectedResult = "About the project, what you can do, where to find things";
 		String actualResult = commonPage.reviewCommunityPortalTooltip();
-		SeleneseTestBase.assertTrue(
-				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+		assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
 				actualResult.equals(expectedResult));
 
 	}
@@ -111,8 +104,7 @@ public class InteractionNavigation {
 
 		String expectedResult = "A list of recent changes in the wiki [Alt+Shift+r]";
 		String actualResult = commonPage.reviewRecentChangesTooltip();
-		SeleneseTestBase.assertTrue(
-				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+		assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
 				actualResult.equals(expectedResult));
 
 	}
@@ -126,8 +118,7 @@ public class InteractionNavigation {
 		// There is no tooltip for the "Contact page" link
 		// This is a dummy test in case a tooltip is added.
 		// If one is added, this will likely fail
-		SeleneseTestBase.assertFalse(
-				CommonMethods.formatAssertMessage(expectedResult, actualResult),
+		assertFalse(CommonMethods.formatAssertMessage(expectedResult, actualResult),
 				actualResult.contains(expectedResult));
 
 	}

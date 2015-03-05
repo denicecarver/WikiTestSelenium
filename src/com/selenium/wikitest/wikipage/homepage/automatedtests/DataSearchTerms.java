@@ -12,12 +12,13 @@ import com.selenium.wikitest.data.SQLiteJDBC;
 import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
 import com.selenium.wikitest.wikipage.homepage.HomePageText;
-import com.thoughtworks.selenium.SeleneseTestBase;
 
 import java.util.ArrayList;
 
+import junit.framework.TestCase;
+
 @RunWith(Parameterized.class)
-public class DataSearchTerms {
+public class DataSearchTerms extends TestCase {
 
 	private static HomePage homePage = new HomePage();
 	
@@ -52,12 +53,13 @@ public class DataSearchTerms {
 		try {
 			String actualResult = homePage.searchFor(searchItem);
 			// Assert expected search result record, from list, matches actual result
-			SeleneseTestBase.assertTrue(
-					CommonMethods.formatAssertMessage(searchItem, actualResult),
+			assertTrue(CommonMethods.formatAssertMessage(searchItem, actualResult),
 					actualResult.contains(searchItem));
-		} catch (Exception e) {
+		} catch (AssertionError e) {
+			homePage.getUniqueScreenshot(this.toString());
 			System.out.println("searchItem = " + searchItem);
 			e.printStackTrace();
+			throw(e);
 		}
 
 		// Return to home page for next test

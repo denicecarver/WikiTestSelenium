@@ -7,11 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import com.selenium.wikitest.wikipage.homepage.HomePageText;
-
 public final class SQLiteJDBC {
 
-	private static final String homeConnection ="HomePage.ConnectionDetails"; 
+	private static final String homeConnection = "jdbc:sqlite:src\\com\\selenium\\wikitest\\data\\wikidata.db";
 
 	public final static int xPathID = 0;
 	public final static int titleID = 1;
@@ -26,7 +24,7 @@ public final class SQLiteJDBC {
 		ArrayList<String[]> records = new ArrayList<>(200);
 		ResultSet rs = null;
 		Connection connection;
-		connection = DriverManager.getConnection(HomePageText.getString(homeConnection));
+		connection = DriverManager.getConnection(homeConnection);
 		try (Statement statement = connection.createStatement()) {
 			rs = statement.executeQuery( "SELECT * FROM " + table + ";" );
 			while ( rs.next() ) {
@@ -49,7 +47,7 @@ public final class SQLiteJDBC {
 		ArrayList<String[]> records = new ArrayList<>(200);
 		ResultSet rs = null;
 		Connection connection;
-		connection = DriverManager.getConnection(HomePageText.getString(homeConnection));
+		connection = DriverManager.getConnection(homeConnection);
 		try (Statement statement = connection.createStatement()) {
 			rs = statement.executeQuery( "SELECT * FROM " + table + ";" );
 			while ( rs.next() ) {
@@ -68,7 +66,7 @@ public final class SQLiteJDBC {
 	// Insert link records into home page table
     public static void insertLanguageLinks(ArrayList<String[]> records) throws SQLException {
 		
-		try (Connection connection = DriverManager.getConnection(HomePageText.getString(homeConnection));
+		try (Connection connection = DriverManager.getConnection(homeConnection);
 				 Statement statement = connection.createStatement()) {
 
 			for (String[] record : records) {
@@ -99,7 +97,7 @@ public final class SQLiteJDBC {
         Statement statement = null;
     	try {
     	Class.forName("org.sqlite.JDBC");  
-    	connection = DriverManager.getConnection(HomePageText.getString(homeConnection));
+    	connection = DriverManager.getConnection(homeConnection);
     	statement = connection.createStatement();
     	
 
@@ -135,7 +133,7 @@ public final class SQLiteJDBC {
         Statement statement = null;
     	try {
     	Class.forName("org.sqlite.JDBC");  
-    	connection = DriverManager.getConnection(HomePageText.getString(homeConnection));
+    	connection = DriverManager.getConnection(homeConnection);
     	statement = connection.createStatement();
     	
 
@@ -164,7 +162,7 @@ public final class SQLiteJDBC {
     
     public static void insertIntoTable(String tableName, String columnName, ArrayList<String> value) throws SQLException {
 
-    	try (Connection connection = DriverManager.getConnection(HomePageText.getString(homeConnection));
+    	try (Connection connection = DriverManager.getConnection(homeConnection);
     			Statement statement = connection.createStatement()) {
 
     		for (String record : value) {
@@ -180,7 +178,7 @@ public final class SQLiteJDBC {
     }
 
     public static void updateLanguageLinkTitles(ArrayList<String[]> records) throws SQLException {
-		try (Connection connection = DriverManager.getConnection(HomePageText.getString(homeConnection));
+		try (Connection connection = DriverManager.getConnection(homeConnection);
 			 Statement statement = connection.createStatement()) {
     	    	for (String[] record : records) {
 					updateLanguageLinkTitle(statement, record[xPathID], record[titleID]);

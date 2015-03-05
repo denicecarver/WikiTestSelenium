@@ -1,16 +1,17 @@
 package com.selenium.wikitest.wikipage.homepage.automatedtests;
 
+import junit.framework.TestCase;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.AfterClass;
 
-import com.thoughtworks.selenium.SeleneseTestBase;
 import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.wikipage.WikiPageText;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
 import com.selenium.wikitest.wikipage.homepage.HomePageText;
 
-public class SearchForTermsTypes {
+public class SearchForTermsTypes extends TestCase {
 	private static HomePage homePage = new HomePage();
 
 	@Before
@@ -28,9 +29,14 @@ public class SearchForTermsTypes {
 		String actualResult = homePage.searchFor(expectedResult);
 		
 		// Assert expected matches actual
-		SeleneseTestBase.assertTrue(
-				CommonMethods.formatAssertMessage(expectedResult, actualResult),
-				actualResult.contains(expectedResult));		
+		try {
+			assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
+					actualResult.contains(expectedResult));
+		} catch (AssertionError ae) {
+			homePage.getUniqueScreenshot(this.toString());
+			ae.printStackTrace();
+			throw(ae);
+		}		
 	}
 	
 	@Test
@@ -46,9 +52,14 @@ public class SearchForTermsTypes {
 		String actualResult = homePage.searchForRedirect(expectedResult);
 
 		// Assert expected matches actual
-		SeleneseTestBase.assertTrue(
-				CommonMethods.formatAssertMessage(expectedResult, actualResult),
-				actualResult.contains(expectedResult));		
+		try {
+			assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
+					actualResult.contains(expectedResult));
+		} catch (AssertionError ae) {
+			homePage.getUniqueScreenshot(this.toString());
+			ae.printStackTrace();
+			throw(ae);
+		}		
 
 	}
 		
@@ -62,9 +73,14 @@ public class SearchForTermsTypes {
 		String actualResult = homePage.searchFor(HomePageText.getString("HomePage.EmptyString"));
 
 		// Assert expected == actual
-		SeleneseTestBase.assertTrue(
-				CommonMethods.formatAssertMessage(expectedResult, actualResult),
-				actualResult.contains(expectedResult));
+		try {
+			assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
+					actualResult.contains(expectedResult));
+		} catch (AssertionError ae) {
+			homePage.getUniqueScreenshot(this.toString());
+			ae.printStackTrace();
+			throw(ae);
+		}
 	}
 	
 	@Test
@@ -77,9 +93,14 @@ public class SearchForTermsTypes {
 		String actualResult = homePage.searchFor(HomePageText.getString("HomePage.OpenBraceSearch"));
 		
 		// Assert expected matches actual
-		SeleneseTestBase.assertTrue(
-				CommonMethods.formatAssertMessage(expectedResult, actualResult),
-				actualResult.contains(expectedResult));
+		try {
+			assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
+					actualResult.contains(expectedResult));
+		} catch (AssertionError ae) {
+			homePage.getUniqueScreenshot(this.toString());
+			ae.printStackTrace();
+			throw(ae);
+		}
 		
 	}
 	
@@ -93,9 +114,14 @@ public class SearchForTermsTypes {
 		String actualResult = homePage.searchFor(HomePageText.getString("ErrorPage.SearchTooLongString"));
 		
 		// Assert expected == actual (this assert fails)
-		SeleneseTestBase.assertTrue(
-				CommonMethods.formatAssertMessage(expectedResult, actualResult),
-				actualResult.contains(expectedResult));
+		try {
+			assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
+					actualResult.contains(expectedResult));
+		} catch (AssertionError ae) {
+			homePage.getUniqueScreenshot(this.toString());
+			ae.printStackTrace();
+			throw(ae);
+		}
 
 	}
 	

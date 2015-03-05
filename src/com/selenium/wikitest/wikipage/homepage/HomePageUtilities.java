@@ -3,10 +3,11 @@ package com.selenium.wikitest.wikipage.homepage;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.selenium.wikitest.data.SQLiteJDBC;
-import com.thoughtworks.selenium.SeleneseTestBase;
+import junit.framework.TestCase;
 
-public class HomePageUtilities {
+import com.selenium.wikitest.data.SQLiteJDBC;
+
+public class HomePageUtilities extends TestCase {
 	
 //	Run this script before building table.
 //	CREATE TABLE LanguageLinks(
@@ -87,7 +88,7 @@ public class HomePageUtilities {
 		for (String[] link: links) {
 			if (count == 195) {
 				System.out.println(link[0] + "' " + link[1]);
-				SeleneseTestBase.assertEquals("ଉଇକିପିଡ଼ିଆ", link[1]);
+				assertEquals("ଉଇକିପିଡ଼ିଆ", link[1]);
 			}
 			count++;
 		}

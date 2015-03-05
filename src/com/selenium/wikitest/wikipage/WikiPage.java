@@ -1,10 +1,19 @@
 package com.selenium.wikitest.wikipage;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.Augmenter;
+
+import com.selenium.wikitest.shared.CommonMethods;
 
 public class WikiPage {
 	protected WebDriver webDriver;
@@ -17,7 +26,7 @@ public class WikiPage {
 		webDriver = new FirefoxDriver();
 	}
 	
-	protected WebDriver getDriver() {
+	public WebDriver getDriver() {
 		return webDriver;
 	}
 	
@@ -162,39 +171,38 @@ public class WikiPage {
 				searchString);
 	}
 	
-	public void closeAnyBeggarOverlay(String resultURL) {
+	public void closeAnyBeggarOverlay() {
 
-		WebElement el = null;
-		WebElement e2 = null;
+		WebElement beggarCloseButton = null;
 		try {
-			//			el = webDriver.findElement(By.xpath("/html/body/div[1]/div/table/tbody/tr/td[2]/span"));
-			el = webDriver.findElement(By.id("frbanner-close"));
+			beggarCloseButton = webDriver.findElement(By.xpath("//*[@id=\"B14_120719_5C_tp_ct-close\"]"));
 		} catch (NoSuchElementException ex) {
+			// Swallow exception because this is the common, expected outcome
 		}
-		if (el != null && el.isDisplayed()) {
-			el.click();
-			//		} else if (e2 != null && e2.isDisplayed()) {
-			//			e2.click();
-			//		}
-//			openPage(resultURL);
+		
+		// If there is an overlay close button, click it
+		if (beggarCloseButton != null && beggarCloseButton.isDisplayed()) {
+			beggarCloseButton.click();
 		}
-			try {
-//				openPage(resultURL);
-//				try {
-//					Thread.sleep(10000);
-//				} catch (InterruptedException e) {
-//					// TODO Auto-generated catch block
-////					e.printStackTrace();
-//				}
-				e2 = webDriver.findElement(By.id("B14_120217_5C_tp_tn2-close"));
-//				e2 = waitForElement(By.id("B14_120217_5C_tp_tn2-close"));
-			} catch (NoSuchElementException ex1) {
-			}
-			if (e2 != null && e2.isDisplayed()) {
-//				openPage(resultURL);
-//				el.click();
-				e2.click();
-			}
+	}
+
+	public void getUniqueScreenshot(String filenameNoExtension) {
+		getScreenshot(filenameNoExtension + CommonMethods.getUniqueStringFromCurrentMilliseconds());
+	}
+
+	public void getScreenshot(String filenameNoExtension) {
+		WebDriver augmentedDriver = new Augmenter().augment(webDriver);
+		File screenshot = ((TakesScreenshot)augmentedDriver).
+				getScreenshotAs(OutputType.FILE);
+		try {
+			FileUtils.copyFile(screenshot, new File(WikiPageText.getString("AnyPage.ErrorImagePath") + filenameNoExtension + ".png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public String getPageTitle() {
+		return webDriver.getTitle();
 	}
 
 	public void closeBrowser() {

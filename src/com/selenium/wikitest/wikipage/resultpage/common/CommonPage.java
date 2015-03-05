@@ -1,206 +1,199 @@
 package com.selenium.wikitest.wikipage.resultpage.common;
 
-import java.io.File;
-import java.io.IOException;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
-
 import com.selenium.wikitest.wikipage.resultpage.ResultPage;
 
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.Augmenter;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
-
 public class CommonPage extends ResultPage {
+	
+	public static final String mainPageIconID = Messages.getString("CommonPage.WikiIconID");
+	public static final String mainPageIconCSS = Messages.getString("CommonPage.WikiIconCSS");
+	public static final String mainPageLink = Messages.getString("CommonPage.LinkToMainPage");
+	public static final String contentsLink = Messages.getString("CommonPage.ContentsLink");
+	public static final String featuredContentLink = Messages.getString("CommonPage.FeaturedContentLink");
+	public static final String currentEventsLink = Messages.getString("CommonPage.CurrentEventsLink");
+	public static final String randomLink = Messages.getString("CommonPage.RandomLink");
+	public static final String donateLink = Messages.getString("CommonPage.DonateLink");
+	public static final String wikiMediaShopLink = Messages.getString("CommonPage.WikiMediaShopLink");
+	public static final String helpLink = Messages.getString("CommonPage.HelpLink");
+	public static final String aboutLink = Messages.getString("CommonPage.AboutLink");
+	public static final String communityPortalLink = Messages.getString("CommonPage.CommunityPortalLink");
+	public static final String recentChangesLink = Messages.getString("CommonPage.RecentChangesLink");
+	public static final String contactLink = Messages.getString("CommonPage.ContactLink");
+	public static final String linksToHereLink = Messages.getString("CommonPage.LinksToHereLink");
+	public static final String relatedChangesLink = Messages.getString("CommonPage.RelatedChangesLink");
+	public static final String uploadFileLink = Messages.getString("CommonPage.UploadFileLink");
+	public static final String specialPagesLink = Messages.getString("CommonPage.SpecialPagesLink");
+	public static final String pageInfoLink = Messages.getString("CommonPage.PageInfoLink");
+	public static final String permanentLink = Messages.getString("CommonPage.PermanentLink");
+	public static final String wikidataItemLink = Messages.getString("CommonPage.WikidataItemLink");
+	public static final String citeThisPageLink = Messages.getString("CommonPage.CiteThisPageLink");
+	public static final String seleniumContentURL = Messages.getString("CommonPage.SeleniumContentURL");
 
 	public String goToMainPageUsingIcon() {
-		return clickProjectLinkByID("p-logo");
+		return clickProjectLinkByID(mainPageIconID);
 	}
 
 	public String getMainPageIconTooltip() {
-		return getTooltipByCSS("#p-logo > a");
+		return getTooltipByCSS(mainPageIconCSS);
 	}
 
 	public String goToMainPageUsingLink() {
-		return clickProjectLink("Main page");
+		return clickProjectLink(mainPageLink);
 	}
 
 	public String getMainPageLinkTooltip() {
-		return getTooltipByLink("Main page");
+		return getTooltipByLink(mainPageLink);
 	}
 
 	public String goToContents() {
-		return clickProjectLink("Contents");
+		return clickProjectLink(contentsLink);
 	}
 
 	public String getContentsTooltip() {
-		return getTooltipByLink("Contents");
+		return getTooltipByLink(contentsLink);
 	}
 
 	public String goToFeaturedContent() {
-		return clickProjectLink("Featured content");
+		return clickProjectLink(featuredContentLink);
 	}
 
 	public String getFeaturedContentTooltip() {
-		return getTooltipByLink("Featured content");
+		return getTooltipByLink(featuredContentLink);
 	}
 
 	public String goToCurrentEvents() {
-		return clickProjectLink("Current events");
+		return clickProjectLink(currentEventsLink);
 	}
 
 	public String getCurrentEventsTooltip() {
-		return getTooltipByLink("Current events");
+		return getTooltipByLink(currentEventsLink);
 	}
 
 	public String goToRandomArticle() {
-		return clickProjectLink("Random article");
+		return clickProjectLink(randomLink);
 	}
 
 	public String getRandomArticleTooltip() {
-		return getTooltipByLink("Random article");
+		return getTooltipByLink(randomLink);
 	}
 
 	public String goToDonateToWikipedia() {
-		return clickProjectLink("Donate to Wikipedia");
+		return clickProjectLink(donateLink);
 	}
 
 	public String getDonateToWikipediaTooltip() {
-		return getTooltipByLink("Donate to Wikipedia");
+		return getTooltipByLink(donateLink);
 	}
 
 	public String goToWikimediaShop() {
-		return clickProjectLink("Wikimedia Shop");
+		return clickProjectLink(wikiMediaShopLink);
 	}
 
 	public String getWikimediaShopTooltip() {
-		return getTooltipByLink("Wikimedia Shop");
+		return getTooltipByLink(wikiMediaShopLink);
 	}
 
 	public String goToHelp() {
-		return clickProjectLink("Help");
+		return clickProjectLink(helpLink);
 	}
 
 	public String goToAboutWikipedia() {
-		return clickProjectLink("About Wikipedia");
+		return clickProjectLink(aboutLink);
 	}
 
 	public String goToCommunityPortal() {
-		return clickProjectLink("Community portal");
+		return clickProjectLink(communityPortalLink);
 	}
 
 	public String goToRecentChanges() {
-		return clickProjectLink("Recent changes");
+		return clickProjectLink(recentChangesLink);
 	}
 
 	public String goToContactPage() {
-		return clickProjectLink("Contact page");
+		return clickProjectLink(contactLink);
 	}
 
 	public String reviewHelpTooltip() {
-		return getTooltipByLink("Help");
+		return getTooltipByLink(helpLink);
 	}
 
 	public String reviewAboutWikipediaTooltip() {
-		return getTooltipByLink("About Wikipedia");
+		return getTooltipByLink(aboutLink);
 	}
 
 	public String reviewCommunityPortalTooltip() {
-		return getTooltipByLink("Community portal");
+		return getTooltipByLink(communityPortalLink);
 	}
 
 	public String reviewRecentChangesTooltip() {
-		return getTooltipByLink("Recent changes");
+		return getTooltipByLink(recentChangesLink);
 	}
 
 	public String reviewContactPageTooltip() {
-		return getTooltipByLink("Contact page");
+		return getTooltipByLink(contactLink);
 	}
 
 	public String goToWhatLinksHere() {
-		return clickProjectLink("What links here");
+		return clickProjectLink(linksToHereLink);
 	}
 
 	public String goToRelatedChanges() {
-		return clickProjectLink("Related changes");
+		return clickProjectLink(relatedChangesLink);
 	}
 
 	public String goToUploadFile() {
-		return clickProjectLink("Upload file");
+		return clickProjectLink(uploadFileLink);
 	}
 
 	public String goToSpecialPages() {
-		return clickProjectLink("Special pages");
+		return clickProjectLink(specialPagesLink);
 	}
 
 	public String goToPermanentLink() {
-		return clickProjectLink("Permanent link");
+		return clickProjectLink(permanentLink);
 	}
 
 	public String goToPageInformation() {
-		return clickProjectLink("Page information");
+		return clickProjectLink(pageInfoLink);
 	}
 
 	public String goToWikidataItem() {
-		return clickProjectLink("Wikidata item");
+		return clickProjectLink(wikidataItemLink);
 	}
 
 	public String goToCiteThisPage() {
-		return clickProjectLink("Cite this page");
+		return clickProjectLink(citeThisPageLink);
 	}
 
 	public String reviewWhatLinksHereTooltip() {
-		return getTooltipByLink("What links here");
+		return getTooltipByLink(linksToHereLink);
 	}
 
 	public String reviewRelatedChangesTooltip() {
-		return getTooltipByLink("Related changes");
+		return getTooltipByLink(relatedChangesLink);
 	}
 
 	public String reviewUploadFileTooltip() {
-		return getTooltipByLink("Upload file");
+		return getTooltipByLink(uploadFileLink);
 	}
 
 	public String reviewSpecialPagesTooltip() {
-		return getTooltipByLink("Special pages");
+		return getTooltipByLink(specialPagesLink);
 	}
 
 	public String reviewPermanentLinkTooltip() {
-		return getTooltipByLink("Permanent link");
+		return getTooltipByLink(permanentLink);
 	}
 
 	public String reviewPageInformationTooltip() {
-		return getTooltipByLink("Page information");
+		return getTooltipByLink(pageInfoLink);
 	}
 
 	public String reviewWikidataItemTooltip() {
-		return getTooltipByLink("Wikidata item");
+		return getTooltipByLink(wikidataItemLink);
 	}
 
 	public String reviewCiteThisPageTooltip() {
-		return getTooltipByLink("Cite this page");
-	}
-
-	public void removeSeleniumBeggarPage() {
-		closeAnyBeggarOverlay("http://en.wikipedia.org/wiki/Selenium");
-	}
-
-	public void getScreenshot() {
-		WebDriver augmentedDriver = new Augmenter().augment(webDriver);
-        File screenshot = ((TakesScreenshot)augmentedDriver).
-                            getScreenshotAs(OutputType.FILE);
-        try {
-			FileUtils.copyFile(screenshot, new File("c:\\tmp\\screenshot.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		return getTooltipByLink(citeThisPageLink);
 	}
 
 }
