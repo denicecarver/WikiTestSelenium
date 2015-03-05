@@ -1,20 +1,18 @@
 package com.selenium.wikitest.wikipage.homepage.automatedtests;
 
-import junit.framework.TestCase;
+import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.Test;
-
-import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
 import com.selenium.wikitest.wikipage.homepage.HomePageText;
 
-public class GoToFoundationPages extends TestCase {
+public class GoToFoundationPages {
 
 	private static HomePage homePage = new HomePage();
 	
-	@Before
+	@BeforeMethod
 	public void testSetup() {
 		homePage.openPage();
 	}
@@ -23,28 +21,14 @@ public class GoToFoundationPages extends TestCase {
 	public void testWikiMediaFoundationLink() {
 		String actualResult = homePage.goToListLinkByXPath(HomePageText.getString("HomePage.WikiMediaFoundationXPath"));
 		String expectedResult = HomePageText.getString("HomePage.WikiMediaFoundationTitle");
-		try {
-			assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
-					actualResult.contains(expectedResult));
-		} catch (AssertionError ae) {
-			ae.printStackTrace();
-			homePage.getUniqueScreenshot(this.toString());
-			throw(ae);
-		}
+		Assert.assertTrue(actualResult.contains(expectedResult));
 	}
 	
 	@Test
 	public void testTermsOfUseLink() {
 		String actualResult = homePage.goToListLinkByXPath(HomePageText.getString("HomePage.TermsOfUseXPath"));
 		String expectedResult = HomePageText.getString("HomePage.TermsOfUseTitle");
-		try {
-			assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
-					actualResult.contains(expectedResult));
-		} catch (AssertionError ae) {
-			homePage.getUniqueScreenshot(this.toString());
-			ae.printStackTrace();
-			throw(ae);
-		}
+		Assert.assertTrue(actualResult.contains(expectedResult));
 	}
 	
 	// This test fails.  Title should be "Privacy Policy" to match link and other titles
@@ -53,17 +37,10 @@ public class GoToFoundationPages extends TestCase {
 	public void testPrivacyPolicyLink() {
 		String actualResult = homePage.goToListLinkByXPath(HomePageText.getString("HomePage.PrivacyPolicyXPath"));
 		String expectedResult = HomePageText.getString("HomePage.PrivacyPolicyTitle");
-		try {
-			assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
-					actualResult.contains(expectedResult));
-		} catch (AssertionError ae) {
-			homePage.getUniqueScreenshot(this.toString());
-			ae.printStackTrace();
-			throw(ae);
-		}
+		Assert.assertTrue(actualResult.contains(expectedResult));
 	}
 
-	@AfterClass
+	@AfterSuite
 	public static void testTeardown() {
 		homePage.closeBrowser();
 	}
