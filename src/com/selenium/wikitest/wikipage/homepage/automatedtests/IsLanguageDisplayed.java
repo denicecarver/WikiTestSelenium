@@ -1,71 +1,72 @@
 package com.selenium.wikitest.wikipage.homepage.automatedtests;
 
-import junit.framework.TestCase;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.AfterClass;
 
-public class IsLanguageDisplayed extends TestCase {
+import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Test;
+
+public class IsLanguageDisplayed {
 
 	private static HomePage homePage = new HomePage();
 	
-	@BeforeClass
+	@BeforeSuite
 	public static void setup() {
 		homePage.openPage();
 	}
 	
 	@Test
 	public void isEnglishDisplayed() {
-		assertTrue(homePage.isLanguageFound(HomePage.Language.English));
+		Assert.assertTrue(homePage.isLanguageFound(HomePage.Language.English));
 	}
 	
 	@Test
 	public void isSpanishDisplayed() {
-		assertTrue(homePage.isLanguageFound(HomePage.Language.Spanish));
+		Assert.assertTrue(homePage.isLanguageFound(HomePage.Language.Spanish));
 	}
 	
 	@Test
 	public void isJapanesDisplayed() {
-		assertTrue(homePage.isLanguageFound(HomePage.Language.Japanese));
+		Assert.assertTrue(homePage.isLanguageFound(HomePage.Language.Japanese));
 	}
 	
 	@Test
 	public void isRussianDisplayed() {
-		assertTrue(homePage.isLanguageFound(HomePage.Language.Russian));
+		Assert.assertTrue(homePage.isLanguageFound(HomePage.Language.Russian));
 	}
 	
 	@Test
 	public void isFrenchDisplayed() {
-		assertTrue(homePage.isLanguageFound(HomePage.Language.French));
+		Assert.assertTrue(homePage.isLanguageFound(HomePage.Language.French));
 	}
 	
 	@Test
 	public void isGermanDisplayed() {
-		assertTrue(homePage.isLanguageFound(HomePage.Language.German));
+		Assert.assertTrue(homePage.isLanguageFound(HomePage.Language.German));
 	}
 	
 	@Test
 	public void isItalianDisplayed() {
-		assertTrue(homePage.isLanguageFound(HomePage.Language.Italian));
+		Assert.assertTrue(homePage.isLanguageFound(HomePage.Language.Italian));
 	}
 	
 	@Test
 	public void isChineseDisplayed() {
-		assertTrue(homePage.isLanguageFound(HomePage.Language.Chinese));
+		Assert.assertTrue(homePage.isLanguageFound(HomePage.Language.Chinese));
 	}
 	
 	@Test
 	public void isPolishDisplayed() {
-		assertTrue(homePage.isLanguageFound(HomePage.Language.Polish));
+		Assert.assertTrue(homePage.isLanguageFound(HomePage.Language.Polish));
 	}
 	
 	@Test
 	public void isPortugueseDisplayed() {
-		assertTrue(homePage.isLanguageFound(HomePage.Language.Portuguese));
+		Assert.assertTrue(homePage.isLanguageFound(HomePage.Language.Portuguese));
 	}
 
-	@AfterClass
+	@AfterSuite
 	public static void teardown() {
 		homePage.closeBrowser();
 	}
