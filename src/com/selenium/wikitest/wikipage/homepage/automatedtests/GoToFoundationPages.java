@@ -5,6 +5,7 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
 import com.selenium.wikitest.wikipage.homepage.HomePageText;
 
@@ -21,14 +22,16 @@ public class GoToFoundationPages {
 	public void testWikiMediaFoundationLink() {
 		String actualResult = homePage.goToListLinkByXPath(HomePageText.getString("HomePage.WikiMediaFoundationXPath"));
 		String expectedResult = HomePageText.getString("HomePage.WikiMediaFoundationTitle");
-		Assert.assertTrue(actualResult.contains(expectedResult));
+		Assert.assertTrue(actualResult.contains(expectedResult),
+				CommonMethods.formatAssertMessage(expectedResult, actualResult));
 	}
 	
 	@Test
 	public void testTermsOfUseLink() {
 		String actualResult = homePage.goToListLinkByXPath(HomePageText.getString("HomePage.TermsOfUseXPath"));
 		String expectedResult = HomePageText.getString("HomePage.TermsOfUseTitle");
-		Assert.assertTrue(actualResult.contains(expectedResult));
+		Assert.assertTrue(actualResult.contains(expectedResult),
+				CommonMethods.formatAssertMessage(expectedResult, actualResult));
 	}
 	
 	// This test fails.  Title should be "Privacy Policy" to match link and other titles
@@ -37,11 +40,12 @@ public class GoToFoundationPages {
 	public void testPrivacyPolicyLink() {
 		String actualResult = homePage.goToListLinkByXPath(HomePageText.getString("HomePage.PrivacyPolicyXPath"));
 		String expectedResult = HomePageText.getString("HomePage.PrivacyPolicyTitle");
-		Assert.assertTrue(actualResult.contains(expectedResult));
+		Assert.assertTrue(actualResult.contains(expectedResult),
+				CommonMethods.formatAssertMessage(expectedResult, actualResult));
 	}
 
 	@AfterSuite
-	public static void testTeardown() {
+	public void testTeardown() {
 		homePage.closeBrowser();
 	}
 
