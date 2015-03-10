@@ -19,8 +19,28 @@ public final class SQLiteJDBC {
 		return listStrings;
 	}    
 	
+	public static Object[][] queryTestNgData(String table,
+			String column1Name, String column2Name) throws SQLException {
+		int rowCount = getHighestIdValue(table, column1Name);
+		Object[][] records = new Object[rowCount][2];
+		ResultSet rs = null;
+		Connection connection;
+		connection = DriverManager.getConnection(homeConnection);
+		try (Statement statement = connection.createStatement()) {
+			rs = statement.executeQuery( "SELECT * FROM " + table + ";" );
+			int count = 0;
+			while ( rs.next() ) {
+				records[count][0] = (rs.getString(column1Name));
+				records[count][1] = (rs.getString(column2Name));
+				count++;
+			}
+			rs.close();
+		}
+		return records;
+}
+
 	public static ArrayList<String[]> queryData(String table,
-					String column1Name, String column2Name) throws SQLException {
+			String column1Name, String column2Name) throws SQLException {
 		ArrayList<String[]> records = new ArrayList<>(200);
 		ResultSet rs = null;
 		Connection connection;
@@ -38,7 +58,7 @@ public final class SQLiteJDBC {
 
 		return records;
 	}    
-	
+
 	public static ArrayList<String[]> queryData(
 			String table,
 			String column1Name,
@@ -175,6 +195,26 @@ public final class SQLiteJDBC {
     	String sql = "INSERT INTO " + tableName +
     			" (" + columnName + ") VALUES ('" + value + "');";
     	statement.executeUpdate(sql);
+    }
+    
+    public static int getHighestIdValue(String tableName, String idColumnName) {
+    	String sql = "SELECT " + idColumnName + " FROM " + tableName + " ORDER BY " + idColumnName + " DESC;";
+    	ResultSet rs = null;
+    	Connection connection;
+    	int count = 0;
+		try {
+			connection = DriverManager.getConnection(homeConnection);
+			count = 0;
+			Statement statement = connection.createStatement();
+			rs = statement.executeQuery( sql );
+			rs.next();
+			count = rs.getInt(idColumnName);
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+		e.printStackTrace();
+		}
+    	return count;
     }
 
     public static void updateLanguageLinkTitles(ArrayList<String[]> records) throws SQLException {
