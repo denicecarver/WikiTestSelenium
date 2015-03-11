@@ -1,78 +1,66 @@
 package com.selenium.wikitest.wikipage.homepage.automatedtests.testng;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
-
 import com.selenium.wikitest.data.SQLiteJDBC;
+import com.selenium.wikitest.data.SearchStringDataItem;
 import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
-import com.selenium.wikitest.wikipage.homepage.HomePageText;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
-import junit.framework.TestCase;
+import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
-@RunWith(Parameterized.class)
-public class DataDrivenSearchRedirectedTerms extends TestCase {
+public class DataDrivenSearchRedirectedTerms {
 
 	private static HomePage homePage = new HomePage();
-	
-	private String searchItem;
-	
-	public DataDrivenSearchRedirectedTerms(String searchItem1, String searchItem2) {
-		this.searchItem = searchItem1;
-		// searchItem2 is a duplicate of searchItem1
-	}
-	
-	@BeforeClass
-	public static void testSetup() {
+		
+	@BeforeSuite
+	public void testSetup() {
 		homePage.openPage();
+		
 	}
 	
-	@Parameters
-	public static ArrayList<String[]> getSearchData() {
-		ArrayList<String[]> listStrings = null;
+	@DataProvider(name = "test")
+	public Iterator<Object[]>  getSearchTerms() {
+		SearchStringDataItem[] listStrings = null;
 		try {
-			listStrings = SQLiteJDBC.queryData(
-					HomePageText.getString("RedirectStrings.TableName"),
-					HomePageText.getString("RedirectStrings.Column1"));
-		} catch (Exception e) {
+			listStrings = SQLiteJDBC.querySearchStringObjects("RedirectStrings", "RedirectID", "RedirectItem");
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return listStrings;
+		List<SearchStringDataItem> ssList = Arrays.asList(listStrings);                   
+		List<Object[]> data = new ArrayList<Object[]>();
+		for (SearchStringDataItem line :ssList )            
+		{                
+			data.add(new Object[]{line});            
+		}            
+		return data.iterator();
 	}
-
-	@Test
-	public void testRedirectData() {
-
-		String actualResult = homePage.searchForRedirect(searchItem);
+	
+	@Test(dataProvider = "test")
+	public void searchTerm(SearchStringDataItem redirectDataItem) {
+		System.out.println("Redirect ID: " + redirectDataItem.getSearchID() + ", RedirectItem: " + redirectDataItem.getSearchTerm());
+		String actualResult = homePage.searchForRedirect(redirectDataItem.getSearchTerm());
 		try {
-			// Assert expected search result record, from list, matches actual result
-			assertTrue(CommonMethods.formatAssertMessage(searchItem, actualResult),
-					actualResult.contains(searchItem));
-		} catch (AssertionError e) {
+			Assert.assertTrue(actualResult.contains(redirectDataItem.getSearchTerm()),
+					CommonMethods.formatAssertMessage(redirectDataItem.getSearchTerm(), actualResult, Integer.toString(redirectDataItem.getSearchID())));
+		} catch (Exception e) {
 			homePage.getUniqueScreenshot(this.toString());
-			System.out.println(searchItem);
+			System.out.println("RedirectItem = " + redirectDataItem.getSearchTerm());
 			e.printStackTrace();
 			throw(e);
 		}
-
-		// Return to home page for next test
-		homePage.openHomePage();
-
-	}
-
-	@After
-	public void returnToWikipedia() {
 		homePage.openHomePage();
 	}
 
-	@AfterClass
+	@AfterSuite
 	public static void commonTearDown() throws Exception {
 		homePage.closeBrowser();
 	}
