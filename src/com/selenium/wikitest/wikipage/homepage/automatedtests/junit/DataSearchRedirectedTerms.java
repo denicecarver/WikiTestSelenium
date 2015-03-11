@@ -1,4 +1,4 @@
-package com.selenium.wikitest.wikipage.homepage.automatedtests;
+package com.selenium.wikitest.wikipage.homepage.automatedtests.junit;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -18,14 +18,14 @@ import java.util.ArrayList;
 import junit.framework.TestCase;
 
 @RunWith(Parameterized.class)
-public class DataSearchTerms extends TestCase {
+public class DataSearchRedirectedTerms extends TestCase {
 
 	private static HomePage homePage = new HomePage();
 	
 	private String searchItem;
 	
-	public DataSearchTerms(String searchItem1, String searchItem2) {
-		searchItem = searchItem1;
+	public DataSearchRedirectedTerms(String searchItem1, String searchItem2) {
+		this.searchItem = searchItem1;
 		// searchItem2 is a duplicate of searchItem1
 	}
 	
@@ -35,12 +35,12 @@ public class DataSearchTerms extends TestCase {
 	}
 	
 	@Parameters
-	public static ArrayList<String[]> getSearchTerms() {
+	public static ArrayList<String[]> getSearchData() {
 		ArrayList<String[]> listStrings = null;
 		try {
 			listStrings = SQLiteJDBC.queryData(
-					HomePageText.getString("SearchStrings.TableName"),
-					HomePageText.getString("SearchStrings.Column1"));
+					HomePageText.getString("RedirectStrings.TableName"),
+					HomePageText.getString("RedirectStrings.Column1"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -48,16 +48,16 @@ public class DataSearchTerms extends TestCase {
 	}
 
 	@Test
-	public void searchTerm() {
+	public void testRedirectData() {
 
+		String actualResult = homePage.searchForRedirect(searchItem);
 		try {
-			String actualResult = homePage.searchFor(searchItem);
 			// Assert expected search result record, from list, matches actual result
 			assertTrue(CommonMethods.formatAssertMessage(searchItem, actualResult),
 					actualResult.contains(searchItem));
 		} catch (AssertionError e) {
 			homePage.getUniqueScreenshot(this.toString());
-			System.out.println("searchItem = " + searchItem);
+			System.out.println(searchItem);
 			e.printStackTrace();
 			throw(e);
 		}

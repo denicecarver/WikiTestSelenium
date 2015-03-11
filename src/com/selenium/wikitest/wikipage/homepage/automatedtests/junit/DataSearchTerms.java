@@ -1,4 +1,4 @@
-package com.selenium.wikitest.wikipage.homepage.automatedtests;
+package com.selenium.wikitest.wikipage.homepage.automatedtests.junit;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -18,14 +18,14 @@ import java.util.ArrayList;
 import junit.framework.TestCase;
 
 @RunWith(Parameterized.class)
-public class DataDrivenSearchRedirectedTerms extends TestCase {
+public class DataSearchTerms extends TestCase {
 
 	private static HomePage homePage = new HomePage();
 	
 	private String searchItem;
 	
-	public DataDrivenSearchRedirectedTerms(String searchItem1, String searchItem2) {
-		this.searchItem = searchItem1;
+	public DataSearchTerms(String searchItem1, String searchItem2) {
+		searchItem = searchItem1;
 		// searchItem2 is a duplicate of searchItem1
 	}
 	
@@ -35,12 +35,12 @@ public class DataDrivenSearchRedirectedTerms extends TestCase {
 	}
 	
 	@Parameters
-	public static ArrayList<String[]> getSearchData() {
+	public static ArrayList<String[]> getSearchTerms() {
 		ArrayList<String[]> listStrings = null;
 		try {
 			listStrings = SQLiteJDBC.queryData(
-					HomePageText.getString("RedirectStrings.TableName"),
-					HomePageText.getString("RedirectStrings.Column1"));
+					HomePageText.getString("SearchStrings.TableName"),
+					HomePageText.getString("SearchStrings.Column1"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -48,16 +48,16 @@ public class DataDrivenSearchRedirectedTerms extends TestCase {
 	}
 
 	@Test
-	public void testRedirectData() {
+	public void searchTerm() {
 
-		String actualResult = homePage.searchForRedirect(searchItem);
 		try {
+			String actualResult = homePage.searchFor(searchItem);
 			// Assert expected search result record, from list, matches actual result
 			assertTrue(CommonMethods.formatAssertMessage(searchItem, actualResult),
 					actualResult.contains(searchItem));
 		} catch (AssertionError e) {
 			homePage.getUniqueScreenshot(this.toString());
-			System.out.println(searchItem);
+			System.out.println("searchItem = " + searchItem);
 			e.printStackTrace();
 			throw(e);
 		}

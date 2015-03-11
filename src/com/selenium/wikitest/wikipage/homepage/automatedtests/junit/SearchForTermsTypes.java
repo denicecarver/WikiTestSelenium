@@ -1,19 +1,20 @@
-package com.selenium.wikitest.wikipage.homepage.automatedtests.testng;
+package com.selenium.wikitest.wikipage.homepage.automatedtests.junit;
 
-import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import junit.framework.TestCase;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.AfterClass;
 
 import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.wikipage.WikiPageText;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
 import com.selenium.wikitest.wikipage.homepage.HomePageText;
 
-public class SearchTermDataItem {
+public class SearchForTermsTypes extends TestCase {
 	private static HomePage homePage = new HomePage();
 
-	@BeforeMethod
+	@Before
 	public void setupTest() {
 		homePage.openPage();
 	}
@@ -29,8 +30,8 @@ public class SearchTermDataItem {
 		
 		// Assert expected matches actual
 		try {
-			Assert.assertTrue(actualResult.contains(expectedResult),
-					CommonMethods.formatAssertMessage(expectedResult, actualResult));
+			assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
+					actualResult.contains(expectedResult));
 		} catch (AssertionError ae) {
 			homePage.getUniqueScreenshot(this.toString());
 			ae.printStackTrace();
@@ -52,8 +53,8 @@ public class SearchTermDataItem {
 
 		// Assert expected matches actual
 		try {
-			Assert.assertTrue(actualResult.contains(expectedResult),
-					CommonMethods.formatAssertMessage(expectedResult, actualResult));
+			assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
+					actualResult.contains(expectedResult));
 		} catch (AssertionError ae) {
 			homePage.getUniqueScreenshot(this.toString());
 			ae.printStackTrace();
@@ -73,8 +74,8 @@ public class SearchTermDataItem {
 
 		// Assert expected == actual
 		try {
-			Assert.assertTrue(actualResult.contains(expectedResult),
-					CommonMethods.formatAssertMessage(expectedResult, actualResult));
+			assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
+					actualResult.contains(expectedResult));
 		} catch (AssertionError ae) {
 			homePage.getUniqueScreenshot(this.toString());
 			ae.printStackTrace();
@@ -93,8 +94,8 @@ public class SearchTermDataItem {
 		
 		// Assert expected matches actual
 		try {
-			Assert.assertTrue(actualResult.contains(expectedResult),
-					CommonMethods.formatAssertMessage(expectedResult, actualResult));
+			assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
+					actualResult.contains(expectedResult));
 		} catch (AssertionError ae) {
 			homePage.getUniqueScreenshot(this.toString());
 			ae.printStackTrace();
@@ -114,8 +115,8 @@ public class SearchTermDataItem {
 		
 		// Assert expected == actual (this assert fails)
 		try {
-			Assert.assertTrue(actualResult.contains(expectedResult),
-					CommonMethods.formatAssertMessage(expectedResult, actualResult));
+			assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
+					actualResult.contains(expectedResult));
 		} catch (AssertionError ae) {
 			homePage.getUniqueScreenshot(this.toString());
 			ae.printStackTrace();
@@ -124,7 +125,7 @@ public class SearchTermDataItem {
 
 	}
 	
-	@AfterSuite
+	@AfterClass
 	public static void commonTearDown() throws Exception {
 		homePage.closeBrowser();
 	}

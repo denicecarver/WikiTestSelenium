@@ -2,13 +2,13 @@ package com.selenium.junit.wikitestrun;
 
 import com.selenium.wikitest.bugs.PrivacyPolicyError;
 import com.selenium.wikitest.regression.SearchError;
-import com.selenium.wikitest.wikipage.homepage.automatedtests.DataDrivenGoToWikiInLanguage;
-import com.selenium.wikitest.wikipage.homepage.automatedtests.DataDrivenSearchRedirectedTerms;
-import com.selenium.wikitest.wikipage.homepage.automatedtests.DataDrivenSearchTerms;
-import com.selenium.wikitest.wikipage.homepage.automatedtests.GoToOtherProjects;
-import com.selenium.wikitest.wikipage.homepage.automatedtests.GoToWikiInLanguage;
-import com.selenium.wikitest.wikipage.homepage.automatedtests.IsLanguageDisplayed;
-import com.selenium.wikitest.wikipage.homepage.automatedtests.SearchTermDataItem;
+import com.selenium.wikitest.wikipage.homepage.automatedtests.testng.DataDrivenGoToWikiInLanguage;
+import com.selenium.wikitest.wikipage.homepage.automatedtests.testng.DataDrivenSearchRedirectedTerms;
+import com.selenium.wikitest.wikipage.homepage.automatedtests.testng.DataDrivenSearchTerms;
+import com.selenium.wikitest.wikipage.homepage.automatedtests.testng.GoToOtherProjects;
+import com.selenium.wikitest.wikipage.homepage.automatedtests.testng.GoToWikiInLanguage;
+import com.selenium.wikitest.wikipage.homepage.automatedtests.testng.IsLanguageDisplayed;
+import com.selenium.wikitest.wikipage.homepage.automatedtests.testng.GoToSearchTermItems;
 import com.selenium.wikitest.wikipage.resultpage.common.automatedtests.DataResultLanguages;
 import com.selenium.wikitest.wikipage.resultpage.common.automatedtests.InteractionNavigation;
 import com.selenium.wikitest.wikipage.resultpage.common.automatedtests.PortalNavigation;
@@ -31,7 +31,7 @@ public class TestClasses {
 		IsLanguageDisplayed.class,
 		GoToWikiInLanguage.class,
 		GoToOtherProjects.class,
-		SearchTermDataItem.class
+		GoToSearchTermItems.class
 	};
 
 	private static final java.lang.Class<?>[] resultPageTests = {

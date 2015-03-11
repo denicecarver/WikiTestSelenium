@@ -10,6 +10,12 @@ public class CommonMethods {
 				"\n\tActual Value:  " + actualResult;
 	}
 	
+	public static String formatAssertMessage(String expectedResult, String actualResult, String id) {
+		return "\n\tExpected Value: " + expectedResult +
+				"\n\tActual Value:  " + actualResult +
+				"\n\tID of dataItem:  " + id;
+	}
+	
 	public static String getUniqueStringFromCurrentMilliseconds() {
 		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
 		return Long.toString(cal.getTimeInMillis());

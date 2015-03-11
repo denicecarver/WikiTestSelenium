@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 public final class SQLiteJDBC {
 
@@ -19,7 +22,7 @@ public final class SQLiteJDBC {
 		return listStrings;
 	}    
 	
-	public static Object[][] queryTestNgData(String table,
+	public static Object[][] querySearchString2DArray(String table,
 			String column1Name, String column2Name) throws SQLException {
 		int rowCount = getHighestIdValue(table, column1Name);
 		Object[][] records = new Object[rowCount][2];
@@ -39,34 +42,29 @@ public final class SQLiteJDBC {
 		return records;
 	}
 		
-	public static ArrayList<Object[]> queryTestNgData2(String table,
+	public static SearchStringDataItem[] querySearchStringObjects(String table,
 			String column1Name, String column2Name) throws SQLException {
-		int rowCount = getHighestIdValue(table, column1Name);
-		SearchStringDataItem searchObject;
-		SearchStringDataItem[] arraySearchData = new SearchStringDataItem[1];
-//		ArrayList<Object[]> recordsListArray = new ArrayList<>;
-		ArrayList<Object[]> recordsList = new ArrayList<Object[]>(300);
+		ArrayList<SearchStringDataItem> ssArrayList = new ArrayList<SearchStringDataItem>(300);
 		ResultSet rs = null;
 		Connection connection;
 		connection = DriverManager.getConnection(homeConnection);
 		try (Statement statement = connection.createStatement()) {
 			rs = statement.executeQuery( "SELECT * FROM " + table + ";" );
 			while (rs.next()) {
-				searchObject = new SearchStringDataItem();
-				String strId = rs.getString(column1Name);
-				Integer id = new Integer(strId);
+				SearchStringDataItem searchObject = new SearchStringDataItem();
+				String stringID = rs.getString(column1Name);
+				Integer id = new Integer(stringID);
 				searchObject.setSearchID(id);
 				searchObject.setSearchTerm(rs.getString(column2Name));
-				arraySearchData[0] = searchObject;
-				recordsList.add(arraySearchData);
-				searchObject = null;
-//				recordsListArray[i] = (ArrayList<Object>)recordsList;
+				ssArrayList.add(searchObject);
 			}
 			rs.close();
 		}
-//		recordsList.add(arraySearchData);
-//		ArrayList<Object>[] returnValue = recordsListArray;
-		return recordsList ;
+		SearchStringDataItem[] ssArray = new SearchStringDataItem[ssArrayList.size()-1];
+		for (int i = 0; i < ssArray.length; i++) {
+			ssArray[i] = ssArrayList.get(i);
+		}
+		return ssArray;         
 	}
 
 	public static ArrayList<String[]> queryData(String table,

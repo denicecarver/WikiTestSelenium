@@ -1,4 +1,4 @@
-package com.selenium.wikitest.wikipage.homepage.automatedtests;
+package com.selenium.wikitest.wikipage.homepage.automatedtests.junit;
 
 import com.selenium.wikitest.data.SQLiteJDBC;
 import com.selenium.wikitest.shared.CommonMethods;
@@ -19,14 +19,14 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(Parameterized.class)
-public class DataDrivenGoToWikiInLanguage extends TestCase {
+public class DataGoToWikiInLanguage extends TestCase {
 
 	private static HomePage homePage = new HomePage();
 	
 	private String xPath;
 	private String title;
 	
-	public DataDrivenGoToWikiInLanguage (String xPath, String title) {
+	public DataGoToWikiInLanguage (String xPath, String title) {
 		this.xPath = xPath;
 		this.title = title;
 	}
