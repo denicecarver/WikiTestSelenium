@@ -37,7 +37,37 @@ public final class SQLiteJDBC {
 			rs.close();
 		}
 		return records;
-}
+	}
+		
+	public static ArrayList<Object[]> queryTestNgData2(String table,
+			String column1Name, String column2Name) throws SQLException {
+		int rowCount = getHighestIdValue(table, column1Name);
+		SearchStringDataItem searchObject;
+		SearchStringDataItem[] arraySearchData = new SearchStringDataItem[1];
+//		ArrayList<Object[]> recordsListArray = new ArrayList<>;
+		ArrayList<Object[]> recordsList = new ArrayList<Object[]>(300);
+		ResultSet rs = null;
+		Connection connection;
+		connection = DriverManager.getConnection(homeConnection);
+		try (Statement statement = connection.createStatement()) {
+			rs = statement.executeQuery( "SELECT * FROM " + table + ";" );
+			while (rs.next()) {
+				searchObject = new SearchStringDataItem();
+				String strId = rs.getString(column1Name);
+				Integer id = new Integer(strId);
+				searchObject.setSearchID(id);
+				searchObject.setSearchTerm(rs.getString(column2Name));
+				arraySearchData[0] = searchObject;
+				recordsList.add(arraySearchData);
+				searchObject = null;
+//				recordsListArray[i] = (ArrayList<Object>)recordsList;
+			}
+			rs.close();
+		}
+//		recordsList.add(arraySearchData);
+//		ArrayList<Object>[] returnValue = recordsListArray;
+		return recordsList ;
+	}
 
 	public static ArrayList<String[]> queryData(String table,
 			String column1Name, String column2Name) throws SQLException {
