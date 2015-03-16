@@ -5,6 +5,8 @@ Install these products in order, versions will likely be out of date but you sho
 		Found at http://www.oracle.com/technetwork/articles/javase/index-jsp-138363.html
 	JUnit 4.11
 		Found at https://github.com/junit-team/junit/wiki/Download-and-Install
+	TestNG 6.8.21
+		Found at http://testng.org/doc/download.html
 	Hamcrest 1.3
 		Found at https://code.google.com/p/hamcrest/downloads/list
 	Selenium 2.44.0 (update)
@@ -25,6 +27,8 @@ Add the following packages (File | New | Package)
 	com.selenium.wikitest.webpage
 	com.selenium.wikitest.webpage.homepage
 	com.selenium.wikitest.webpage.homepage.automatedtests
+	com.selenium.wikitest.webpage.homepage.automatedtests.junit
+	com.selenium.wikitest.webpage.homepage.automatedtests.testng
 	com.selenium.wikitest.webpage.homepage.data
 Right-click on project, select Properties
 Click on Java Build Path
@@ -38,7 +42,9 @@ Open the file HomePageSuite.java
 	From the package com.selenium.junit.wikitestrun
 Run suites from the menu (Run | Run)
 Or, for a quick run of a single test use TestLanguageDisplay.java
-	From the package:  com.selenium.wikitest.webpage.homepage.automatedtests
+	From the package:  com.selenium.wikitest.webpage.homepage.automatedtests.junit
+OR
+	From the package:  com.selenium.wikitest.webpage.homepage.automatedtests.testng
 Run individual tests from the menu (Run | Run As | JUnit Test)
 
 
