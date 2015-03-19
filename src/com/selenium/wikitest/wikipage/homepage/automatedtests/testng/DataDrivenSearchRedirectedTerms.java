@@ -1,7 +1,7 @@
 package com.selenium.wikitest.wikipage.homepage.automatedtests.testng;
 
 import com.selenium.wikitest.data.SQLiteJDBC;
-import com.selenium.wikitest.data.SearchStringDataItem;
+import com.selenium.wikitest.data.HomePageSearchStringDataItem;
 import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
 
@@ -29,15 +29,15 @@ public class DataDrivenSearchRedirectedTerms {
 	
 	@DataProvider(name = "test")
 	public Iterator<Object[]>  getSearchTerms() {
-		SearchStringDataItem[] listStrings = null;
+		HomePageSearchStringDataItem[] listStrings = null;
 		try {
 			listStrings = SQLiteJDBC.querySearchStringObjects("RedirectStrings", "RedirectID", "RedirectItem");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		List<SearchStringDataItem> ssList = Arrays.asList(listStrings);                   
+		List<HomePageSearchStringDataItem> ssList = Arrays.asList(listStrings);                   
 		List<Object[]> data = new ArrayList<Object[]>();
-		for (SearchStringDataItem line :ssList )            
+		for (HomePageSearchStringDataItem line :ssList )            
 		{                
 			data.add(new Object[]{line});            
 		}            
@@ -45,7 +45,7 @@ public class DataDrivenSearchRedirectedTerms {
 	}
 	
 	@Test(dataProvider = "test")
-	public void searchTerm(SearchStringDataItem redirectDataItem) {
+	public void searchTerm(HomePageSearchStringDataItem redirectDataItem) {
 		System.out.println("Redirect ID: " + redirectDataItem.getSearchID() + ", RedirectItem: " + redirectDataItem.getSearchTerm());
 		String actualResult = homePage.searchForRedirect(redirectDataItem.getSearchTerm());
 		try {

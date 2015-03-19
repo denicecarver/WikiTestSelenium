@@ -10,7 +10,7 @@ public class AllSuites {
 		runner.addListener(new RunSuiteListener());
 		
 		// For individual or group testing
-		runner.run(TestClasses.getAllTests());
+		runner.run(TestNGTestClasses.getAllTests());
 	}
 
 }

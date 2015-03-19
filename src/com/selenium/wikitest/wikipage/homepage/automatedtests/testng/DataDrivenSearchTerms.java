@@ -1,7 +1,7 @@
 package com.selenium.wikitest.wikipage.homepage.automatedtests.testng;
 
 import com.selenium.wikitest.data.SQLiteJDBC;
-import com.selenium.wikitest.data.SearchStringDataItem;
+import com.selenium.wikitest.data.HomePageSearchStringDataItem;
 import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
 
@@ -12,9 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -31,15 +29,15 @@ public class DataDrivenSearchTerms {
 	
 	@DataProvider(name = "test")
 	public Iterator<Object[]>  getSearchTerms() {
-		SearchStringDataItem[] listStrings = null;
+		HomePageSearchStringDataItem[] listStrings = null;
 		try {
 			listStrings = SQLiteJDBC.querySearchStringObjects("SearchStrings", "SearchID", "SearchItem");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		List<SearchStringDataItem> ssList = Arrays.asList(listStrings);                   
+		List<HomePageSearchStringDataItem> ssList = Arrays.asList(listStrings);                   
 		List<Object[]> data = new ArrayList<Object[]>();
-		for (SearchStringDataItem line :ssList )            
+		for (HomePageSearchStringDataItem line :ssList )            
 		{                
 			data.add(new Object[]{line});            
 		}            
@@ -47,7 +45,7 @@ public class DataDrivenSearchTerms {
 	}
 	
 	@Test(dataProvider = "test")
-	public void searchTerm(SearchStringDataItem ssDataItem) {
+	public void searchTerm(HomePageSearchStringDataItem ssDataItem) {
 		System.out.println("Search ID: " + ssDataItem.getSearchID() + ", SearchItem: " + ssDataItem.getSearchTerm());
 		try {
 			String actualResult = homePage.searchFor(ssDataItem.getSearchTerm());

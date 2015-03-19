@@ -10,7 +10,7 @@ public class ErrorSuite {
 		runner.addListener(new RunSuiteListener());
 		
 		// For individual or group testing
-		runner.run(TestClasses.getErrorTests());
+		runner.run(TestNGTestClasses.getErrorTests());
 	}
 
 }

@@ -1,77 +1,59 @@
 package com.selenium.wikitest.wikipage.homepage.automatedtests.testng;
 
+import com.selenium.wikitest.data.HomePageLanguageLinkDataItem;
 import com.selenium.wikitest.data.SQLiteJDBC;
 import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
-import com.selenium.wikitest.wikipage.homepage.HomePageText;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
-import junit.framework.TestCase;
+import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
-
-@RunWith(Parameterized.class)
-public class DataDrivenGoToWikiInLanguage extends TestCase {
+public class DataDrivenGoToWikiInLanguage {
 
 	private static HomePage homePage = new HomePage();
 	
-	private String xPath;
-	private String title;
-	
-	public DataDrivenGoToWikiInLanguage (String xPath, String title) {
-		this.xPath = xPath;
-		this.title = title;
-	}
-	
-	@BeforeClass
-	public static void testSetup() {
-		homePage.openPage();
-	}
-	
-	@Parameters
-	public static ArrayList<String[]> getSearchData() {
-		ArrayList<String[]> listStrings = null;
+	@DataProvider(name = "test")
+	public Iterator<Object[]>  getWikiInLanguageData() {
+		HomePageLanguageLinkDataItem[] listStrings = null;
 		try {
-			listStrings = SQLiteJDBC.queryData(
-					HomePageText.getString("LanguageLinks.TableName"),
-					HomePageText.getString("LanguageLinks.Column1"),
-					HomePageText.getString("LanguageLinks.Column2"));
+			listStrings = SQLiteJDBC.queryLanguageLinkObjects("ResultLanguageLinks", "LinkID", "XPath", "Link", "Title");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return listStrings;
+		List<HomePageLanguageLinkDataItem> ssList = Arrays.asList(listStrings);                   
+		List<Object[]> data = new ArrayList<Object[]>();
+		for (HomePageLanguageLinkDataItem line :ssList )            
+		{                
+			data.add(new Object[]{line});            
+		}            
+		return data.iterator();
 	}
 
-	@Test
-	public void testSearchData() {
-		String actualResult = homePage.goToListLinkByXPath(xPath);
+	@Test(dataProvider = "test")
+	public void testSearchData(HomePageLanguageLinkDataItem languageLinkItem) {
+		homePage.openHomePage();
+		String actualResult = homePage.goToListLinkByLinkName(languageLinkItem.getLink());
 		try {
-			assertTrue(CommonMethods.formatAssertMessage(title, actualResult),
-					actualResult.contains(title));
-		} catch (AssertionError e) {
-			System.out.println("xPath = " + xPath);
-			System.out.println("title = " + title);
-			e.printStackTrace();
+			Assert.assertTrue(actualResult.contains(languageLinkItem.getTitle()),
+					CommonMethods.formatAssertMessage(languageLinkItem.getTitle(),
+							actualResult, Integer.toString(languageLinkItem.getLinkID())));
+		} catch (Exception e) {
 			homePage.getUniqueScreenshot(this.toString());
+			System.out.println("Title = " + languageLinkItem.getTitle());
+			e.printStackTrace();
 			throw(e);
 		}
-		homePage.openHomePage();
 	}
 
-	@After
-	public void returnToWikipedia() {
-		homePage.openHomePage();
-	}
-
-	@AfterClass
+	@AfterSuite
 	public static void commonTearDown() throws Exception {
 		homePage.closeBrowser();
 	}

@@ -5,16 +5,18 @@ import com.selenium.wikitest.regression.SearchError;
 import com.selenium.wikitest.wikipage.homepage.automatedtests.testng.DataDrivenGoToWikiInLanguage;
 import com.selenium.wikitest.wikipage.homepage.automatedtests.testng.DataDrivenSearchRedirectedTerms;
 import com.selenium.wikitest.wikipage.homepage.automatedtests.testng.DataDrivenSearchTerms;
+import com.selenium.wikitest.wikipage.homepage.automatedtests.testng.DataSearchTerms;
+import com.selenium.wikitest.wikipage.homepage.automatedtests.testng.GoToFoundationPages;
 import com.selenium.wikitest.wikipage.homepage.automatedtests.testng.GoToOtherProjects;
+import com.selenium.wikitest.wikipage.homepage.automatedtests.testng.GoToSearchTermItems;
 import com.selenium.wikitest.wikipage.homepage.automatedtests.testng.GoToWikiInLanguage;
 import com.selenium.wikitest.wikipage.homepage.automatedtests.testng.IsLanguageDisplayed;
-import com.selenium.wikitest.wikipage.homepage.automatedtests.testng.GoToSearchTermItems;
 import com.selenium.wikitest.wikipage.resultpage.common.automatedtests.DataResultLanguages;
 import com.selenium.wikitest.wikipage.resultpage.common.automatedtests.InteractionNavigation;
 import com.selenium.wikitest.wikipage.resultpage.common.automatedtests.PortalNavigation;
 import com.selenium.wikitest.wikipage.resultpage.common.automatedtests.ToolsNavigation;
 
-public class TestClasses {
+public class TestNGTestClasses {
 
 	private static final java.lang.Class<?>[] errorTests = {
 		PrivacyPolicyError.class
@@ -24,14 +26,16 @@ public class TestClasses {
 		SearchError.class
 	};
 
-	private static final java.lang.Class<?>[] homePageTests = {
+	private static final java.lang.Class<?>[] homePageTestNGTests = {
 		DataDrivenGoToWikiInLanguage.class,
 		DataDrivenSearchRedirectedTerms.class,
 		DataDrivenSearchTerms.class,
-		IsLanguageDisplayed.class,
-		GoToWikiInLanguage.class,
+		DataSearchTerms.class,
+		GoToFoundationPages.class,
 		GoToOtherProjects.class,
-		GoToSearchTermItems.class
+		GoToSearchTermItems.class,
+		IsLanguageDisplayed.class,
+		GoToWikiInLanguage.class
 	};
 
 	private static final java.lang.Class<?>[] resultPageTests = {
@@ -45,8 +49,8 @@ public class TestClasses {
 		return errorTests;
 	}
 	
-	public static java.lang.Class<?>[] getHomePageTests() {
-		return homePageTests;
+	public static java.lang.Class<?>[] getHomePageTestNGTests() {
+		return homePageTestNGTests;
 	}
 	
 	public static java.lang.Class<?>[] getResultPageTests() {
@@ -54,7 +58,7 @@ public class TestClasses {
 	}
 	
 	public static java.lang.Class<?>[] getAllTests() {
-		int allTestLength = regressionTests.length + errorTests.length + homePageTests.length + resultPageTests.length;
+		int allTestLength = regressionTests.length + errorTests.length + homePageTestNGTests.length + resultPageTests.length;
 		java.lang.Class<?>[] allTests = new java.lang.Class<?>[allTestLength];
 		int countRegressionTests = 0;
 		int countErrorTests = 0;
@@ -72,8 +76,8 @@ public class TestClasses {
 		}
 		countAllTests += countRegressionTests;
 
-		for (; countHomeTests < homePageTests.length; countHomeTests++) {
-			allTests[countAllTests + countHomeTests] = homePageTests[countHomeTests];
+		for (; countHomeTests < homePageTestNGTests.length; countHomeTests++) {
+			allTests[countAllTests + countHomeTests] = homePageTestNGTests[countHomeTests];
 		}
 		countAllTests += countHomeTests;
 		

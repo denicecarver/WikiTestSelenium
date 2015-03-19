@@ -39,8 +39,12 @@ public class HomePage extends WikiPage{
 	
 	public String goToListLinkByXPath(String xPath) {
 		return clickProjectLinkByXPath(xPath);
+		
 	}
-	
+
+	public String goToListLinkByLinkName(String linkName) {
+		return clickProjectLink(linkName);
+	}
 	public String getJapanesePageTitle() {
 		WebElement we = waitForElement(By.linkText(HomePageText.getString("HomePage.LanguageJapaneseText")));
 		return we.getText();

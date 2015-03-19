@@ -10,7 +10,7 @@ public class ResultPageSuite {
 		runner.addListener(new RunSuiteListener());
 
 		// For individual or group testing
-		runner.run(TestClasses.getResultPageTests());
+		runner.run(TestNGTestClasses.getResultPageTests());
 	}
 
 }

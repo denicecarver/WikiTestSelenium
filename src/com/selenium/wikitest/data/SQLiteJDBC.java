@@ -6,9 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
 
 public final class SQLiteJDBC {
 
@@ -42,29 +39,54 @@ public final class SQLiteJDBC {
 		return records;
 	}
 		
-	public static SearchStringDataItem[] querySearchStringObjects(String table,
+	public static HomePageSearchStringDataItem[] querySearchStringObjects(String table,
 			String column1Name, String column2Name) throws SQLException {
-		ArrayList<SearchStringDataItem> ssArrayList = new ArrayList<SearchStringDataItem>(300);
+		ArrayList<HomePageSearchStringDataItem> ssArrayList = new ArrayList<HomePageSearchStringDataItem>(300);
 		ResultSet rs = null;
 		Connection connection;
 		connection = DriverManager.getConnection(homeConnection);
 		try (Statement statement = connection.createStatement()) {
 			rs = statement.executeQuery( "SELECT * FROM " + table + ";" );
 			while (rs.next()) {
-				SearchStringDataItem searchObject = new SearchStringDataItem();
-				String stringID = rs.getString(column1Name);
-				Integer id = new Integer(stringID);
+				HomePageSearchStringDataItem searchObject = new HomePageSearchStringDataItem();
+				Integer id = new Integer(rs.getString(column1Name));
 				searchObject.setSearchID(id);
 				searchObject.setSearchTerm(rs.getString(column2Name));
 				ssArrayList.add(searchObject);
 			}
 			rs.close();
 		}
-		SearchStringDataItem[] ssArray = new SearchStringDataItem[ssArrayList.size()-1];
+		HomePageSearchStringDataItem[] ssArray = new HomePageSearchStringDataItem[ssArrayList.size()-1];
 		for (int i = 0; i < ssArray.length; i++) {
 			ssArray[i] = ssArrayList.get(i);
 		}
 		return ssArray;         
+	}
+
+	public static HomePageLanguageLinkDataItem[] queryLanguageLinkObjects(
+			String table, String linkID, String xPath, String link,
+			String title) throws SQLException {
+		ArrayList<HomePageLanguageLinkDataItem> ssArrayList = new ArrayList<HomePageLanguageLinkDataItem>(300);
+		ResultSet rs = null;
+		Connection connection;
+		connection = DriverManager.getConnection(homeConnection);
+		try (Statement statement = connection.createStatement()) {
+			rs = statement.executeQuery( "SELECT * FROM " + table + ";" );
+			while (rs.next()) {
+				HomePageLanguageLinkDataItem languageLinkObject = new HomePageLanguageLinkDataItem();
+				languageLinkObject.setLinkID(new Integer(rs.getString(linkID)));
+				languageLinkObject.setXPath(rs.getString(xPath));
+				languageLinkObject.setLink(rs.getString(link));
+				languageLinkObject.setTitle(rs.getString(title));
+				ssArrayList.add(languageLinkObject);
+			}
+			rs.close();
+		}
+		HomePageLanguageLinkDataItem[] ssArray = new HomePageLanguageLinkDataItem[ssArrayList.size()-1];
+		for (int i = 0; i < ssArray.length; i++) {
+			ssArray[i] = ssArrayList.get(i);
+		}
+		return ssArray;
 	}
 
 	public static ArrayList<String[]> queryData(String table,
@@ -180,17 +202,9 @@ public final class SQLiteJDBC {
     	Connection connection = null;
         Statement statement = null;
     	try {
-    	Class.forName("org.sqlite.JDBC");  
-    	connection = DriverManager.getConnection(homeConnection);
-    	statement = connection.createStatement();
-    	
-
-//    		String columns = columnNames[0];
-//    		String values = "'" + valueSet[0] + "'";
-//    		for (int i = 1; i < columnNames.length; i++) {
-//    			columns = columns + "," + columnNames[i];
-//    			values = values + ",'" + valueSet[i] + "'";
-//    		}
+    		Class.forName("org.sqlite.JDBC");  
+    		connection = DriverManager.getConnection(homeConnection);
+    		statement = connection.createStatement();
     		String sql = "UPDATE " + tableName +
     				" SET " + columnName + " = '" + value + "' WHERE " + whereDelimiter + ";" ;
     		insertSQL(statement, sql);

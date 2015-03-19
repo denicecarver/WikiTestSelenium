@@ -47,6 +47,10 @@ public class WikiPage {
 		return waitForElement(By.xpath(xpathToElement)).getText();
 	}
 	
+	public String getTextAtTitle(String titleOfElement) {
+		return waitForElement(By.name(titleOfElement)).getText();
+	}
+	
 	public String searchForRedirect(String redirectString) {
 		
 		searchFor(redirectString);
@@ -195,6 +199,7 @@ public class WikiPage {
 		File screenshot = ((TakesScreenshot)augmentedDriver).
 				getScreenshotAs(OutputType.FILE);
 		try {
+			System.out.println(WikiPageText.getString("AnyPage.ErrorImagePath") + filenameNoExtension + ".png");
 			FileUtils.copyFile(screenshot, new File(WikiPageText.getString("AnyPage.ErrorImagePath") + filenameNoExtension + ".png"));
 		} catch (IOException e) {
 			e.printStackTrace();

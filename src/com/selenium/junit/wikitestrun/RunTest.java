@@ -2,7 +2,6 @@ package com.selenium.junit.wikitestrun;
 
 import org.junit.runner.JUnitCore;
 
-import com.selenium.wikitest.wikipage.homepage.automatedtests.*;
 import com.selenium.wikitest.wikipage.homepage.automatedtests.testng.IsLanguageDisplayed;
 
 public class RunTest {
