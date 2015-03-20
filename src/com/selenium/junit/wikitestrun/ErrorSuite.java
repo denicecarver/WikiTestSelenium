@@ -2,6 +2,8 @@ package com.selenium.junit.wikitestrun;
 
 import org.junit.runner.JUnitCore;
 
+import com.selenium.testng.wikitestrun.TestNGTestClasses;
+
 public class ErrorSuite {
 
 	public static void main(String[] args)
@@ -10,7 +12,7 @@ public class ErrorSuite {
 		runner.addListener(new RunSuiteListener());
 		
 		// For individual or group testing
-		runner.run(TestNGTestClasses.getErrorTests());
+		runner.run(JUnitTestClasses.getErrorTests());
 	}
 
 }

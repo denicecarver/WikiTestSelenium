@@ -1,4 +1,4 @@
-package com.selenium.wikitest.wikipage.homepage.automatedtests.testng;
+package com.selenium.wikitest.wikipage.homepage.automatedtests.junit;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -18,13 +18,13 @@ import java.util.ArrayList;
 import junit.framework.TestCase;
 
 @RunWith(Parameterized.class)
-public class DataSearchTerms extends TestCase {
+public class DataDrivenSearchTerms extends TestCase {
 
 	private static HomePage homePage = new HomePage();
 	
 	private String searchItem;
 	
-	public DataSearchTerms(String searchItem1, String searchItem2) {
+	public DataDrivenSearchTerms(String searchItem1, String searchItem2) {
 		searchItem = searchItem1;
 		// searchItem2 is a duplicate of searchItem1
 	}

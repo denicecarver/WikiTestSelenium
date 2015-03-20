@@ -11,7 +11,7 @@ import com.selenium.wikitest.wikipage.WikiPageText;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
 import com.selenium.wikitest.wikipage.homepage.HomePageText;
 
-public class SearchForTermsTypes extends TestCase {
+public class GoToSearchTermItems extends TestCase {
 	private static HomePage homePage = new HomePage();
 
 	@Before

@@ -1,34 +1,32 @@
 package com.selenium.wikitest.wikipage.homepage.automatedtests.junit;
 
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
+
 import com.selenium.wikitest.data.SQLiteJDBC;
 import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
 import com.selenium.wikitest.wikipage.homepage.HomePageText;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import junit.framework.TestCase;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
-
 @RunWith(Parameterized.class)
-public class DataGoToWikiInLanguage extends TestCase {
+public class DataDrivenSearchRedirectedTerms extends TestCase {
 
 	private static HomePage homePage = new HomePage();
 	
-	private String xPath;
-	private String title;
+	private String searchItem;
 	
-	public DataGoToWikiInLanguage (String xPath, String title) {
-		this.xPath = xPath;
-		this.title = title;
+	public DataDrivenSearchRedirectedTerms(String searchItem1, String searchItem2) {
+		this.searchItem = searchItem1;
+		// searchItem2 is a duplicate of searchItem1
 	}
 	
 	@BeforeClass
@@ -41,29 +39,32 @@ public class DataGoToWikiInLanguage extends TestCase {
 		ArrayList<String[]> listStrings = null;
 		try {
 			listStrings = SQLiteJDBC.queryData(
-					HomePageText.getString("LanguageLinks.TableName"),
-					HomePageText.getString("LanguageLinks.Column1"),
-					HomePageText.getString("LanguageLinks.Column2"));
-		} catch (SQLException e) {
+					HomePageText.getString("RedirectStrings.TableName"),
+					HomePageText.getString("RedirectStrings.Column1"));
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return listStrings;
 	}
 
 	@Test
-	public void testSearchData() {
-		String actualResult = homePage.goToListLinkByXPath(xPath);
+	public void testRedirectData() {
+
+		String actualResult = homePage.searchForRedirect(searchItem);
 		try {
-			assertTrue(CommonMethods.formatAssertMessage(title, actualResult),
-					actualResult.contains(title));
+			// Assert expected search result record, from list, matches actual result
+			assertTrue(CommonMethods.formatAssertMessage(searchItem, actualResult),
+					actualResult.contains(searchItem));
 		} catch (AssertionError e) {
-			System.out.println("xPath = " + xPath);
-			System.out.println("title = " + title);
-			e.printStackTrace();
 			homePage.getUniqueScreenshot(this.toString());
+			System.out.println(searchItem);
+			e.printStackTrace();
 			throw(e);
 		}
+
+		// Return to home page for next test
 		homePage.openHomePage();
+
 	}
 
 	@After

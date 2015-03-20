@@ -1,4 +1,4 @@
-package com.selenium.junit.wikitestrun;
+package com.selenium.testng.wikitestrun;
 
 import org.testng.TestListenerAdapter;
 import org.testng.TestNG;
