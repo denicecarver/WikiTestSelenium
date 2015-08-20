@@ -2,8 +2,6 @@ package com.selenium.junit.wikitestrun;
 
 import org.junit.runner.JUnitCore;
 
-import com.selenium.testng.wikitestrun.TestNGTestClasses;
-
 public class ErrorSuite {
 
 	public static void main(String[] args)

@@ -3,7 +3,6 @@ package com.selenium.wikitest.wikipage.homepage.automatedtests.junit;
 import com.selenium.wikitest.data.SQLiteJDBC;
 import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
-import com.selenium.wikitest.wikipage.homepage.HomePageText;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
