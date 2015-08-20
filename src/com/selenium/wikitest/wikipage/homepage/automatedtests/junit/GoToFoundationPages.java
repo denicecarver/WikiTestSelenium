@@ -57,7 +57,7 @@ public class GoToFoundationPages extends TestCase {
 			assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
 					actualResult.contains(expectedResult));
 		} catch (AssertionError ae) {
-			homePage.getUniqueScreenshot(this.toString());
+			homePage.getUniqueScreenshot(this.getName());
 			ae.printStackTrace();
 			throw(ae);
 		}
