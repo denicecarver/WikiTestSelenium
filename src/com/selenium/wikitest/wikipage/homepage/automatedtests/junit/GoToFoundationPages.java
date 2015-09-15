@@ -1,6 +1,6 @@
 package com.selenium.wikitest.wikipage.homepage.automatedtests.junit;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -10,7 +10,7 @@ import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
 import com.selenium.wikitest.wikipage.homepage.HomePageText;
 
-public class GoToFoundationPages extends TestCase {
+public class GoToFoundationPages {
 
 	private static HomePage homePage = new HomePage();
 	
@@ -57,7 +57,7 @@ public class GoToFoundationPages extends TestCase {
 			assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
 					actualResult.contains(expectedResult));
 		} catch (AssertionError ae) {
-			homePage.getUniqueScreenshot(this.getName());
+			homePage.getUniqueScreenshot(this.toString());
 			ae.printStackTrace();
 			throw(ae);
 		}
