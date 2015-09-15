@@ -1,17 +1,18 @@
 package com.selenium.wikitest.wikipage.homepage.automatedtests.junit;
 
-import junit.framework.TestCase;
-
 import com.selenium.wikitest.shared.CommonMethods;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
 import com.selenium.wikitest.wikipage.homepage.HomePageText;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import static org.junit.Assert.assertTrue;
+
 import org.junit.After;
 import org.junit.AfterClass;
 
-public class GoToOtherProjects extends TestCase {
+public class GoToOtherProjects {
 
 	private static HomePage homePage = new HomePage();
 	
