@@ -1,9 +1,10 @@
 package com.selenium.wikitest.wikipage.homepage.automatedtests.junit;
 
-import junit.framework.TestCase;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.assertTrue;
+
 import org.junit.AfterClass;
 
 import com.selenium.wikitest.shared.CommonMethods;
@@ -11,7 +12,7 @@ import com.selenium.wikitest.wikipage.WikiPageText;
 import com.selenium.wikitest.wikipage.homepage.HomePage;
 import com.selenium.wikitest.wikipage.homepage.HomePageText;
 
-public class GoToSearchTermItems extends TestCase {
+public class GoToSearchTermItems {
 	private static HomePage homePage = new HomePage();
 
 	@Before
@@ -102,6 +103,27 @@ public class GoToSearchTermItems extends TestCase {
 			throw(ae);
 		}
 		
+	}
+	
+	@Test
+	public void searchForOutOfBoundsTerm() throws Exception {
+
+		// Set expected outcome
+		String expectedResult = HomePageText.getString("ErrorPage.SearchErrored");
+
+		// Run search and get result
+		String actualResult = homePage.searchFor(HomePageText.getString("ErrorPage.SearchTooLongString"));
+		
+		// Assert expected == actual (this assert fails)
+		try {
+			assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
+					actualResult.contains(expectedResult));
+		} catch (AssertionError ae) {
+			homePage.getUniqueScreenshot(this.toString());
+			ae.printStackTrace();
+			throw(ae);
+		}
+
 	}
 	
 	@Test
