@@ -2,6 +2,7 @@ package com.selenium.wikitest.wikipage;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
@@ -49,6 +50,20 @@ public class WikiPage {
 	
 	public String getTextAtTitle(String titleOfElement) {
 		return waitForElement(By.name(titleOfElement)).getText();
+	}
+	
+	private String getNthStringAtClassname(String className, int indexToElement) {
+		String returnString = "";
+		List<WebElement> classesIn = findElementsByClassName("searchresults");
+		WebElement element = classesIn.get(indexToElement);
+		if (element != null) {
+			returnString = element.getText();
+		}
+		return returnString;
+	}
+	
+	public String getSearchResultDetails() {
+		return getNthStringAtClassname("searchresult", 0);
 	}
 	
 	public String searchForRedirect(String redirectString) {
@@ -135,6 +150,10 @@ public class WikiPage {
 			e.printStackTrace();
 		}
 		return title;
+	}
+	
+	protected List<WebElement> findElementsByClassName(String elementClassName) {
+		return webDriver.findElements(By.className(elementClassName));
 	}
 	
 	protected WebElement waitForElement(By by)

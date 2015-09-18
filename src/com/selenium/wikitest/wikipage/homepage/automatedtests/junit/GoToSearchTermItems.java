@@ -110,11 +110,11 @@ public class GoToSearchTermItems {
 
 		// Set expected outcome
 		String expectedResult = HomePageText.getString("ErrorPage.SearchErrored");
-
-		// Run search and get result
-		String actualResult = homePage.searchFor(HomePageText.getString("ErrorPage.SearchTooLongString"));
 		
-		// Assert expected == actual (this assert fails)
+		// Assert fails - bug
+		homePage.searchFor(HomePageText.getString("ErrorPage.SearchOutOfBoundsString"));
+		String actualResult = homePage.getSearchResultDetails();
+		
 		try {
 			assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
 					actualResult.contains(expectedResult));
@@ -124,6 +124,7 @@ public class GoToSearchTermItems {
 			throw(ae);
 		}
 
+
 	}
 	
 	@Test
@@ -132,10 +133,10 @@ public class GoToSearchTermItems {
 		// Set expected outcome
 		String expectedResult = HomePageText.getString("ErrorPage.SearchErrored");
 
-		// Run search and get result
-		String actualResult = homePage.searchFor(HomePageText.getString("ErrorPage.SearchTooLongString"));
+		// Run search and get result page
+		homePage.searchFor(HomePageText.getString("ErrorPage.SearchTooLongString"));
+		String actualResult = homePage.getSearchResultDetails();
 		
-		// Assert expected == actual (this assert fails)
 		try {
 			assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
 					actualResult.contains(expectedResult));
