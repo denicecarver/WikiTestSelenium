@@ -84,19 +84,23 @@ public class GoToSearchTermItems {
 		}
 	}
 	
+	/*
+	 * Data-driven test of multi-bit character set 
+	 */
+	
 	@Test
-	public void searchForNonexistentTerm() throws Exception {
+	public void searchForLeftCurlyBracket() throws Exception {
 
 		// Set expected outcome
-		String expectedResult = HomePageText.getString("ErrorPage.NotFoundTitle");
+		String expectedResult = HomePageText.getString("HomePage.OpenBraceSearch");
 
 		// Run search and get result
-		String actualResult = homePage.searchFor(HomePageText.getString("HomePage.OpenBraceSearch"));
+		String actualResult = homePage.searchFor(expectedResult);
 		
 		// Assert expected matches actual
 		try {
 			assertTrue(CommonMethods.formatAssertMessage(expectedResult, actualResult),
-					actualResult.contains(expectedResult));
+					actualResult.startsWith(expectedResult));
 		} catch (AssertionError ae) {
 			homePage.getUniqueScreenshot(this.toString());
 			ae.printStackTrace();
